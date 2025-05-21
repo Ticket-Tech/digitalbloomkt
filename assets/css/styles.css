@@ -1,0 +1,619 @@
+/* Estilos generales */
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #fcfbf8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    background-color: #F1CB66;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    height: 250px;
+}
+
+.logo img {
+    height: 300px;
+    width: 300px;
+    margin-top: -10px;
+}
+
+.header-text {
+    transform: translateX(150px);    
+}
+
+.header-principal {
+    font-size:5.2em;
+    color: #FAE78B;
+    font-family: Merriweather;
+    margin-top: 0;
+    
+}
+
+.header-subtitulo {
+    font-size: 2.3em;
+    color: #fff;
+    text-align: end;
+    font-family: Merriweather;
+   font-weight: bold;
+}
+
+/* Menú */
+.menu {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    height: auto;
+    margin-top: -22px;
+}
+
+.menu-item {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    position: relative;
+}
+
+.menu-item::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 1.5em;
+    background-color: black;
+}
+
+.menu-item:last-child::after {
+    display: none;
+}
+
+/* Sección de fondo con imagen */
+.hero {
+    position: relative;
+    overflow: visible;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 900px;
+    
+    
+    
+}
+
+.hero img {
+    position: absolute;
+    right: 0;
+    top: 0; /* Imagen aún más abajo */
+    height: 900px;
+    width: 900px;
+    z-index: 1;
+}
+
+.hero-overlay {
+    background-color: #E6E9F0B0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+/* Sección de servicios (contenedores principales) */
+.servicios {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 3; /* Asegura que la sección de servicios se apile correctamente en el layout general */
+    top: -320px; 
+}
+
+/* Título de la sección de servicios */
+.servicios h2 {
+    color: #333;
+    text-align: left;
+    transform: translateY(-50px);
+}
+
+/* Contenedor de la cuadrícula de servicios */
+.servicios-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -50px;
+    flex-wrap: wrap;
+}
+
+/* --- Estilos base para cada rectángulo de servicio (.servicio-item) --- */
+.servicio-item {
+    background-color: #E3AE3EFF; /* Color de fondo sólido del rectángulo */
+    padding: 15px; /* Espacio interno para el texto */
+    border-radius: 50px; /* Bordes redondeados */
+    width: 160px;
+    height: 220px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido (el span de texto) verticalmente */
+    align-items: center; /* Centra el contenido (el span de texto) horizontalmente */
+    position: relative; /* **Crucial:** Establece el contexto para los pseudo-elementos y el texto */
+    overflow: hidden; /* Recorta cualquier parte de la imagen que se salga de los límites del rectángulo */
+    /* **Importante:** Hemos quitado `color`, `font-weight`, `isolation`, `transform` y `z-index` de aquí.
+       Ahora los controlaremos en `.servicio-texto` o ya no son necesarios en este nivel. */
+}
+
+/* --- ESTILO CLAVE: Para el texto dentro de cada servicio-item (.servicio-texto) --- */
+.servicio-texto {
+    position: relative; /* **Esencial:** Permite que `z-index` funcione en el texto */
+    z-index: 3; /* **¡Este es el z-index que asegura que el texto esté por encima de las imágenes!** */
+    color: #000; /* Color del texto */
+    text-shadow: 
+        1px 1px 3px rgba(255, 255, 255, 0.9),  /* Sombra principal: más desplazamiento, más desenfoque, más opacidad */
+        -1px -1px 3px rgba(255, 255, 255, 0.6), /* Sombra superior-izquierda más sutil para un ligero contorno */
+        2px 2px 5px rgba(255, 255, 255, 0.7);  /* Una sombra más grande y difusa para el efecto de "flotar" */
+    font-weight: bold; /* Peso de la fuente para el texto */
+    text-align: center; /* Asegura que el texto dentro del span esté centrado */
+    width: 100%; /* El span debe ocupar el ancho completo para centrar su propio texto */
+    font-size: 1.4em;
+    font-family: Merriweather;
+}
+
+/* --- Estilos generales para los pseudo-elementos (capas de imágenes de fondo) --- */
+.servicio-item::before,
+.servicio-item::after {
+    content: "";
+    position: absolute; /* Posicionamiento absoluto dentro de `.servicio-item` */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat; /* Evita que las imágenes se repitan */
+    /* La opacidad, imagen, posición y tamaño se definirán en las clases específicas de cada servicio */
+}
+
+/* --- Control del apilamiento (z-index) para las capas de imágenes --- */
+/* Estas capas están configuradas para estar por debajo del texto (.servicio-texto con z-index: 3) */
+.servicio-item::before {
+    z-index: 1; /* La primera imagen de fondo (capa inferior) */
+}
+.servicio-item::after {
+    z-index: 2; /* La segunda imagen de fondo (capa superior), si existe, pero aún debajo del texto */
+}
+
+/* --- SERVICIO 1: Gestión en Redes Sociales (DOS IMÁGENES) --- */
+.servicio-1::before { /* Imagen de fondo principal (capa inferior) */
+    background-image: url('../images/fon3.jpg'); /* **RUTA DE TU IMAGEN: 'fon3.jpg'** */
+    background-position: center top; /* Centrada en la parte inferior */
+    background-size: 150% 100%; /* Ocupa todo el ancho, 70% del alto */
+    opacity: 0.4; /* Opacidad deseada */
+}
+.servicio-1::after { /* Segunda imagen (capa superior): un icono de "like" */
+    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: top 100px left 30px; /* Arriba a la derecha, 10px de margen */
+    background-size: 250px 250px; /* Tamaño fijo de icono */
+    opacity: 0.5; /* Opacidad deseada */
+}
+.servicio-1 .servicio-texto {
+    /* Ejemplo 1: Mover el texto 10px hacia abajo */
+    margin-top: 90px; 
+    font-size: 1.3em;
+}
+
+/* --- SERVICIO 2: Pauta Publicitaria en Meta Ads y Google Ads (UNA IMAGEN) --- */
+.servicio-2::before {
+    background-image: url('../images/fon5.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left 20px top 100px; /* En el centro a la izquierda */
+    background-size: 250px 150px; /* 70% del ancho, altura automática */
+    opacity: 0.4; 
+}
+
+/* --- SERVICIO 3: Creación de Estrategia (UNA IMAGEN) --- */
+.servicio-3::before {
+    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left -40px bottom 15px; /* Centrada, 20px desde arriba */
+    background-size: 150% auto; /* 90% del ancho, altura automática */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 4: Diseño en Canva (UNA IMAGEN) --- */
+.servicio-4::before {
+    background-image: url('../images/fon6.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: bottom -10px left -10px; /* Abajo a la derecha, 15px de margen */
+    background-size: 150px 150px; /* Tamaño fijo */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 5: Desarrollo Web (UNA IMAGEN) --- */
+.servicio-5::before {
+    background-image: url('../images/fon5.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left top -120px;
+    background-size: cover; /* Cubrirá todo el espacio */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 6: Identidad de Marca (DOS IMÁGENES) --- */
+.servicio-6::before { /* Imagen de fondo principal (capa inferior): un patrón geométrico */
+    background-image: url('../images/fon7.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left -10px top -10px; /* Arriba a la izquierda */
+    background-size: 50% 50%; /* Cubrir todo el espacio (puede distorsionarse ligeramente) */
+    opacity: 0.4; /* Muy, muy sutil */
+}
+.servicio-6::after { /* Segunda imagen (capa superior): un logo o icono de marca */
+    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: center left 30px; /* Centrado horizontal, 30px desde arriba */
+    background-size: 300px 250px; /* Tamaño fijo */
+    opacity: 0.4; /* Bien visible */
+    transform: rotate(-50deg);
+}
+/* Sección Quiénes Somos */
+.quienes-somos {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    margin-top: -345px;
+    font-family: Merriweather;
+
+}
+/* Alinea el título h2 al centro */
+.quienes-somos h2 {
+    text-align: center; /* Centra solo el título */
+    color: #F1CB66; /* Mantén el color que ya tienes */
+    margin-bottom: 20px; /* Agrega un poco de espacio debajo del título si es necesario */
+    font-size: 6em;
+    transform: translateY(-50px);
+}
+
+/* Alinea el párrafo al margen (izquierda) */
+.quienes-somos p {
+    text-align: left; /* Alinea el texto del párrafo a la izquierda */
+    line-height: 1.2; /* Mejora la legibilidad del texto */
+    font-size: 1.6em;
+    margin-left: 50px;
+    color: #949398;
+}
+/* Sección Contenido Gratuito */
+.contenido-gratuito {
+    padding: 2px;
+    display: flex;
+    align-items: start;
+    text-align: center;
+    background-color: #FAE78B;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.contenido-gratuito img {
+    width: 350px;
+    height: 380px;
+    
+}
+
+.contenido-texto {
+   font-family: Merriweather ;
+   font-size: 2.8em;
+   text-align: left;
+   margin-left: 150px;
+   margin-top: 50px;
+   line-height: 1.2;
+   color: #757575;
+}
+
+.contenido-gratuito .boton-descargar {
+    background-color: #757575;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    transform: translateX(900px);
+    font-size: 1em;
+    width: 200px;
+    margin-top: -80px;
+}
+
+/* Sección Certificados */
+.certificados {
+    padding: 40px 1px;
+    text-align: center;
+    background-color: #fff;
+    position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
+    overflow: hidden; /* Recorta lo que se salga */
+}
+
+/* El h2 y el contenedor de círculos deben tener un z-index más alto */
+.certificados h2,
+.certificados-container {
+    position: relative; /* Necesario para z-index */
+    z-index: 3; /* Asegura que el contenido quede por encima de todas las imágenes de fondo */
+}
+.certificados h2{
+    text-align: left;  
+    font-family: Merriweather ;
+    font-size: 2.5em;  
+    margin-top: -20px;
+    margin-left: 30px;
+}
+
+.certificados-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+    position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
+    /* Importante: Si el z-index de este contenedor fuera menor que los pseudo-elementos de la sección,
+       sus propios pseudo-elementos podrían terminar debajo de los de la sección.
+       Asegúrate de que su z-index sea al menos igual o mayor al de la sección, si los pseudo-elementos de la sección tienen uno. */
+    z-index: 3; /* Mismo z-index que el h2 para que estén ambos encima */
+}
+
+/* --- Estilos comunes para los pseudo-elementos de fondo --- */
+.certificados::before,
+.certificados::after,
+.certificados-container::before,
+.certificados-container::after {
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain; /* Ajusta según necesites: 'cover', '100% 100%', etc. */
+    z-index: 1; /* Por debajo del contenido principal */
+    pointer-events: none; /* Impide que interfieran con clics o interacciones */
+}
+
+/* --- Imágenes de Fondo Individuales --- */
+
+/* Imagen 1: Pseudo-elemento de la sección principal */
+.certificados::before {
+    background-image: url('../images/fon5.png');
+    width: 200px;
+    height: 180px;
+    top: 5px;
+    left: 390px;
+    transform: rotate(50deg);
+}
+
+/* Imagen 2: Otro pseudo-elemento de la sección principal */
+.certificados::after {
+    background-image: url('../images/fon5.png');
+    width: 200px;
+    height: 180px;
+    bottom: -40px;
+    right: 190px;
+    transform: rotate(5deg);
+}
+
+/* Imagen 3: Pseudo-elemento del contenedor de círculos */
+.certificados-container::before {
+    background-image: url('../images/fon5.png');
+    width: 200px;
+    height: 180px;
+    /* Las coordenadas son relativas a .certificados-container */
+    top: -120px; /* Ejemplo: Por encima del contenedor de círculos */
+    right: 1px; /* Ejemplo: A la derecha del contenedor de círculos */
+    transform: rotate(180deg);
+}
+
+/* Imagen 4: Otro pseudo-elemento del contenedor de círculos */
+.certificados-container::after {
+    background-image: url('../images/fon5.png');
+    width: 200px;
+    height: 180px;
+    /* Las coordenadas son relativas a .certificados-container */
+    bottom: -70px; /* Ejemplo: Por debajo del contenedor de círculos */
+    left: 5px; /* Ejemplo: A la izquierda del contenedor de círculos */
+}
+
+.certificado-circulo {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-color: #E3AE3E;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    margin-top: -5px;
+    z-index: 5;
+    font-family: Merriweather ;
+    font-weight: bold;
+}
+
+/* Sección Ubicación y Formulario: Contenedor principal de la sección */
+.ubicacion-formulario {
+    padding: 60px 20px; /* Relleno interno para espacio alrededor del contenido */
+    display: flex; /* Activa Flexbox para organizar los elementos internos */
+    flex-direction: column; /* Apila los elementos hijos verticalmente (mapa arriba, bloque de form/redes abajo) */
+    align-items: flex-start; /* Alinea los elementos hijos al inicio (izquierda) del eje transversal */
+    gap: 40px; /* Espacio vertical entre los elementos principales (mapa y el contenedor de form/redes) */
+    background-color: #F1CB66; /* Color de fondo de toda la sección */
+    width: 100%; /* Asegura que la sección ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho total */
+}
+
+/* Contenedor del Mapa */
+.ubicacion {
+    width: 90%; /* Ancho del contenedor del mapa dentro de la sección */
+    max-width: 1000px; /* Ancho máximo para el mapa en pantallas grandes */
+    background-color: #F1CB66; /* Mismo color de fondo que la sección */
+    text-align: left; /* Alinea el título "Ubicación" a la izquierda dentro de este contenedor */
+    margin: 0 auto; /* Centra el contenedor del mapa horizontalmente dentro de la sección */
+}
+
+.ubicacion h2 {
+    color: #333; /* Color del texto del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 2.2em; /* Tamaño de la fuente del título */
+}
+
+.ubicacion iframe {
+    width: 100%; /* El iframe del mapa ocupa el 100% del ancho de su contenedor */
+    height: 500px; /* Altura fija para el mapa, dándole una forma rectangular/cuadrada */
+    border: none; /* Elimina el borde predeterminado del iframe */
+    border-radius: 10px; /* Esquinas redondeadas para un estilo moderno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    overflow: hidden; /* Asegura que las esquinas redondeadas se apliquen correctamente */
+}
+
+/* Contenedor Principal para el Formulario Y las Redes Sociales (SOLO DISPOSICIÓN) */
+/* Este div (.form-redes-wrapper) solo se encarga de posicionar al formulario y las redes AL LADO. */
+/* NO LLEVA FONDO, PADDING, NI SOMBRA; es transparente. */
+.form-redes-wrapper {
+    width: 90%; /* Ancho general para este bloque combinado */
+    max-width: 900px; /* Ancho máximo para el bloque combinado (ajusta si quieres que coincida con el mapa) */
+    display: flex; /* ¡ACTIVA FLEXBOX PARA ALINEAR HIJOS! */
+    flex-direction: row; /* ¡ESTO LOS PONE UNO AL LADO DEL OTRO! */
+    flex-wrap: wrap; /* Permite que los elementos salten a la siguiente línea si no hay espacio en pantallas pequeñas */
+    justify-content: flex-start; /* Alinea el formulario y las redes sociales al inicio (izquierda) de este contenedor */
+    align-items: flex-start; /* Alinea el contenido de ambos (formulario y redes) en la parte superior */
+    gap: 40px; /* Espacio horizontal entre el recuadro del formulario y las redes sociales */
+    margin: 0 auto; /* Centra este contenedor combinado para que se alinee con el mapa */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+}
+
+/* Formulario de Consulta: ESTE ES EL ÚNICO QUE TIENE RECUADRO BLANCO */
+.formulario-consulta {
+    width: 450px; /* Ancho máximo deseado para el formulario */
+    text-align: left;
+    background-color: #fff; /* ¡FONDO BLANCO PARA EL RECUADRO DEL FORMULARIO! */
+    padding: 30px; /* Relleno interno para el formulario */
+    border-radius: 10px; /* Esquinas redondeadas para el formulario */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para el formulario */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+    margin-left: -50px;
+}
+
+
+.formulario-consulta label {
+    display: block; /* Cada etiqueta en su propia línea */
+    margin-bottom: 8px; /* Espacio debajo de las etiquetas */
+    font-weight: bold; /* Etiquetas en negrita */
+    color: #555;
+}
+
+.formulario-consulta input[type="text"],
+.formulario-consulta input[type="email"],
+.formulario-consulta textarea {
+    width: 100%; /* Los campos ocupan todo el ancho de su contenedor */
+    padding: 12px; /* Relleno interno de los campos */
+    margin-bottom: 20px; /* Espacio entre campos */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+    font-size: 1.05em; /* Tamaño de la fuente de entrada */
+}
+
+.formulario-consulta textarea {
+    resize: vertical; /* Permite al usuario redimensionar el textarea solo verticalmente */
+}
+
+.formulario-consulta button[type="submit"] {
+    background-color: #F1CB66; /* Color de fondo del botón de envío */
+    color: #333; /* Color del texto del botón */
+    padding: 12px 25px; /* Relleno del botón */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 1.1em; /* Tamaño de la fuente del botón */
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+}
+
+.formulario-consulta button[type="submit"]:hover {
+    background-color: #e0b85d; /* Color al pasar el ratón por encima del botón */
+}
+/* Estilos para el botón de WhatsApp */
+.whatsapp-button {
+    display: block; /* **Hace que el botón ocupe todo el ancho y se comporte como un bloque** */
+    width: 85%; /* **Asegura que ocupe el 100% del ancho disponible** */
+    background-color: #25D366; /* Color verde de WhatsApp */
+    color: white; /* Texto blanco */
+    padding: 12px 25px; /* **Mismo padding para igualar la altura visual** */
+    border: none;
+    border-radius: 8px; /* **Mismas esquinas redondeadas** */
+    cursor: pointer;
+    font-size: 1.1em; /* **Mismo tamaño de fuente** */
+    font-weight: bold;
+    text-align: center; /* Centra el texto y el ícono */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    margin-top: 5px; /* No necesita margen superior ya que `margin-bottom` del submit lo maneja */
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851; /* Un verde más oscuro al pasar el ratón */
+}
+
+.whatsapp-button i {
+    margin-right: 8px; /* Espacio entre el ícono de WhatsApp y el texto */
+    font-size: 1.2em; /* Tamaño del ícono, un poco más grande que el texto para que destaque */
+}
+
+/* Redes Sociales: Al lado del formulario, sin ningún recuadro principal */
+.redes-sociales {
+    display: flex;
+    flex-direction: column; /* Apila los enlaces de redes sociales verticalmente */
+    align-items: flex-start; /* Alinea los elementos (título, links) a la izquierda de este bloque */
+    justify-content: flex-start;
+    flex-grow: 1; /* Permite que este bloque crezca para ocupar espacio disponible */
+    min-width: 180px; /* Ancho mínimo para el bloque de redes sociales */
+    /* Ya no es necesario 'gap' aquí, los 'margin-bottom' de los botones manejarán el espaciado vertical. */
+    margin-top: 110px;
+}
+
+
+/* --- ESTILOS PARA LOS BOTONES SOCIALES INDIVIDUALES --- */
+/* Esta clase 'social-button' aplica los estilos base de los círculos */
+.social-button {
+    display: inline-flex; /* Permite que el contenido (ícono) se centre dentro */
+    justify-content: center; /* Centra el ícono horizontalmente */
+    align-items: center; /* Centra el ícono verticalmente */
+    width: 50px; /* Define el ancho del círculo */
+    height: 50px; /* Define la altura del círculo */
+    border-radius: 50%; /* Hace que el elemento sea un círculo perfecto */
+    margin-bottom: 25px; /* Espacio debajo de cada botón social, apilándolos verticalmente */
+    /* margin-right: 10px; */ /* Si los botones fueran horizontales, este margen separaría uno del otro */
+    color: white; /* Color del ícono de Font Awesome dentro del círculo */
+    font-size: 1.6em; /* Tamaño del ícono */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    transition: transform 0.2s ease-in-out; /* Animación suave al pasar el ratón */
+}
+
+.social-button i {
+    /* Asegura que el ícono ocupe su espacio y esté perfectamente centrado */
+    line-height: 1;
+}
+
+.social-button:hover {
+    transform: scale(1.1); /* Agranda el botón ligeramente al pasar el ratón por encima */
+}
+
+/* --- COLORES DE FONDO ESPECÍFICOS PARA CADA RED SOCIAL --- */
+/* Cada clase específica define el color de fondo de su respectivo botón */
+
+.social-button.email {
+    background-color: #f86132; /* Azul de Outlook/Microsoft para correo */
+}
+
+.social-button.facebook {
+    background-color: #1877F2; /* Azul de Facebook */
+}
+
+.social-button.tiktok {
+    background-color: #000; /* Negro de TikTok (puedes ajustar si quieres un color más vivo) */
+}
+
+.social-button.instagram {
+    /* Gradiente de Instagram - fiel al logo oficial */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Mi Página Web</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <img src="./assets/images/logo1.png" alt="Mi Logo">
+        </div>
+        <div class="header-text">
+            <h1 class="header-principal">DIGITALBLOOMKT</h1>
+            <p class="header-subtitulo">Agencia de Marketing</p>
+        </div>
+    </header>
+
+    <nav class="menu">
+        <a href="#servicios" class="menu-item">Servicios</a>
+        <a href="#quienes-somos" class="menu-item">Quiénes Somos</a>
+        <a href="#contenido-gratuito" class="menu-item">Contenido Gratuito</a>
+        <a href="#certificados" class="menu-item">Certificados</a>
+        <a href="#contacto" class="menu-item">Contacto</a>
+    </nav>
+
+    <section class="hero">
+        <img class="hero-image" src="./assets/images/fondo1.png" alt="Imagen Principal">
+        <div class="hero-overlay"></div>
+        <p>Donde tu marca florece.</p>
+    </section>
+<section id="servicios" class="servicios">
+    <h2>Te presento mis servicios</h2>
+    <div class="servicios-grid">
+        <div class="servicio-item servicio-1"><span class="servicio-texto">Gestión en Redes Sociales</span></div>
+        
+        <div class="servicio-item servicio-2"><span class="servicio-texto">Pauta Publicitaria en Meta Ads y Google Ads</span></div>
+        
+        <div class="servicio-item servicio-3"><span class="servicio-texto">Creación de Estrategia</span></div>
+        
+        <div class="servicio-item servicio-4"><span class="servicio-texto">Diseño en Canva</span></div>
+        
+        <div class="servicio-item servicio-5"><span class="servicio-texto">Desarrollo Web</span></div>
+        
+        <div class="servicio-item servicio-6"><span class="servicio-texto">Identidad de Marca</span></div>
+    </div>
+</section>
+    <section id="quienes-somos" class="quienes-somos">
+        <h2>Quiénes Somos</h2>
+        <p>Digitalbloomkt nació del deseo de transformar marcas que sienten que tienen mucho para dar… <br>
+pero no saben cómo mostrarlo.<br>
+Soy Brenda Dujovich, y estoy detrás de esta agencia que combina estrategia, creatividad y mucha empatía.<br><br>
+Durante años trabajé con fábricas, emprendedores y marcas que querían crecer pero se sentían perdidos <br>
+entre reels, algoritmos y diseños. Ahí entendí algo clave:<br>
+no alcanza con publicar, hay que conectar.<br><br>
+
+Por eso, en DigitalBloomkt no solo hacemos redes:<br>
+📌 Diseñamos estrategias reales.<br>
+📌 Creamos contenido que representa tu esencia.<br>
+📌 Acompañamos a tu marca a florecer paso a paso.<br><br>
+
+Acá vas a encontrar un equipo que te escucha, te entiende y te propone soluciones que no solo se ven lindas,<br>
+ sino que funcionan.<br><br>
+
+No importa si estás empezando o ya tenés recorrido.<br>
+Si buscás comunicarte con intención, crecer con estrategia y sentirte acompañado en el proceso, este <br>
+espacio también es para vos.<br><br>
+
+Bienvenido a Digitalbloomkt, donde tu marca florece.</p>
+    </section>
+
+    <section id="contenido-gratuito" class="contenido-gratuito">
+        <img src="./assets/images/descontenido.png" alt="Contenido Gratuito">
+        <div class="contenido-texto">
+            <h3>DESCARGA MI <br>CONTENIDO GRATUITO</h3>
+        </div>
+        <a href="#" class="boton-descargar">Aquí</a>
+    </section>
+
+<section id="certificados" class="certificados">
+    <h2>MIS CERTIFICADOS</h2>
+    <div class="certificados-container">
+        <div class="certificado-circulo">Certificado Advisors</div>
+        <div class="certificado-circulo">Certificado<br> CM y <br>Publicidad</div>
+        <div class="certificado-circulo">Certificado Copywriting</div>
+        <div class="certificado-circulo">Certificado Fotoproducto</div>
+        <div class="certificado-circulo">Certificado Growht Marketing</div>
+    </div>
+</section>
+
+    <section id="contacto" class="ubicacion-formulario">
+    <div class="ubicacion">
+        <h2>Ubicación</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31714.1838788439!2d-58.4332826976833!3d-34.6153162994878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccacec5c759a3%3A0xa00a5164c6c327a2!2sBuenos%20Aires!5e0!3m2!1ses-419!2sar!4v1716109281909!5m2!1ses-419!2sar" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+    <div class="form-redes-wrapper">
+        <div class="formulario-consulta">
+            <form>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="consulta">Consulta:</label>
+                <textarea id="consulta" name="consulta" rows="5" required></textarea>
+
+                <button type="submit">Enviar Consulta</button>
+                 <a href="https://wa.me/TUNUMEROTELEFONO?text=Hola,%20me%20gustaría%20saber%20más%20sobre%20sus%20servicios." 
+           target="_blank" 
+           class="whatsapp-button">
+           <i class="fab fa-whatsapp"></i> Enviar WhatsApp
+        </a>
+            </form>
+        </div>
+
+         <div class="redes-sociales">
+            <a href="#" target="_blank" class="social-button instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" class="social-button facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:tu@email.com" class="social-button email"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank" class="social-button tiktok"><i class="fab fa-tiktok"></i></a>
+            </div>
+    </div>
+</section>
+
+</body>
+</html>
