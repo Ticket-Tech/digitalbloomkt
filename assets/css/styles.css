@@ -107,6 +107,20 @@ body {
     left: 0;
     z-index: 2;
 }
+.hero p {
+    position: relative; /* Para que el texto esté por encima de la superposición */
+    z-index: 7; /* Coloca el texto encima de la superposición */
+    font-size:9em; /* Tamaño de fuente más grande para que destaque */
+    text-align: left; /* Centrar el texto */
+    color: #0E0D09; /* **Esta es la línea CLAVE: Cambia el color del texto a blanco** */
+    text-shadow: 2px 2px 4px rgb(255, 255, 255);
+    margin-bottom: 0;
+    margin-right: auto;
+    transform: translateY(-350px);
+    margin-left: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 /* Sección de servicios (contenedores principales) */
 .servicios {
@@ -448,12 +462,16 @@ body {
     background-color: #F1CB66; /* Mismo color de fondo que la sección */
     text-align: left; /* Alinea el título "Ubicación" a la izquierda dentro de este contenedor */
     margin: 0 auto; /* Centra el contenedor del mapa horizontalmente dentro de la sección */
+    margin-top: 80px;
 }
 
 .ubicacion h2 {
     color: #333; /* Color del texto del título */
     margin-bottom: 20px; /* Espacio debajo del título */
-    font-size: 2.2em; /* Tamaño de la fuente del título */
+    font-size: 3em; /* Tamaño de la fuente del título */
+    font-family: Merriweather;
+    text-align: center;
+    font-weight: bold;
 }
 
 .ubicacion iframe {
@@ -527,6 +545,7 @@ body {
     font-size: 1.1em; /* Tamaño de la fuente del botón */
     font-weight: bold;
     transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+    width: 97%;
 }
 
 .formulario-consulta button[type="submit"]:hover {
@@ -616,4 +635,234 @@ body {
 .social-button.instagram {
     /* Gradiente de Instagram - fiel al logo oficial */
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+/* ========================================================================== */
+/* MEDIA QUERIES PARA PANTALLAS GRANDES                 */
+/* ========================================================================== */
+
+
+/* ========================================================================== */
+/* MEDIA QUERIES PARA PANTALLAS MÁS GRANDES (A partir de monitores de escritorio) */
+/* ========================================================================== */
+
+/* --- Ajustes para Monitores de Escritorio Estándar (>= 1440px) --- */
+/* Esta Media Query se activará en monitores con un ancho de 1440 píxeles o más. */
+/* Si tu laptop tiene una resolución menor a 1440px (ej. 1366px, 1280px), estos estilos NO se aplicarán. */
+@media (min-width: 1440px) {
+    /* Header */
+    .header {
+        height: 300px;
+    }
+    .logo img {
+        height: 350px;
+        width: 350px;
+        margin-left: 50px;
+    }
+    .header-text {
+        transform: translateX(200px);
+    }
+    .header-principal {
+        font-size: 6.5em;
+    }
+    .header-subtitulo {
+        font-size: 2.8em;
+    }
+
+    /* Menú */
+    .menu {
+        padding: 15px 0;
+        margin-top: -30px;
+    }
+    .menu-item {
+        padding: 0 25px;
+        font-size: 1.1em;
+    }
+
+    /* Hero */
+    .hero {
+        height: 80vh; /* Altura responsiva basada en el viewport */
+    }
+    .hero img {
+        height: 100%;
+        width: 1000px; /* Ancho fijo para la imagen de fondo */
+    }
+    .hero p {
+        font-size: clamp(6em, 6.5vw, 7em); /* Tamaño de texto con límites */
+        transform: translateY(-280px);
+        margin-left: 8%;
+        max-width: 800px;
+    }
+
+    /* Servicios */
+    .servicios {
+        top: -300px;
+    }
+    .servicios-grid {
+        gap: 40px;
+    }
+    .servicio-item {
+        width: 200px;
+        height: 280px;
+        border-radius: 60px;
+    }
+    .servicio-texto {
+        font-size: 1.6em;
+        margin-top: 120px;
+    }
+
+    /* Quiénes Somos */
+    .quienes-somos {
+        padding: 100px 80px;
+        margin-top: -350px;
+    }
+    .quienes-somos h2 {
+        font-size: 5em;
+    }
+    .quienes-somos p {
+        font-size: 1.5em;
+        max-width: 900px;
+    }
+
+    /* Contenido Gratuito */
+    .contenido-gratuito img {
+        width: 550px;
+        height: 580px;
+    }
+    .contenido-texto {
+        font-size: 2.5em;
+        margin-left: 100px;
+        max-width: 700px;
+    }
+    .contenido-gratuito .boton-descargar {
+        width: 280px;
+    }
+
+    /* Certificados */
+    .certificados h2 {
+        font-size: 3.5em;
+        margin-left: 80px;
+    }
+    .certificados-container {
+        gap: 50px;
+    }
+    .certificado-circulo {
+        width: 280px;
+        height: 280px;
+        font-size: 2.5em;
+    }
+    /* Puedes ajustar las posiciones de las imágenes de fondo si es necesario */
+    /* .certificados::before { width: 250px; height: 220px; top: 10px; left: 450px; } */
+    /* .certificados::after { width: 250px; height: 220px; bottom: -50px; right: 250px; } */
+    /* .certificados-container::before { width: 250px; height: 220px; top: -150px; right: 50px; } */
+    /* .certificados-container::after { width: 250px; height: 220px; bottom: -80px; left: 50px; } */
+
+    /* Ubicación y Formulario */
+    .ubicacion-formulario {
+        gap: 80px;
+    }
+    .ubicacion iframe {
+        height: 700px;
+    }
+    .social-button {
+        width: 70px;
+        height: 70px;
+        font-size: 2em;
+    }
+    .social-name {
+        font-size: 1.3em;
+    }
+}
+
+/* --- Ajustes para Monitores Muy Grandes o 4K (>= 1920px) --- */
+@media (min-width: 1920px) {
+    /* Header */
+    .header {
+        height: 350px;
+    }
+    .logo img {
+        height: 400px;
+        width: 400px;
+        margin-left: 80px;
+    }
+    .header-text {
+        transform: translateX(250px);
+    }
+    .header-principal {
+        font-size: 7.5em;
+    }
+    .header-subtitulo {
+        font-size: 3.2em;
+    }
+
+    /* Hero */
+    .hero {
+        height: 70vh;
+    }
+    .hero img {
+        width: 1200px;
+    }
+    .hero p {
+        font-size: clamp(6.5em, 6vw, 7.5em);
+        transform: translateY(-250px);
+        margin-left: 10%;
+        max-width: 900px;
+    }
+
+    /* Servicios */
+    .servicio-item {
+        width: 220px; /* Aún más grandes */
+        height: 300px;
+    }
+    .servicio-texto {
+        font-size: 1.7em;
+        margin-top: 130px;
+    }
+
+    /* Quiénes Somos */
+    .quienes-somos h2 {
+        font-size: 6em;
+    }
+    .quienes-somos p {
+        font-size: 1.6em;
+        max-width: 1000px;
+    }
+
+    /* Contenido Gratuito */
+    .contenido-gratuito img {
+        width: 600px;
+        height: 630px;
+    }
+    .contenido-texto {
+        font-size: 2.8em;
+        margin-left: 120px;
+        max-width: 800px;
+    }
+
+    /* Certificados */
+    .certificados h2 {
+        font-size: 4em;
+        margin-left: 100px;
+    }
+    .certificado-circulo {
+        width: 300px;
+        height: 300px;
+        font-size: 2.8em;
+    }
+
+    /* Ubicación y Formulario */
+    .ubicacion-formulario {
+        gap: 100px;
+    }
+    .ubicacion iframe {
+        height: 800px;
+    }
+    .social-button {
+        width: 80px;
+        height: 80px;
+        font-size: 2.2em;
+    }
+    .social-name {
+        font-size: 1.4em;
+    }
 }
