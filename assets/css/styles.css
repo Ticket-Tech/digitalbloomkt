@@ -866,3 +866,393 @@ body {
         font-size: 1.4em;
     }
 }
+
+/* ========================================================================== */
+/* MEDIA QUERIES PARA PANTALLAS MÁS PEQUEÑAS                                  */
+/* ========================================================================== */
+
+/* --- Ajustes para Tabletas (menos de 1024px de ancho) --- */
+/* Esta Media Query afectará a la mayoría de las tabletas y laptops pequeñas. */
+@media (max-width: 1023px) {
+    /* Header */
+    .header {
+        height: 220px;
+    }
+    .logo img {
+        height: 250px;
+        width: 250px;
+        margin-left: 15px;
+    }
+    .header-text {
+        transform: translateX(100px);
+    }
+    .header-principal {
+        font-size: 4em;
+    }
+    .header-subtitulo {
+        font-size: 1.8em;
+    }
+
+    /* Menú */
+    .menu {
+        padding: 8px 0;
+        margin-top: -20px;
+    }
+    .menu-item {
+        padding: 0 12px;
+        font-size: 0.9em;
+    }
+
+    /* Hero */
+    .hero {
+        height: 600px;
+    }
+    .hero img {
+        height: 100%;
+        width: auto;
+        min-width: 600px; /* Asegura que la imagen no sea demasiado pequeña */
+    }
+    .hero p {
+        font-size: 4em;
+        transform: translateY(-200px);
+        margin-left: 5%;
+        max-width: 500px;
+    }
+
+    /* Servicios */
+    .servicios {
+        top: -180px;
+        padding: 30px 15px;
+    }
+    .servicios h2 {
+        font-size: 2.2em;
+        transform: translateY(-20px);
+    }
+    .servicios-grid {
+        gap: 15px;
+    }
+    .servicio-item {
+        width: 160px;
+        height: 200px;
+    }
+    .servicio-texto {
+        font-size: 1.1em;
+        margin-top: 60px;
+    }
+
+    /* Quiénes Somos */
+    .quienes-somos {
+        padding: 30px 20px;
+        margin-top: -200px;
+    }
+    .quienes-somos h2 {
+        font-size: 3em;
+        transform: translateY(-20px);
+    }
+    .quienes-somos p {
+        font-size: 1.1em;
+        margin-left: 20px;
+        margin-right: 20px;
+        max-width: 700px; /* Limita el ancho del texto */
+    }
+
+    /* Contenido Gratuito */
+    .contenido-gratuito {
+        padding: 20px;
+        flex-direction: column; /* Apilados en tabletas también si el espacio es limitado */
+        align-items: center;
+    }
+    .contenido-gratuito img {
+        width: 280px;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+    .contenido-texto {
+        font-size: 1.8em;
+        margin-left: 20px;
+        margin-right: 20px;
+        text-align: center;
+        max-width: 500px;
+    }
+    .contenido-gratuito .boton-descargar {
+        transform: translateX(0);
+        margin-top: 15px;
+        width: 220px;
+    }
+
+    /* Certificados */
+    .certificados {
+        padding: 20px 10px;
+    }
+    .certificados h2 {
+        font-size: 2em;
+        margin-left: 15px;
+        text-align: center;
+    }
+    .certificados-container {
+        gap: 20px;
+        flex-direction: column; /* Apilados en tabletas pequeñas */
+    }
+    .certificado-circulo {
+        width: 180px;
+        height: 180px;
+        font-size: 1.6em;
+        margin-bottom: 15px;
+    }
+    /* Oculta las imágenes de fondo complejas en tabletas para simplificar */
+    .certificados::before,
+    .certificados::after,
+    .certificados-container::before,
+    .certificados-container::after {
+        display: none;
+    }
+
+    /* Ubicación y Formulario */
+    .ubicacion-formulario {
+        padding: 30px 15px;
+        flex-direction: column; /* Apilados */
+        align-items: center;
+        gap: 25px;
+    }
+    .ubicacion {
+        width: 95%;
+        margin-top: 0;
+        text-align: center;
+    }
+    .ubicacion h2 {
+        font-size: 2.5em;
+        text-align: center;
+    }
+    .ubicacion iframe {
+        height: 350px;
+    }
+    .form-redes-wrapper {
+        width: 95%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin: 0;
+    }
+    .formulario-consulta {
+        width: 100%;
+        max-width: 450px; /* Limita el ancho del formulario */
+        padding: 20px;
+        margin-left: 0;
+    }
+    .formulario-consulta button[type="submit"],
+    .whatsapp-button {
+        width: 100%;
+    }
+    .redes-sociales {
+        margin-top: 0;
+        align-items: center; /* Centra los íconos */
+        flex-direction: row; /* Íconos en fila */
+        flex-wrap: wrap; /* Permite que salten de línea */
+        gap: 15px;
+    }
+    .redes-sociales h3 { /* Si existe el título "Síguenos" */
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .social-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4em;
+        margin-right: 5px; /* Espacio entre botones en fila */
+        margin-bottom: 5px; /* Espacio si saltan de línea */
+    }
+}
+
+/* --- Ajustes para Celulares (menos de 768px de ancho, por ejemplo, hasta 320px) --- */
+/* Este es el punto de ruptura más pequeño, ideal para smartphones. */
+@media (max-width: 767px) {
+    /* Header */
+    .header {
+        height: 180px;
+        flex-direction: column; /* Apila logo y texto */
+        justify-content: center;
+    }
+    .logo img {
+        height: 150px;
+        width: 150px;
+        margin-top: 0;
+        margin-left: 0;
+    }
+    .header-text {
+        transform: translateX(0); /* Elimina la transformación */
+        text-align: center;
+    }
+    .header-principal {
+        font-size: 3em;
+        margin-bottom: 5px;
+    }
+    .header-subtitulo {
+        font-size: 1.4em;
+        text-align: center;
+    }
+
+    /* Menú */
+    .menu {
+        flex-direction: column; /* Apila los ítems del menú */
+        padding: 5px 0;
+        margin-top: 0;
+    }
+    .menu-item {
+        padding: 5px 0;
+        font-size: 0.85em;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
+        text-align: center;
+    }
+    .menu-item::after {
+        display: none; /* Oculta el separador vertical */
+    }
+    .menu-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Hero */
+    .hero {
+        height: 400px;
+        justify-content: center; /* Centra el texto */
+        align-items: center; /* Centra el texto */
+        overflow: hidden; /* Asegura que no haya scroll por la imagen */
+    }
+    .hero img {
+        min-width: 100%; /* La imagen ocupa todo el ancho */
+        height: auto; /* Altura automática para mantener proporción */
+        top: 0;
+        right: 0;
+        object-fit: cover; /* Recorta la imagen para cubrir el área */
+    }
+    .hero p {
+        font-size: 2.2em;
+        transform: translateY(0); /* Elimina la transformación */
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center; /* Centra el texto */
+        max-width: 90%;
+    }
+
+    /* Servicios */
+    .servicios {
+        top: -80px; /* Mueve un poco hacia arriba */
+        padding: 20px 10px;
+    }
+    .servicios h2 {
+        font-size: 1.8em;
+        text-align: center; /* Centra el título */
+    }
+    .servicios-grid {
+        gap: 10px;
+        flex-direction: column; /* Asegura que estén apilados */
+    }
+    .servicio-item {
+        width: 140px;
+        height: 180px;
+        border-radius: 40px;
+    }
+    .servicio-texto {
+        font-size: 1em;
+        margin-top: 50px;
+    }
+    /* Reajusta las posiciones de las imágenes en los servicios si es necesario para los tamaños más pequeños */
+    .servicio-1::after { background-position: top 60px left 10px; background-size: 100px 100px; }
+    /* ... y así sucesivamente para los demás servicios si lo ves necesario ... */
+
+    /* Quiénes Somos */
+    .quienes-somos {
+        padding: 20px 10px;
+        margin-top: -100px;
+    }
+    .quienes-somos h2 {
+        font-size: 2.5em;
+    }
+    .quienes-somos p {
+        font-size: 1em;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center; /* Centra el texto en móviles */
+    }
+
+    /* Contenido Gratuito */
+    .contenido-gratuito {
+        padding: 10px;
+        flex-direction: column;
+    }
+    .contenido-gratuito img {
+        width: 200px;
+        height: 230px;
+    }
+    .contenido-texto {
+        font-size: 1.3em;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .contenido-gratuito .boton-descargar {
+        width: 180px;
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+
+    /* Certificados */
+    .certificados {
+        padding: 15px 5px;
+    }
+    .certificados h2 {
+        font-size: 1.6em;
+    }
+    .certificados-container {
+        gap: 15px;
+    }
+    .certificado-circulo {
+        width: 150px;
+        height: 150px;
+        font-size: 1.4em;
+    }
+
+    /* Ubicación y Formulario */
+    .ubicacion-formulario {
+        padding: 20px 10px;
+        gap: 20px;
+    }
+    .ubicacion h2 {
+        font-size: 2em;
+    }
+    .ubicacion iframe {
+        height: 250px;
+    }
+    .form-redes-wrapper {
+        gap: 15px;
+    }
+    .formulario-consulta {
+        padding: 15px;
+    }
+    .formulario-consulta label {
+        font-size: 0.9em;
+    }
+    .formulario-consulta input, .formulario-consulta textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 0.9em;
+    }
+    .formulario-consulta button[type="submit"],
+    .whatsapp-button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    .redes-sociales {
+        gap: 10px;
+        justify-content: center; /* Centra los íconos */
+    }
+    .redes-sociales h3 { /* Si existe el título "Síguenos" */
+        font-size: 1.2em;
+    }
+    .social-button {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1em;
+        margin-right: 3px;
+        margin-bottom: 3px;
+    }
+}
