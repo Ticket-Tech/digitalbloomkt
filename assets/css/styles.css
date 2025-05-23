@@ -1,4 +1,13 @@
 /* Estilos generales */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+} 
 body {
     margin: 0;
     font-family: sans-serif;
@@ -15,21 +24,22 @@ body {
     align-items: center;
     justify-content: flex-start;
     
-    height: 250px;
+    height: 180px;
 }
 
 .logo img {
-    height: 300px;
-    width: 300px;
-    margin-top: -10px;
+    height: 200px;
+    width: 200px;
+    margin-top: -20px;
+    margin-left: 70px;
 }
 
 .header-text {
-    transform: translateX(150px);    
+    margin-left: 450px;   
 }
 
 .header-principal {
-    font-size:5.2em;
+    font-size:3.2em;
     color: #FAE78B;
     font-family: Merriweather;
     margin-top: 0;
@@ -37,16 +47,17 @@ body {
 }
 
 .header-subtitulo {
-    font-size: 2.3em;
+    font-size: 1.3em;
     color: #fff;
     text-align: end;
     font-family: Merriweather;
    font-weight: bold;
+   margin-top: -20px;
 }
 
 /* Menú */
 .menu {
-    background-color: #333;
+    background-color: #FAE78B;
     display: flex;
     justify-content: center;
     padding: 10px 0;
@@ -55,7 +66,7 @@ body {
 }
 
 .menu-item {
-    color: white;
+    color:black;
     text-decoration: none;
     padding: 0 15px;
     position: relative;
@@ -83,25 +94,22 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    height: 900px;
-    
-    
-    
+    height: 900px;  
 }
 
 .hero img {
     position: absolute;
     right: 0;
     top: 0; /* Imagen aún más abajo */
-    height: 900px;
-    width: 900px;
+    height: 800px;
+    width: 800px;
     z-index: 1;
 }
 
 .hero-overlay {
     background-color: #E6E9F0B0;
     width: 100%;
-    height: 100%;
+    height: 89%;
     position: absolute;
     top: 0;
     left: 0;
@@ -110,13 +118,13 @@ body {
 .hero p {
     position: relative; /* Para que el texto esté por encima de la superposición */
     z-index: 7; /* Coloca el texto encima de la superposición */
-    font-size:9em; /* Tamaño de fuente más grande para que destaque */
+    font-size:6em; /* Tamaño de fuente más grande para que destaque */
     text-align: left; /* Centrar el texto */
     color: #0E0D09; /* **Esta es la línea CLAVE: Cambia el color del texto a blanco** */
     text-shadow: 2px 2px 4px rgb(255, 255, 255);
     margin-bottom: 0;
     margin-right: auto;
-    transform: translateY(-350px);
+    transform: translateY(-550px);
     margin-left: 5%;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -128,7 +136,7 @@ body {
     text-align: center;
     position: relative;
     z-index: 3; /* Asegura que la sección de servicios se apile correctamente en el layout general */
-    top: -320px; 
+    top: -450px; 
 }
 
 /* Título de la sección de servicios */
@@ -462,7 +470,7 @@ body {
     background-color: #F1CB66; /* Mismo color de fondo que la sección */
     text-align: left; /* Alinea el título "Ubicación" a la izquierda dentro de este contenedor */
     margin: 0 auto; /* Centra el contenedor del mapa horizontalmente dentro de la sección */
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 .ubicacion h2 {
@@ -554,7 +562,7 @@ body {
 /* Estilos para el botón de WhatsApp */
 .whatsapp-button {
     display: block; /* **Hace que el botón ocupe todo el ancho y se comporte como un bloque** */
-    width: 85%; /* **Asegura que ocupe el 100% del ancho disponible** */
+    width: 96%; /* **Asegura que ocupe el 100% del ancho disponible** */
     background-color: #25D366; /* Color verde de WhatsApp */
     color: white; /* Texto blanco */
     padding: 12px 25px; /* **Mismo padding para igualar la altura visual** */
@@ -636,623 +644,466 @@ body {
     /* Gradiente de Instagram - fiel al logo oficial */
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
+footer {
+    background-color: #f2f2f2; /* Un gris claro para el fondo */
+    color: #555; /* Color de texto gris oscuro */
+    padding: 15px 0; /* Espaciado interno superior e inferior, sin espaciado lateral */
+    text-align: center; /* Centra el texto */
+    font-size: 0.8em; /* Tamaño de fuente un poco más pequeño que el predeterminado */
+    border-top: 1px solid #e7e7e7; /* Una línea fina en la parte superior para separarlo del contenido */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
 
-/* ========================================================================== */
-/* MEDIA QUERIES PARA PANTALLAS GRANDES                 */
-/* ========================================================================== */
+.footer-content {
+    max-width: 960px; /* Ancho máximo para centrar el contenido en pantallas grandes */
+    margin: 0 auto; /* Centra el div en la página */
+}
 
+footer a {
+    color: #007bff; /* Color de los enlaces */
+    text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
+}
 
-/* ========================================================================== */
-/* MEDIA QUERIES PARA PANTALLAS MÁS GRANDES (A partir de monitores de escritorio) */
-/* ========================================================================== */
+footer a:hover {
+    text-decoration: underline; /* Subraya los enlaces al pasar el ratón */
+}
 
-/* --- Ajustes para Monitores de Escritorio Estándar (>= 1440px) --- */
-/* Esta Media Query se activará en monitores con un ancho de 1440 píxeles o más. */
-/* Si tu laptop tiene una resolución menor a 1440px (ej. 1366px, 1280px), estos estilos NO se aplicarán. */
-@media (min-width: 1440px) {
-    /* Header */
-    .header {
-        height: 300px;
-    }
-    .logo img {
-        height: 350px;
-        width: 350px;
-        margin-left: 50px;
+/* --- Media Queries --- */
+
+/* Para pantallas de 1920px de ancho */
+@media (min-width: 1920px) {
+    /* HEADER */
+    .header{
+        height: 280px;
     }
     .header-text {
-        transform: translateX(200px);
+        margin-left: 700px; 
+/* Centra el texto un poco más en pantallas muy anchas */
+    }
+    .logo img{
+        height: 300px;
+        width: 250px;
     }
     .header-principal {
-        font-size: 6.5em;
+        font-size: 5em; /* Hace el título más grande */
     }
     .header-subtitulo {
-        font-size: 2.8em;
+        font-size: 2.5em; /* Hace el subtítulo más grande */
+    }
+    /*MENU*/
+    .menu{
+        height: 50px;
+    }
+    .menu-item{
+        font-size: 1.7em;
     }
 
-    /* Menú */
-    .menu {
-        padding: 15px 0;
-        margin-top: -30px;
-    }
-    .menu-item {
-        padding: 0 25px;
-        font-size: 1.1em;
-    }
-
-    /* Hero */
+    /* HERO SECTION */
     .hero {
-        height: 80vh; /* Altura responsiva basada en el viewport */
+        height: 1000px; /* Aumenta la altura del hero */
     }
     .hero img {
-        height: 100%;
-        width: 1000px; /* Ancho fijo para la imagen de fondo */
+        height: 1250px;
+        width: 1200px;
+        /* No necesitas top:0, right:0 a menos que quieras ajustarlo */
+    }
+    .hero-overlay{
+        height: 1250px;
     }
     .hero p {
-        font-size: clamp(6em, 6.5vw, 7em); /* Tamaño de texto con límites */
-        transform: translateY(-280px);
-        margin-left: 8%;
-        max-width: 800px;
+        font-size: 10em; /* Texto del hero más grande */
+        transform: translateY(-350px); /* Ajusta para que el texto siga encima de la imagen */
+        margin-left: 15%; /* Más margen para separar del borde */
     }
 
-    /* Servicios */
+    /* SERVICIOS SECTION */
     .servicios {
-        top: -300px;
+        top: -250px; /* Ajusta la posición de toda la sección */
+        padding: 60px 40px;
     }
-    .servicios-grid {
+    .servicios h2 {
+        font-size: 3.5em;
+        margin-left: 100px; /* Título de servicios más grande */
+    }
+    .servicios-grid{
         gap: 40px;
     }
     .servicio-item {
-        width: 200px;
-        height: 280px;
-        border-radius: 60px;
+        width: 250px; /* Haz los items un poco más grandes */
+        height: 320px;
+        padding: 20px;
     }
     .servicio-texto {
-        font-size: 1.6em;
-        margin-top: 120px;
+        font-size: 2em; /* Texto dentro de los servicios */
+        margin-top: 20px; /* Ajusta si es necesario por el nuevo tamaño de item */
     }
 
-    /* Quiénes Somos */
+    /* QUIENES SOMOS */
     .quienes-somos {
-        padding: 100px 80px;
-        margin-top: -350px;
+        margin-top: -250px; /* Ajusta el margen superior */
+        padding: 50px 80px; /* Más padding para los lados */
     }
     .quienes-somos h2 {
-        font-size: 5em;
+        font-size: 7em;
     }
     .quienes-somos p {
-        font-size: 1.5em;
-        max-width: 900px;
+        font-size: 1.8em;
+        margin-left: 100px;
+        margin-right: 100px;
     }
 
-    /* Contenido Gratuito */
+    /* CONTENIDO GRATUITO */
     .contenido-gratuito img {
-        width: 550px;
-        height: 580px;
+        width: 450px; /* Imágenes más grandes */
+        height: 480px;
     }
     .contenido-texto {
-        font-size: 2.5em;
-        margin-left: 100px;
-        max-width: 700px;
+        font-size: 4em;
+        margin-left: 200px;
+        transform: translateX(150px);
     }
     .contenido-gratuito .boton-descargar {
-        width: 280px;
+        transform: translateX(-150px); /* Ajusta la posición del botón */
+        width: 350px;
+        margin-top: 370px;
+        height: 50px;
+        font-size: 1.5em;
     }
 
-    /* Certificados */
+    /* CERTIFICADOS */
     .certificados h2 {
-        font-size: 3.5em;
-        margin-left: 80px;
-    }
-    .certificados-container {
-        gap: 50px;
+        font-size: 3em;
+        margin-left: 50px;
     }
     .certificado-circulo {
-        width: 280px;
-        height: 280px;
-        font-size: 2.5em;
+        width: 250px;
+        height: 250px;
+        font-size: 2.2em;
     }
-    /* Puedes ajustar las posiciones de las imágenes de fondo si es necesario */
-    /* .certificados::before { width: 250px; height: 220px; top: 10px; left: 450px; } */
-    /* .certificados::after { width: 250px; height: 220px; bottom: -50px; right: 250px; } */
-    /* .certificados-container::before { width: 250px; height: 220px; top: -150px; right: 50px; } */
-    /* .certificados-container::after { width: 250px; height: 220px; bottom: -80px; left: 50px; } */
+    /* Ajustes de imágenes de fondo para certificados en 1920px */
+    .certificados::before {
+        left: 500px;
+        top: 20px;
+    }
+    .certificados::after {
+        right: 250px;
+        bottom: -60px;
+    }
+    .certificados-container::before {
+        right: 50px;
+        top: -150px;
+    }
+    .certificados-container::after {
+        left: 10px;
+        bottom: -90px;
+    }
 
-    /* Ubicación y Formulario */
-    .ubicacion-formulario {
-        gap: 80px;
+    /* UBICACION Y FORMULARIO */
+    .ubicacion h2 {
+        font-size: 3.5em;
     }
     .ubicacion iframe {
         height: 700px;
+        width: 130%;
+        margin-left: -120px;
     }
-    .social-button {
+    .form-redes-wrapper {
+        max-width: 1100px; /* Permite más espacio para el formulario y las redes */
+        justify-content: center;
+         /* Centra el bloque de formulario/redes */
+    }
+    .formulario-consulta {
+        width: 550px; /* Mayor ancho para el formulario */
+        margin-left: -70px;
+         /* Elimina el margen negativo si ya se centra */
+    }
+    .redes-sociales {
+        margin-top: 70px;
+        margin-left: 85px; /* Ajusta la posición vertical de las redes */
+    }
+    .social-button{
         width: 70px;
         height: 70px;
-        font-size: 2em;
-    }
-    .social-name {
-        font-size: 1.3em;
-    }
-}
-
-/* --- Ajustes para Monitores Muy Grandes o 4K (>= 1920px) --- */
-@media (min-width: 1920px) {
-    /* Header */
-    .header {
-        height: 350px;
-    }
-    .logo img {
-        height: 400px;
-        width: 400px;
-        margin-left: 80px;
-    }
-    .header-text {
-        transform: translateX(250px);
-    }
-    .header-principal {
-        font-size: 7.5em;
-    }
-    .header-subtitulo {
-        font-size: 3.2em;
-    }
-
-    /* Hero */
-    .hero {
-        height: 70vh;
-    }
-    .hero img {
-        width: 1200px;
-    }
-    .hero p {
-        font-size: clamp(6.5em, 6vw, 7.5em);
-        transform: translateY(-250px);
-        margin-left: 10%;
-        max-width: 900px;
-    }
-
-    /* Servicios */
-    .servicio-item {
-        width: 220px; /* Aún más grandes */
-        height: 300px;
-    }
-    .servicio-texto {
-        font-size: 1.7em;
-        margin-top: 130px;
-    }
-
-    /* Quiénes Somos */
-    .quienes-somos h2 {
-        font-size: 6em;
-    }
-    .quienes-somos p {
-        font-size: 1.6em;
-        max-width: 1000px;
-    }
-
-    /* Contenido Gratuito */
-    .contenido-gratuito img {
-        width: 600px;
-        height: 630px;
-    }
-    .contenido-texto {
-        font-size: 2.8em;
-        margin-left: 120px;
-        max-width: 800px;
-    }
-
-    /* Certificados */
-    .certificados h2 {
-        font-size: 4em;
-        margin-left: 100px;
-    }
-    .certificado-circulo {
-        width: 300px;
-        height: 300px;
-        font-size: 2.8em;
-    }
-
-    /* Ubicación y Formulario */
-    .ubicacion-formulario {
-        gap: 100px;
-    }
-    .ubicacion iframe {
-        height: 800px;
-    }
-    .social-button {
-        width: 80px;
-        height: 80px;
         font-size: 2.2em;
     }
-    .social-name {
-        font-size: 1.4em;
-    }
 }
 
-/* ========================================================================== */
-/* MEDIA QUERIES PARA PANTALLAS MÁS PEQUEÑAS                                  */
-/* ========================================================================== */
 
-/* --- Ajustes para Tabletas (menos de 1024px de ancho) --- */
-/* Esta Media Query afectará a la mayoría de las tabletas y laptops pequeñas. */
-@media (max-width: 1023px) {
-    /* Header */
-    .header {
-        height: 220px;
-    }
-    .logo img {
-        height: 250px;
-        width: 250px;
-        margin-left: 15px;
-    }
+/* Para pantallas de 1440px de ancho */
+@media (width: 1440px) {
+    /* HEADER */
     .header-text {
-        transform: translateX(100px);
+        margin-left: 550px; /* Ajusta para 1440px */
     }
     .header-principal {
-        font-size: 4em;
+        font-size: 3.8em;
     }
     .header-subtitulo {
-        font-size: 1.8em;
+        font-size: 1.7em;
     }
 
-    /* Menú */
-    .menu {
-        padding: 8px 0;
-        margin-top: -20px;
-    }
-    .menu-item {
-        padding: 0 12px;
-        font-size: 0.9em;
-    }
-
-    /* Hero */
+    /* HERO SECTION */
     .hero {
-        height: 600px;
+        height: 950px;
     }
     .hero img {
-        height: 100%;
-        width: auto;
-        min-width: 600px; /* Asegura que la imagen no sea demasiado pequeña */
+        height: 1050px;
+        width: 950px;
     }
     .hero p {
-        font-size: 4em;
-        transform: translateY(-200px);
-        margin-left: 5%;
-        max-width: 500px;
+        font-size: 8em;
+        transform: translateY(-400px);
+        margin-left: 15%;
+    }
+    .hero-overlay{
+        height: 1050px;
     }
 
-    /* Servicios */
+    /* SERVICIOS SECTION */
     .servicios {
-        top: -180px;
-        padding: 30px 15px;
+        top: -270px;
     }
     .servicios h2 {
+        font-size: 2.7em;
+    }
+    .servicio-item {
+        width: 190px;
+        height: 220px;
+    }
+    .servicio-texto {
+        font-size: 1.4em;
+        margin-top: 10px;
+    }
+
+    /* QUIENES SOMOS */
+    .quienes-somos {
+        margin-top: -300px;
+    }
+    .quienes-somos h2 {
+        font-size: 6.2em;
+    }
+    .quienes-somos p {
+        font-size: 1.65em;
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    /* CONTENIDO GRATUITO */
+    .contenido-gratuito img {
+        width: 380px;
+        height: 410px;
+    }
+    .contenido-texto {
+        font-size: 3em;
+        margin-left: 170px;
+    }
+    .contenido-gratuito .boton-descargar {
+        transform: translateX(-150px);
+        margin-top: 300px;
+        width: 210px;
+    }
+
+    /* CERTIFICADOS */
+    .certificados h2 {
+        font-size: 2.7em;
+        margin-left: 40px;
+    }
+    .certificado-circulo {
+        width: 230px;
+        height: 230px;
+        font-size: 2.1em;
+    }
+
+    /* UBICACION Y FORMULARIO */
+    .ubicacion h2 {
+        font-size: 3.2em;
+    }
+    .ubicacion iframe {
+        height: 520px;
+    }
+    .form-redes-wrapper {
+        max-width: 950px;
+    }
+    .formulario-consulta {
+        width: 480px;
+        margin-left: -20px;
+    }
+    .redes-sociales {
+        margin-top: 70px;
+        margin-left: 50px;
+    }
+    .social-button{
+        width: 70px;
+        height: 70px;
         font-size: 2.2em;
+    }
+}
+
+
+/* Para pantallas de 1024px de ancho (típicamente laptops más pequeñas o netbooks) */
+@media (width: 1024px) {
+    body {
+        overflow-x: hidden; /* Asegura que no haya desplazamiento horizontal */
+    }
+
+    /* HEADER */
+    .header {
+        height: 90px;
+    }
+    .logo img {
+        height: 100px;
+        width: 100px;
+        margin-top: -5px;
+    }
+    .header-text {
+        margin-left: 200px; /* Reduce bastante el margen */
+    }
+    .header-principal {
+        font-size: 2.5em;
+    }
+    .header-subtitulo {
+        font-size: 1em;
+        margin-top: -20px;
+    }
+
+    /* MENÚ */
+    .menu {
+        padding: 6px 0;
+        margin-top: -10px;
+    }
+    .menu-item {
+        padding: 0 8px;
+        font-size: 0.85em;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        height: 650px; /* Reduce más la altura */
+    }
+    .hero img {
+        height: 580px;
+        width: 680px;
+        top: 30px;
+        right: -80px; /* Podría necesitar moverse más a la izquierda */
+    }
+    .hero-overlay {
+        height: 80%;
+    }
+    .hero p {
+        font-size: 3.5em;
+        transform: translateY(-380px);
+        margin-left: 2%;
+    }
+
+    /* SERVICIOS SECTION */
+    .servicios {
+        top: -300px; /* Sube la sección */
+        padding: 20px 10px;
+    }
+    .servicios h2 {
+        font-size: 2em;
         transform: translateY(-20px);
     }
     .servicios-grid {
-        gap: 15px;
+        gap: 10px;
+        margin-top: -20px;
     }
     .servicio-item {
-        width: 160px;
-        height: 200px;
+        width: 130px; /* Hazlos más pequeños */
+        height: 180px;
+        padding: 8px;
+        border-radius: 30px;
     }
     .servicio-texto {
         font-size: 1.1em;
-        margin-top: 60px;
+        margin-top: 70px; /* Ajusta según el nuevo tamaño de item */
     }
 
-    /* Quiénes Somos */
+    /* QUIENES SOMOS */
     .quienes-somos {
-        padding: 30px 20px;
         margin-top: -200px;
+        padding: 20px 10px;
     }
     .quienes-somos h2 {
-        font-size: 3em;
+        font-size: 4.5em;
         transform: translateY(-20px);
     }
     .quienes-somos p {
-        font-size: 1.1em;
+        font-size: 1.3em;
         margin-left: 20px;
         margin-right: 20px;
-        max-width: 700px; /* Limita el ancho del texto */
     }
 
-    /* Contenido Gratuito */
+    /* CONTENIDO GRATUITO */
     .contenido-gratuito {
-        padding: 20px;
-        flex-direction: column; /* Apilados en tabletas también si el espacio es limitado */
+        flex-direction: column; /* Apila imagen y texto */
         align-items: center;
+        padding: 15px 0;
     }
     .contenido-gratuito img {
-        width: 280px;
-        height: 300px;
-        margin-bottom: 20px;
+        width: 250px;
+        height: 280px;
+        margin-bottom: 15px;
     }
     .contenido-texto {
         font-size: 1.8em;
-        margin-left: 20px;
-        margin-right: 20px;
         text-align: center;
-        max-width: 500px;
+        margin-left: 0;
+        margin-top: 15px;
     }
     .contenido-gratuito .boton-descargar {
         transform: translateX(0);
         margin-top: 15px;
-        width: 220px;
+        width: 160px;
     }
 
-    /* Certificados */
+    /* CERTIFICADOS */
     .certificados {
-        padding: 20px 10px;
+        padding: 20px 5px;
     }
     .certificados h2 {
-        font-size: 2em;
-        margin-left: 15px;
-        text-align: center;
+        font-size: 1.8em;
+        margin-left: 10px;
     }
     .certificados-container {
-        gap: 20px;
-        flex-direction: column; /* Apilados en tabletas pequeñas */
+        gap: 15px;
+        margin-top: 15px;
     }
     .certificado-circulo {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
         font-size: 1.6em;
-        margin-bottom: 15px;
-    }
-    /* Oculta las imágenes de fondo complejas en tabletas para simplificar */
-    .certificados::before,
-    .certificados::after,
-    .certificados-container::before,
-    .certificados-container::after {
-        display: none;
+        margin-bottom: 20px;
     }
 
-    /* Ubicación y Formulario */
+    /* UBICACION Y FORMULARIO */
     .ubicacion-formulario {
-        padding: 30px 15px;
-        flex-direction: column; /* Apilados */
-        align-items: center;
-        gap: 25px;
-    }
-    .ubicacion {
-        width: 95%;
-        margin-top: 0;
-        text-align: center;
+        padding: 30px 10px;
     }
     .ubicacion h2 {
-        font-size: 2.5em;
-        text-align: center;
+        font-size: 2.2em;
     }
     .ubicacion iframe {
         height: 350px;
     }
     .form-redes-wrapper {
-        width: 95%;
-        flex-direction: column;
+        flex-direction: column; /* Apila el formulario y las redes */
         align-items: center;
         gap: 20px;
-        margin: 0;
+        max-width: 95%;
     }
     .formulario-consulta {
-        width: 100%;
-        max-width: 450px; /* Limita el ancho del formulario */
-        padding: 20px;
+        width: 98%; /* Ocupa casi todo el ancho */
         margin-left: 0;
-    }
-    .formulario-consulta button[type="submit"],
-    .whatsapp-button {
-        width: 100%;
-    }
-    .redes-sociales {
-        margin-top: 0;
-        align-items: center; /* Centra los íconos */
-        flex-direction: row; /* Íconos en fila */
-        flex-wrap: wrap; /* Permite que salten de línea */
-        gap: 15px;
-    }
-    .redes-sociales h3 { /* Si existe el título "Síguenos" */
-        text-align: center;
-        width: 100%;
-        margin-bottom: 10px;
-    }
-    .social-button {
-        width: 45px;
-        height: 45px;
-        font-size: 1.4em;
-        margin-right: 5px; /* Espacio entre botones en fila */
-        margin-bottom: 5px; /* Espacio si saltan de línea */
-    }
-}
-
-/* --- Ajustes para Celulares (menos de 768px de ancho, por ejemplo, hasta 320px) --- */
-/* Este es el punto de ruptura más pequeño, ideal para smartphones. */
-@media (max-width: 767px) {
-    /* Header */
-    .header {
-        height: 180px;
-        flex-direction: column; /* Apila logo y texto */
-        justify-content: center;
-    }
-    .logo img {
-        height: 150px;
-        width: 150px;
-        margin-top: 0;
-        margin-left: 0;
-    }
-    .header-text {
-        transform: translateX(0); /* Elimina la transformación */
-        text-align: center;
-    }
-    .header-principal {
-        font-size: 3em;
-        margin-bottom: 5px;
-    }
-    .header-subtitulo {
-        font-size: 1.4em;
-        text-align: center;
-    }
-
-    /* Menú */
-    .menu {
-        flex-direction: column; /* Apila los ítems del menú */
-        padding: 5px 0;
-        margin-top: 0;
-    }
-    .menu-item {
-        padding: 5px 0;
-        font-size: 0.85em;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
-        text-align: center;
-    }
-    .menu-item::after {
-        display: none; /* Oculta el separador vertical */
-    }
-    .menu-item:last-child {
-        border-bottom: none;
-    }
-
-    /* Hero */
-    .hero {
-        height: 400px;
-        justify-content: center; /* Centra el texto */
-        align-items: center; /* Centra el texto */
-        overflow: hidden; /* Asegura que no haya scroll por la imagen */
-    }
-    .hero img {
-        min-width: 100%; /* La imagen ocupa todo el ancho */
-        height: auto; /* Altura automática para mantener proporción */
-        top: 0;
-        right: 0;
-        object-fit: cover; /* Recorta la imagen para cubrir el área */
-    }
-    .hero p {
-        font-size: 2.2em;
-        transform: translateY(0); /* Elimina la transformación */
-        margin-left: 10px;
-        margin-right: 10px;
-        text-align: center; /* Centra el texto */
-        max-width: 90%;
-    }
-
-    /* Servicios */
-    .servicios {
-        top: -80px; /* Mueve un poco hacia arriba */
-        padding: 20px 10px;
-    }
-    .servicios h2 {
-        font-size: 1.8em;
-        text-align: center; /* Centra el título */
-    }
-    .servicios-grid {
-        gap: 10px;
-        flex-direction: column; /* Asegura que estén apilados */
-    }
-    .servicio-item {
-        width: 140px;
-        height: 180px;
-        border-radius: 40px;
-    }
-    .servicio-texto {
-        font-size: 1em;
-        margin-top: 50px;
-    }
-    /* Reajusta las posiciones de las imágenes en los servicios si es necesario para los tamaños más pequeños */
-    .servicio-1::after { background-position: top 60px left 10px; background-size: 100px 100px; }
-    /* ... y así sucesivamente para los demás servicios si lo ves necesario ... */
-
-    /* Quiénes Somos */
-    .quienes-somos {
-        padding: 20px 10px;
-        margin-top: -100px;
-    }
-    .quienes-somos h2 {
-        font-size: 2.5em;
-    }
-    .quienes-somos p {
-        font-size: 1em;
-        margin-left: 10px;
-        margin-right: 10px;
-        text-align: center; /* Centra el texto en móviles */
-    }
-
-    /* Contenido Gratuito */
-    .contenido-gratuito {
-        padding: 10px;
-        flex-direction: column;
-    }
-    .contenido-gratuito img {
-        width: 200px;
-        height: 230px;
-    }
-    .contenido-texto {
-        font-size: 1.3em;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    .contenido-gratuito .boton-descargar {
-        width: 180px;
-        font-size: 0.9em;
-        padding: 8px 15px;
-    }
-
-    /* Certificados */
-    .certificados {
-        padding: 15px 5px;
-    }
-    .certificados h2 {
-        font-size: 1.6em;
-    }
-    .certificados-container {
-        gap: 15px;
-    }
-    .certificado-circulo {
-        width: 150px;
-        height: 150px;
-        font-size: 1.4em;
-    }
-
-    /* Ubicación y Formulario */
-    .ubicacion-formulario {
-        padding: 20px 10px;
-        gap: 20px;
-    }
-    .ubicacion h2 {
-        font-size: 2em;
-    }
-    .ubicacion iframe {
-        height: 250px;
-    }
-    .form-redes-wrapper {
-        gap: 15px;
-    }
-    .formulario-consulta {
         padding: 15px;
     }
-    .formulario-consulta label {
-        font-size: 0.9em;
-    }
-    .formulario-consulta input, .formulario-consulta textarea {
-        padding: 10px;
-        margin-bottom: 15px;
-        font-size: 0.9em;
-    }
-    .formulario-consulta button[type="submit"],
     .whatsapp-button {
-        padding: 10px 15px;
-        font-size: 0.9em;
+        width: 100%;
     }
     .redes-sociales {
-        gap: 10px;
-        justify-content: center; /* Centra los íconos */
-    }
-    .redes-sociales h3 { /* Si existe el título "Síguenos" */
-        font-size: 1.2em;
-    }
-    .social-button {
-        width: 35px;
-        height: 35px;
-        font-size: 1.1em;
-        margin-right: 3px;
-        margin-bottom: 3px;
+        margin-top: 0;
+        width: 98%;
+        align-items: center;
     }
 }
