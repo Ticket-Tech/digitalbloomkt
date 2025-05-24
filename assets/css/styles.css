@@ -509,7 +509,7 @@ body {
 
 /* Formulario de Consulta: ESTE ES EL ÚNICO QUE TIENE RECUADRO BLANCO */
 .formulario-consulta {
-    width: 450px; /* Ancho máximo deseado para el formulario */
+    width: 400px; /* Ancho máximo deseado para el formulario */
     text-align: left;
     background-color: #fff; /* ¡FONDO BLANCO PARA EL RECUADRO DEL FORMULARIO! */
     padding: 30px; /* Relleno interno para el formulario */
@@ -517,6 +517,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para el formulario */
     box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
     margin-left: -50px;
+    
 }
 
 
@@ -595,7 +596,7 @@ body {
     flex-grow: 1; /* Permite que este bloque crezca para ocupar espacio disponible */
     min-width: 180px; /* Ancho mínimo para el bloque de redes sociales */
     /* Ya no es necesario 'gap' aquí, los 'margin-bottom' de los botones manejarán el espaciado vertical. */
-    margin-top: 110px;
+    margin-top: 60px;
 }
 
 
@@ -605,13 +606,13 @@ body {
     display: inline-flex; /* Permite que el contenido (ícono) se centre dentro */
     justify-content: center; /* Centra el ícono horizontalmente */
     align-items: center; /* Centra el ícono verticalmente */
-    width: 50px; /* Define el ancho del círculo */
-    height: 50px; /* Define la altura del círculo */
+    width: 70px; /* Define el ancho del círculo */
+    height: 70px; /* Define la altura del círculo */
     border-radius: 50%; /* Hace que el elemento sea un círculo perfecto */
-    margin-bottom: 25px; /* Espacio debajo de cada botón social, apilándolos verticalmente */
+    margin-bottom: 5pxpx; /* Espacio debajo de cada botón social, apilándolos verticalmente */
     /* margin-right: 10px; */ /* Si los botones fueran horizontales, este margen separaría uno del otro */
     color: white; /* Color del ícono de Font Awesome dentro del círculo */
-    font-size: 1.6em; /* Tamaño del ícono */
+    font-size: 2.5em; /* Tamaño del ícono */
     text-decoration: none; /* Elimina el subrayado del enlace */
     transition: transform 0.2s ease-in-out; /* Animación suave al pasar el ratón */
 }
@@ -643,6 +644,12 @@ body {
 .social-button.instagram {
     /* Gradiente de Instagram - fiel al logo oficial */
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.social-name{
+    color: #d6249f;
+    font-size: 2em;
+    margin-left: 100px;
+    transform: translateY(-50px);
 }
 footer {
     background-color: #f2f2f2; /* Un gris claro para el fondo */
@@ -820,7 +827,7 @@ footer a:hover {
     }
     .redes-sociales {
         margin-top: 70px;
-        margin-left: 85px; /* Ajusta la posición vertical de las redes */
+        margin-left: 50px; /* Ajusta la posición vertical de las redes */
     }
     .social-button{
         width: 70px;
@@ -957,7 +964,7 @@ footer a:hover {
         margin-top: -5px;
     }
     .header-text {
-        margin-left: 200px; /* Reduce bastante el margen */
+        margin-left: -450;/* Reduce bastante el margen */
     }
     .header-principal {
         font-size: 2.5em;
