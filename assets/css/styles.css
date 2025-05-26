@@ -297,6 +297,7 @@ body {
     margin-bottom: 20px; /* Agrega un poco de espacio debajo del título si es necesario */
     font-size: 6em;
     transform: translateY(-50px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Alinea el párrafo al margen (izquierda) */
@@ -332,6 +333,7 @@ body {
    margin-top: 50px;
    line-height: 1.2;
    color: #757575;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .contenido-gratuito .boton-descargar {
@@ -367,6 +369,7 @@ body {
     font-size: 2.5em;  
     margin-top: -20px;
     margin-left: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .certificados-container {
@@ -480,6 +483,7 @@ body {
     font-weight: bold;
         margin-right: 30px; /* Esto crea el espacio entre los círculos */
     flex-shrink: 0;
+    text-shadow: 2px 2px 4px rgb(250, 247, 247);
 }
 
 /* --- Nuevo CSS para el carrusel JS puro (añadir al final de tu style.css) --- */
@@ -624,6 +628,7 @@ body {
     font-family: Merriweather;
     text-align: center;
     font-weight: bold;
+    text-shadow: 2px 2px 4px rgb(250, 248, 248);
 }
 
 .ubicacion iframe {
@@ -670,6 +675,7 @@ body {
     margin-bottom: 8px; /* Espacio debajo de las etiquetas */
     font-weight: bold; /* Etiquetas en negrita */
     color: #555;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .formulario-consulta input[type="text"],
@@ -794,6 +800,7 @@ body {
     font-size: 2em;
     margin-left: 100px;
     transform: translateY(-50px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .social-name a{
