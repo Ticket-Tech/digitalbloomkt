@@ -368,15 +368,15 @@ body {
 
 .certificados-container {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
     margin-top: 30px;
     position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
     /* Importante: Si el z-index de este contenedor fuera menor que los pseudo-elementos de la sección,
        sus propios pseudo-elementos podrían terminar debajo de los de la sección.
        Asegúrate de que su z-index sea al menos igual o mayor al de la sección, si los pseudo-elementos de la sección tienen uno. */
     z-index: 3; /* Mismo z-index que el h2 para que estén ambos encima */
+    flex-wrap: wrap;
+    transition: transform 0.5s ease-in-out;
 }
 
 /* --- Estilos comunes para los pseudo-elementos de fondo --- */
@@ -414,25 +414,51 @@ body {
     transform: rotate(5deg);
 }
 
-/* Imagen 3: Pseudo-elemento del contenedor de círculos */
-.certificados-container::before {
+/* Estilos comunes para los nuevos divs de fondo */
+.certificado-bg-extra-1,
+.certificado-bg-extra-2 {
+    position: absolute; /* Posicionamiento absoluto respecto a .certificados */
     background-image: url('../images/fon5.png');
-    width: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    width: 200px; /* Mismo tamaño que tus pseudo-elementos */
     height: 180px;
-    /* Las coordenadas son relativas a .certificados-container */
-    top: -120px; /* Ejemplo: Por encima del contenedor de círculos */
-    right: 1px; /* Ejemplo: A la derecha del contenedor de círculos */
-    transform: rotate(180deg);
+    z-index: 0; /* ¡CLAVE! Detrás del contenido del carrusel */
+    /* opacity: 0.5; /* Opcional: para un efecto más de fondo */
 }
 
-/* Imagen 4: Otro pseudo-elemento del contenedor de círculos */
-.certificados-container::after {
-    background-image: url('../images/fon5.png');
-    width: 200px;
-    height: 180px;
-    /* Las coordenadas son relativas a .certificados-container */
-    bottom: -70px; /* Ejemplo: Por debajo del contenedor de círculos */
-    left: 5px; /* Ejemplo: A la izquierda del contenedor de círculos */
+/* IMAGEN 3: La que antes estaba en .certificados-container::before */
+.certificado-bg-extra-1 {
+    /* Estas coordenadas son RELATIVAS a la sección .certificados,
+       tendrás que ajustarlas ligeramente por prueba y error para que queden donde te gustaba.
+       Usa las que tenías para .certificados-container::before como punto de partida. */
+    top: 100px; /* Ajusta este valor */
+    right: 20px; /* Ajusta este valor */
+    transform: rotate(180deg); /* Mantenemos la rotación original */
+}
+
+/* IMAGEN 4: La que antes estaba en .certificados-container::after */
+.certificado-bg-extra-2 {
+    /* Estas coordenadas también son RELATIVAS a la sección .certificados.
+       Ajusta estas para que quede donde te gustaba. */
+    bottom: 0px; /* Ajusta este valor */
+    left: 20px; /* Ajusta este valor */
+    /* Tu cuarto pseudo-elemento no tenía transform, puedes añadirlo si quieres */
+}
+
+
+/* Asegura que el contenido del carrusel y el título estén SIEMPRE por encima */
+.certificados h2,
+.carousel-viewport,
+.carousel-dots,
+.carousel-prev-btn,
+.carousel-next-btn {
+    position: relative; /* Crea un contexto de apilamiento para el z-index */
+    z-index: 5; /* Un valor alto para que esté por encima de z-index: 0 de las imágenes de fondo */
+}
+.certificado-circulo:last-child {
+    margin-right: 0;
 }
 
 .certificado-circulo {
@@ -440,7 +466,7 @@ body {
     height: 220px;
     border-radius: 50%;
     background-color: #E3AE3E;
-    display: flex;
+    display:flex;
     justify-content: center;
     align-items: center;
     font-size: 2em;
@@ -449,8 +475,123 @@ body {
     z-index: 5;
     font-family: Merriweather ;
     font-weight: bold;
+        margin-right: 30px; /* Esto crea el espacio entre los círculos */
+    flex-shrink: 0;
 }
 
+/* --- Nuevo CSS para el carrusel JS puro (añadir al final de tu style.css) --- */
+
+.carousel-viewport {
+    /* Es la ventana visible del carrusel. Oculta lo que se desborda. */
+    overflow: hidden; 
+    position: relative; /* Para posicionar flechas si las pusiéramos dentro (no es el caso aquí) */
+    max-width: 1300px; /* Ya lo tienes en tu .certificados-container. Lo repetimos por claridad. */
+    margin: 30px auto; /* Centra el viewport y le da margen */
+    /* Ajuste del padding para que quepan 5 círculos más sus márgenes */
+    /* 5 círculos * 220px/círculo = 1100px.
+       Hay 4 espacios entre 5 círculos. Cada círculo tiene 15px de margen a cada lado (total 30px).
+       Así que necesitamos 4 * 30px (entre círculos) + 2 * 15px (margen exterior) = 120 + 30 = 150px de margen total.
+       Ancho total necesario: 1100px (círculos) + 150px (márgenes) = 1250px.
+       Si el max-width es 1300px, y el contenido necesita 1250px, sobran 50px.
+       Dividimos 50px / 2 = 25px de padding a cada lado. */
+    padding: 0 25px; 
+    z-index: 4; /* Asegura que esté por encima de tus imágenes de fondo */
+}
+
+/* Apuntamos a tu .certificados-container cuando tiene la clase adicional .carousel-track */
+/* Esto sobrescribe sus propiedades para el carrusel, sin afectar tu .certificados-container original */
+.certificados-container.carousel-track {
+    flex-wrap: nowrap; /* **CLAVE**: Impide que los círculos salten de línea. Se mantienen en una fila. */
+    justify-content: flex-start; /* Alinea los ítems al inicio para que el JS pueda moverlos desde allí. */
+    gap: 0; /* Aseguramos que el gap no interfiera; los márgenes del círculo definen el espaciado. */
+    transition: transform 0.5s ease-in-out; /* Para una animación suave al deslizar. */
+}
+
+/* --- Estilos para las flechas de navegación del carrusel JS puro --- */
+.carousel-prev-btn,
+.carousel-next-btn {
+    font-size: 0; /* Oculta cualquier texto por defecto */
+    line-height: 1;
+    position: absolute; /* Posiciona las flechas respecto a la sección .certificados */
+    top: 50%; /* A la mitad de la altura de la sección */
+    transform: translateY(-50%); /* Centrado vertical perfecto */
+    display: block;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    cursor: pointer;
+    background: #F1CB66;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    z-index: 10; /* Por encima de todo */
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el ÍCONO dentro de las flechas (si usas Font Awesome) */
+.carousel-prev-btn:before,
+.carousel-next-btn:before {
+    font-family: "Font Awesome 5 Free"; /* Indica la fuente de iconos a usar */
+    font-weight: 900; /* Necesario para los íconos sólidos */
+    font-size: 25px; /* Tamaño del ícono */
+    color: white; /* Color del ícono */
+    line-height: 1;
+    display: block;
+    text-align: center;
+}
+
+.carousel-prev-btn:before {
+    content: "\f053"; /* Código Unicode para el ícono de flecha izquierda (chevron-left) */
+}
+.carousel-next-btn:before {
+    content: "\f054"; /* Código Unicode para el ícono de flecha derecha (chevron-right) */
+}
+
+.carousel-prev-btn {
+    left: 10px; /* Posición izquierda respecto al borde de la sección */
+}
+.carousel-next-btn {
+    right: 10px; /* Posición derecha respecto al borde de la sección */
+}
+
+.carousel-prev-btn:hover,
+.carousel-next-btn:hover {
+    background-color: #e0b04a;
+}
+
+.carousel-prev-btn:disabled,
+.carousel-next-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* --- Estilos para los puntos de paginación (carousel-dots) --- */
+.carousel-dots {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #FAE78B;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #F1CB66;
+}
+
+.dot:hover {
+    background-color: #e0b04a;
+}
 /* Sección Ubicación y Formulario: Contenedor principal de la sección */
 .ubicacion-formulario {
     padding: 60px 20px; /* Relleno interno para espacio alrededor del contenido */
@@ -646,11 +787,22 @@ body {
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
 .social-name{
-    color: #d6249f;
+    color: #363536;
     font-size: 2em;
     margin-left: 100px;
     transform: translateY(-50px);
 }
+
+.social-name a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.social-name a:hover{
+    text-decoration: none;
+    color: #555;
+}
+
 footer {
     background-color: #f2f2f2; /* Un gris claro para el fondo */
     color: #555; /* Color de texto gris oscuro */
@@ -784,8 +936,8 @@ footer a:hover {
         margin-left: 50px;
     }
     .certificado-circulo {
-        width: 250px;
-        height: 250px;
+        width: 350px;
+        height: 350px;
         font-size: 2.2em;
     }
     /* Ajustes de imágenes de fondo para certificados en 1920px */
@@ -804,6 +956,11 @@ footer a:hover {
     .certificados-container::after {
         left: 10px;
         bottom: -90px;
+    }
+    .carousel-viewport {
+        max-width: 1920px; /* Ancho suficiente para 5 certificados + padding */
+        /* Asegúrate de que el padding de 0 25px se mantenga si es tu intención */
+        padding: 0 25px; 
     }
 
     /* UBICACION Y FORMULARIO */
@@ -1275,17 +1432,60 @@ footer a:hover {
     margin-left: 0;
   }
 
-  .certificados-container {
-    flex-direction: column;
-    gap: 20px;
+   .certificados-container {
+    /* flex-direction: column; <--- ¡ELIMINA O COMENTA ESTA LÍNEA! */
+    flex-wrap: nowrap; /* Asegura que no se envuelvan */
+    justify-content: flex-start; /* Alinea los elementos al inicio */
+    gap: 20px; /* Mantén tu espacio entre certificados */
+    /* Asegúrate de que el ancho sea suficiente o que el overflow: hidden funcione en el viewport */
+    /* width: auto; O asegúrate de que no tenga un width fijo aquí que los apriete */
   }
 
   .certificado-circulo {
-    width: 180px;
-    height: 180px;
+    width: 250px; /* Ajusta este ancho para que un solo certificado sea visible a la vez */
+    height: 250px; /* Mantén la proporción */
     font-size: 1.5em;
-    margin: 0 auto 20px auto; /* Centra y da margen inferior */
+    /* margin: 0 auto 20px auto; <--- CAMBIA ESTO PARA EL CARRUSEL */
+    margin: 0 15px; /* Pequeño margen horizontal para que no se peguen a los bordes */
+    flex-shrink: 0; /* ¡MUY IMPORTANTE! Evita que los círculos se encojan */
   }
+
+  /* **Añade o modifica esto si no lo tienes:** */
+  .carousel-viewport {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    overflow: hidden; /* ¡CLAVE para ocultar los certificados fuera de vista! */
+    margin: 20px auto; /* Centra el carrusel y añade margen vertical */
+    padding: 0 10px; /* Un poco de padding a los lados para que el primer/último no se pegue */
+  }
+
+  /* Asegúrate de que las flechas y puntos se vean y funcionen */
+  .carousel-prev-btn,
+  .carousel-next-btn,
+  .carousel-dots {
+     /* Asegura que sean visibles si los ocultaste antes */
+    /* Asegúrate de que estén posicionados fuera del flujo de los certificados */
+    position: absolute; /* O absolute si quieres controlarlos con top/left/right/bottom */
+    z-index: 10; /* Para que estén por encima de todo */
+  }
+  
+  .carousel-dots {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateX(30px);
+  }
+  .dot.active {
+    background-color: #717171;
+  }
+
 
   /* Ajusta las imágenes de fondo de certificados para que no molesten */
   .certificados::before,
