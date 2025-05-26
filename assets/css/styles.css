@@ -1302,12 +1302,13 @@ footer a:hover {
   }
 
   .header-principal {
-    font-size: 1.8em; /* Ajusta el tamaño de la fuente principal */
+    font-size: 1.8em;
+    margin-top: 15px;/* Ajusta el tamaño de la fuente principal */
   }
 
   .header-subtitulo {
     font-size: 0.9em;
-    margin-top: 5px;
+    margin-top: -15px;
   }
 
   .menu {
