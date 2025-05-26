@@ -43,6 +43,7 @@ body {
     color: #FAE78B;
     font-family: Merriweather;
     margin-top: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     
 }
 
@@ -53,6 +54,7 @@ body {
     font-family: Merriweather;
    font-weight: bold;
    margin-top: -20px;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Menú */
@@ -70,6 +72,7 @@ body {
     text-decoration: none;
     padding: 0 15px;
     position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .menu-item::after {
@@ -121,7 +124,7 @@ body {
     font-size:6em; /* Tamaño de fuente más grande para que destaque */
     text-align: left; /* Centrar el texto */
     color: #0E0D09; /* **Esta es la línea CLAVE: Cambia el color del texto a blanco** */
-    text-shadow: 2px 2px 4px rgb(255, 255, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 0;
     margin-right: auto;
     transform: translateY(-550px);
@@ -1304,7 +1307,7 @@ footer a:hover {
   .header-principal {
     font-size: 1.8em;
     margin-top: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);/* Ajusta el tamaño de la fuente principal */
+    /* Ajusta el tamaño de la fuente principal */
   }
 
   .header-subtitulo {
