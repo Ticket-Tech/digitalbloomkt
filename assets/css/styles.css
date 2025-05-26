@@ -1322,7 +1322,7 @@ footer a:hover {
   .redes-sociales {
     margin-top: 0; /* Ajusta el margen si es necesario */
     margin-left: 0;
-    align-items: center; /* Centra los iconos de redes sociales */
+    align-items: left; /* Centra los iconos de redes sociales */
   }
 
   .social-button {
@@ -1334,7 +1334,8 @@ footer a:hover {
     margin-left: 0;
     text-align: center;
     font-size: 1.5em;
-    transform: translateY(0);
+    transform: translateY(-40px);
+    margin-left: 100px;
   }
 }
 
