@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSlideIndex = 0; // Índice del slide actual visible
     let slidesPerPage = 0; // Cuántos slides se muestran por "página"
 
+    // --- VARIABLES PARA EL SWIPE TÁCTIL (TOUCH Y MOUSE) ---
+    let startX = 0; // Posición X donde el toque/click comenzó
+    let endX = 0;   // Posición X donde el toque/click terminó o se está moviendo
+    let isDragging = false; // Bandera para controlar si el usuario está arrastrando
+
+
     // Función principal para calcular las dimensiones y cuántos slides caben
     function calculateSlideDimensions() {
         if (slides.length === 0) {
@@ -165,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- Configuración de Event Listeners ---
+    // --- Configuración de Event Listeners de Clicks ---
     // Escucha el clic en el botón "siguiente"
     nextButton.addEventListener('click', () => {
         moveToSlide(currentSlideIndex + slidesPerPage); // Mueve por el número de slides por página
@@ -175,6 +181,80 @@ document.addEventListener('DOMContentLoaded', function() {
     prevButton.addEventListener('click', () => {
         moveToSlide(currentSlideIndex - slidesPerPage); // Mueve hacia atrás por el número de slides por página
     });
+
+    // --- EVENT LISTENERS PARA EL SWIPE TÁCTIL (TOUCH Y MOUSE PARA DRAG) ---
+
+    // Evento de inicio (touchstart para táctil, mousedown para mouse)
+    track.addEventListener('touchstart', handleStart);
+    track.addEventListener('mousedown', handleStart);
+
+    function handleStart(e) {
+        isDragging = true;
+        // Guarda la posición inicial del toque/click
+        startX = (e.touches ? e.touches[0].clientX : e.clientX);
+        // Desactiva transiciones CSS para un arrastre más fluido
+        track.style.transition = 'none';
+        // Para mouse, evita arrastrar texto o imágenes
+        if (e.type === 'mousedown') {
+            e.preventDefault(); 
+        }
+    }
+
+    // Evento de movimiento (touchmove para táctil, mousemove para mouse)
+    track.addEventListener('touchmove', handleMove);
+    track.addEventListener('mousemove', handleMove);
+
+    function handleMove(e) {
+        if (!isDragging) return; // Solo si estamos arrastrando
+
+        endX = (e.touches ? e.touches[0].clientX : e.clientX);
+        const currentTranslateX = -currentSlideIndex * slideWidth;
+        const dragDistance = endX - startX;
+        
+        // Mueve el track directamente con el dedo/mouse
+        track.style.transform = `translateX(${currentTranslateX + dragDistance}px)`;
+        
+        // Opcional: Prevenir el desplazamiento vertical de la página
+        // si el movimiento horizontal es dominante. Úsalo con precaución.
+        // if (Math.abs(dragDistance) > 10) { 
+        //     e.preventDefault();
+        // }
+    }
+
+    // Evento de fin (touchend para táctil, mouseup para mouse, mouseleave para mouse)
+    track.addEventListener('touchend', handleEnd);
+    track.addEventListener('mouseup', handleEnd);
+    // Agregamos mouseleave en el track para si el usuario suelta el mouse fuera del carrusel
+    track.addEventListener('mouseleave', handleEnd); 
+
+    function handleEnd() {
+        if (!isDragging) return; // Solo si estábamos arrastrando
+        isDragging = false; // Resetea la bandera de arrastre
+
+        // Reactiva las transiciones CSS
+        track.style.transition = 'transform 0.3s ease-in-out'; 
+
+        const swipeDistance = endX - startX;
+        const swipeThreshold = 50; // Mínima distancia para considerar un swipe válido (en píxeles)
+
+        // Si el swipe es hacia la izquierda (next slide) y es lo suficientemente largo
+        if (swipeDistance < -swipeThreshold && currentSlideIndex < slides.length - slidesPerPage) {
+            moveToSlide(currentSlideIndex + slidesPerPage);
+        } 
+        // Si el swipe es hacia la derecha (prev slide) y es lo suficientemente largo
+        else if (swipeDistance > swipeThreshold && currentSlideIndex > 0) {
+            moveToSlide(currentSlideIndex - slidesPerPage);
+        } 
+        // Si no fue un swipe válido o no se movió lo suficiente, vuelve a la posición actual
+        else {
+            moveToSlide(currentSlideIndex); // Vuelve al slide actual sin cambiar
+        }
+
+        // Resetea las posiciones de inicio y fin
+        startX = 0;
+        endX = 0;
+    }
+
 
     // --- Inicialización del Carrusel ---
     // Estas funciones se llaman al cargar la página
