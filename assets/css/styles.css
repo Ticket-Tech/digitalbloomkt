@@ -1114,3 +1114,315 @@ footer a:hover {
         align-items: center;
     }
 }
+
+/* --- Media Queries para Celulares --- */
+
+/* Teléfonos muy pequeños o características específicas */
+@media (max-width: 320px) {
+  /* Estilos para iPhone 5/SE y otros dispositivos muy compactos */
+  /* Aquí podrías reducir aún más los tamaños de fuente, espaciados, etc. */
+}
+
+/* Teléfonos en formato vertical (la mayoría de los smartphones) */
+@media (max-width: 576px) {
+  /* Estilos para la mayoría de los teléfonos en modo vertical */
+  /* Aquí es clave hacer la mayoría de los ajustes para que todo sea legible y usable */
+  /* Por ejemplo: */
+  .header {
+    height: 80px; /* Reduce la altura del encabezado */
+    justify-content: center; /* Centra los elementos del encabezado */
+  }
+
+  .logo img {
+    height: 80px;
+    width: 80px;
+    margin: 0; /* Elimina márgenes complejos */
+  }
+
+  .header-text {
+    margin-left: 0; /* Elimina el margen a la izquierda */
+    text-align: center;
+  }
+
+  .header-principal {
+    font-size: 1.8em; /* Ajusta el tamaño de la fuente principal */
+  }
+
+  .header-subtitulo {
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+
+  .menu {
+    flex-direction: column; /* Apila los elementos del menú verticalmente */
+    height: auto;
+    margin-top: 0;
+  }
+
+  .menu-item {
+    padding: 10px 0; /* Más espacio vertical para cada ítem */
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separador visual */
+  }
+
+  .menu-item::after {
+    display: none; /* Oculta los divisores verticales */
+  }
+
+  .hero {
+    height: 400px; /* Reduce la altura de la sección hero */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el área */
+    position: relative;
+    top: 0;
+    right: 150px;
+  }
+
+  .hero-overlay {
+    height: 100%;
+    opacity: 0.7; /* Aumenta la opacidad de la superposición si la imagen es muy prominente */
+  }
+
+  .hero p {
+    font-size: 2.8em; /* Reduce el tamaño del texto principal del hero */
+    text-align: left;
+    transform: translateY(0); /* Reinicia la transformación */
+    margin: 0 auto; /* Centra el texto */
+    padding: 10px;
+    margin-left: 170px;
+  }
+
+  .servicios {
+    top: 0; /* Elimina el margen negativo para que no se superponga */
+    padding: 20px 10px;
+  }
+
+  .servicios h2 {
+    font-size: 1.8em;
+    text-align: center;
+    transform: translateY(0);
+  }
+
+  .servicios-grid {
+    flex-direction: column; /* Apila los servicios verticalmente */
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .servicio-item {
+    width: 90%; /* Ocupa casi todo el ancho disponible */
+    max-width: 250px; /* Limita el tamaño en pantallas más grandes de este rango */
+    height: 180px;
+    margin: 0 auto; /* Centra los ítems */
+  }
+
+  .servicio-texto {
+    font-size: 1.2em;
+    margin-top: 0; /* Reinicia el margen */
+  }
+
+  .quienes-somos {
+    margin-top: 0;
+    padding: 30px 15px;
+  }
+
+  .quienes-somos h2 {
+    font-size: 3em;
+    text-align: center;
+    transform: translateY(0);
+  }
+
+  .quienes-somos p {
+    font-size: 1.1em;
+    margin: 0 10px;
+    text-align: justify; /* Justifica el texto para mejor lectura */
+  }
+
+  .contenido-gratuito {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contenido-gratuito img {
+    width: 80%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .contenido-texto {
+    font-size: 1.8em;
+    margin: 0 15px;
+    text-align: center;
+  }
+
+  .contenido-gratuito .boton-descargar {
+    transform: translateX(0);
+    margin-top: 20px;
+    width: 80%;
+    max-width: 250px;
+    font-size: 1em;
+  }
+
+  .certificados h2 {
+    font-size: 1.8em;
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .certificados-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .certificado-circulo {
+    width: 180px;
+    height: 180px;
+    font-size: 1.5em;
+    margin: 0 auto 20px auto; /* Centra y da margen inferior */
+  }
+
+  /* Ajusta las imágenes de fondo de certificados para que no molesten */
+  .certificados::before,
+  .certificados::after,
+  .certificados-container::before,
+  .certificados-container::after {
+    display: none; /* Oculta las imágenes de fondo decorativas en móviles */
+  }
+
+  .ubicacion-formulario {
+    padding: 30px 15px;
+  }
+
+  .ubicacion h2 {
+    font-size: 2em;
+  }
+
+  .ubicacion iframe {
+    height: 300px; /* Reduce la altura del mapa */
+  }
+
+  .form-redes-wrapper {
+    flex-direction: column; /* Apila el formulario y las redes */
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .formulario-consulta {
+    width: 90%; /* Ocupa casi todo el ancho */
+    margin-left: 0; /* Elimina margen negativo */
+  }
+
+  .redes-sociales {
+    margin-top: 0; /* Ajusta el margen si es necesario */
+    margin-left: 0;
+    align-items: center; /* Centra los iconos de redes sociales */
+  }
+
+  .social-button {
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
+  }
+  .social-name{
+    margin-left: 0;
+    text-align: center;
+    font-size: 1.5em;
+    transform: translateY(0);
+  }
+}
+
+/* Teléfonos en formato horizontal (landscape) y algunas tabletas pequeñas */
+@media (min-width: 577px) and (max-width: 768px) {
+  /* Estilos para teléfonos grandes en horizontal o tabletas pequeñas */
+  /* Aquí puedes empezar a reintroducir algunos diseños de dos columnas si el espacio lo permite */
+  .header-text {
+    margin-left: 100px; /* Ajusta un poco el margen */
+  }
+
+  .hero img {
+    height: 600px;
+    width: 600px;
+    right: -50px;
+  }
+
+  .hero p {
+    font-size: 4em;
+    transform: translateY(-250px);
+  }
+
+  .servicios-grid {
+    justify-content: center; /* Centra los ítems */
+    gap: 15px;
+  }
+
+  .servicio-item {
+    width: 150px;
+    height: 200px;
+  }
+
+  .form-redes-wrapper {
+    flex-direction: row; /* Vuelve a ponerlos uno al lado del otro si hay espacio */
+    justify-content: center;
+  }
+
+  .formulario-consulta {
+    width: 350px; /* Permite un ancho fijo */
+    margin-left: 0;
+  }
+
+  .redes-sociales {
+    margin-top: 0;
+    margin-left: 20px;
+  }
+}
+
+/* Tabletas en formato vertical */
+@media (min-width: 769px) and (max-width: 992px) {
+  /* Estilos para tabletas en vertical */
+  /* Aquí los diseños pueden ser más cercanos a la versión de escritorio, pero aún simplificados */
+  .header-text {
+    margin-left: 250px;
+  }
+
+  .hero img {
+    height: 700px;
+    width: 700px;
+    right: 0;
+  }
+
+  .hero p {
+    font-size: 5em;
+    transform: translateY(-300px);
+  }
+
+  .servicios-grid {
+    gap: 20px;
+  }
+
+  .servicio-item {
+    width: 170px;
+    height: 210px;
+  }
+
+  .formulario-consulta {
+    width: 400px; /* Ancho original o cercano */
+    margin-left: 0;
+  }
+
+  .redes-sociales {
+    margin-top: 40px;
+    margin-left: 30px;
+  }
+}
+
+/* Teléfonos grandes o tablets pequeñas en horizontal */
+@media (min-width: 481px) and (max-width: 767px) {
+  /* Otra forma de abordar el rango de teléfonos grandes y tablets pequeñas */
+}
