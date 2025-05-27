@@ -1639,3 +1639,213 @@ footer a:hover {
 @media (min-width: 481px) and (max-width: 767px) {
   /* Otra forma de abordar el rango de teléfonos grandes y tablets pequeñas */
 }
+
+
+/* --- Estilos para el Modal de Certificados --- */
+
+.certificado-modal {
+    display: none; /* Oculto por defecto. JavaScript lo cambiará a 'flex' para mostrarlo. */
+    position: fixed; /* Fijo en la pantalla. No se desplaza con el contenido. */
+    z-index: 1000; /* Asegura que el modal esté por encima de todos los demás elementos. */
+    left: 0;
+    top: 0;
+    width: 100%; /* El modal ocupa todo el ancho de la ventana. */
+    height: 100%; /* El modal ocupa todo el alto de la ventana. */
+    overflow: auto; /* Permite desplazamiento si el contenido (imagen) es más grande que la ventana. */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente para el overlay. */
+    justify-content: center; /* Centra el contenido (la imagen) horizontalmente con Flexbox. */
+    align-items: center; /* Centra el contenido (la imagen) verticalmente con Flexbox. */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque aplicado al contenido detrás del modal (opcional, para navegadores compatibles). */
+}
+
+.modal-contenido {
+    margin: auto; /* Centra la imagen dentro del modal si el tamaño lo permite. */
+    display: block; /* La imagen se comporta como un bloque, permitiendo ajustar ancho/alto. */
+    max-width: 90%; /* La imagen no será más ancha que el 90% del modal. */
+    max-height: 90vh; /* La imagen no será más alta que el 90% del viewport (alto de la ventana). */
+    object-fit: contain; /* Ajusta la imagen dentro de sus límites sin recortarla, manteniendo su relación de aspecto. */
+    border-radius: 8px; /* Bordes redondeados para la imagen del certificado. */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra suave para la imagen, dándole profundidad. */
+}
+
+.cerrar-modal {
+    position: absolute; /* Posiciona la 'x' de cierre de forma absoluta respecto al modal. */
+    top: 15px; /* Margen superior. */
+    right: 35px; /* Margen derecho. */
+    color: #f1f1f1; /* Color del ícono de cierre. */
+    font-size: 40px; /* Tamaño grande para el ícono de cierre. */
+    font-weight: bold; /* Texto en negrita. */
+    transition: 0.3s; /* Transición suave al pasar el ratón por encima. */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima. */
+    z-index: 1001; /* Asegura que la 'x' esté por encima de la imagen del modal. */
+}
+
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+    color: #bbb; /* Color del ícono al pasar el ratón/enfocar. */
+    text-decoration: none; /* Asegura que no haya subrayado. */
+    cursor: pointer; /* Mantiene el cursor en forma de mano. */
+}
+
+.modal-caption {
+    margin-top: 10px; /* Margen superior para la descripción. */
+    text-align: center; /* Centra el texto de la descripción. */
+    color: #ccc; /* Color del texto de la descripción. */
+    font-size: 17px; /* Tamaño de fuente de la descripción. */
+    padding: 10px 0; /* Espaciado interno. */
+    max-width: 90%; /* Ancho máximo para el texto. */
+    margin-left: auto; /* Centra el bloque de texto. */
+    margin-right: auto; /* Centra el bloque de texto. */
+}
+
+/* Efecto de aparición (opcional, para una transición suave del modal) */
+.modal-contenido {
+    animation-name: zoom; /* Aplica la animación 'zoom' al contenido. */
+    animation-duration: 0.6s; /* Duración de la animación. */
+}
+
+@keyframes zoom {
+    from {transform: scale(0)} /* Inicia con escala 0 (invisible). */
+    to {transform: scale(1)} /* Termina con escala 1 (tamaño normal). */
+}
+
+/* Media Queries para responsividad del modal (ajuste en pantallas más pequeñas) */
+@media only screen and (max-width: 700px){
+    .modal-contenido {
+        width: 100%; /* En pantallas pequeñas, la imagen ocupa el 100% del ancho del modal. */
+        max-height: 80vh; /* Un poco menos alto en móviles para dejar espacio a la 'x' y el caption. */
+    }
+}
+/* --- Estilos para el Modal de Contenido Gratuito --- */
+
+.modal-gratuito-general {
+    display: none; /* Por defecto, el modal estará oculto. JavaScript lo cambiará a 'flex' para mostrarlo. */
+    position: fixed; /* Mantiene el modal fijo en la ventana del navegador, sin desplazarse con el contenido. */
+    z-index: 1002; /* Asegura que este modal esté por encima de todos los demás elementos, incluyendo otros modales. */
+    left: 0;
+    top: 0;
+    width: 100%; /* El modal ocupará todo el ancho de la ventana. */
+    height: 100%; /* El modal ocupará todo el alto de la ventana. */
+    overflow: auto; /* Permite desplazamiento si el contenido dentro del modal es más grande que la ventana. */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente para el overlay. */
+    justify-content: center; /* Centra el contenido (el formulario) horizontalmente usando Flexbox. */
+    align-items: center; /* Centra el contenido (el formulario) verticalmente usando Flexbox. */
+    backdrop-filter: blur(5px); /* Aplica un efecto de desenfoque al contenido detrás del modal (opcional, para navegadores compatibles). */
+}
+
+.modal-gratuito-contenido {
+    background-color: #fefefe; /* Color de fondo del cuadro blanco del modal. */
+    margin: auto; /* Centra el cuadro del modal dentro del espacio disponible. */
+    padding: 20px; /* Espaciado interno alrededor del contenido del modal. */
+    border: 1px solid #888; /* Borde sutil alrededor del cuadro. */
+    width: 80%; /* El cuadro del modal ocupará el 80% del ancho del contenedor del modal. */
+    max-width: 700px; /* Limita el ancho máximo del modal en pantallas grandes para que no sea demasiado ancho. */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19); /* Sombra para dar profundidad al modal. */
+    animation-name: animatetop; /* Aplica una animación al abrir el modal. */
+    animation-duration: 0.4s; /* Duración de la animación de apertura. */
+    position: relative; /* Es necesario para posicionar la 'x' de cerrar de forma absoluta dentro de este contenedor. */
+    border-radius: 8px; /* Bordes ligeramente redondeados para el cuadro del modal. */
+    text-align: center; /* Centra el texto y los elementos inline dentro del modal. */
+    color: #333; /* Color de texto general para el contenido del modal. */
+}
+
+/* Animación que hace que el modal "caiga" desde arriba */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0} /* Inicia 300px por encima y completamente transparente. */
+    to {top: 0; opacity: 1} /* Termina en su posición y completamente visible. */
+}
+
+.cerrar-modal-gratuito {
+    color: #aaa; /* Color del icono de cerrar (la 'x'). */
+    float: right; /* Flota la 'x' a la derecha dentro de su flujo normal. */
+    font-size: 28px; /* Tamaño de la fuente de la 'x'. */
+    font-weight: bold; /* Hace la 'x' negrita. */
+    position: absolute; /* Posiciona la 'x' de forma absoluta con respecto al '.modal-gratuito-contenido'. */
+    top: 10px; /* Distancia desde la parte superior del modal. */
+    right: 20px; /* Distancia desde la derecha del modal. */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clicable. */
+}
+
+.cerrar-modal-gratuito:hover,
+.cerrar-modal-gratuito:focus {
+    color: black; /* Color de la 'x' al pasar el ratón o enfocar. */
+    text-decoration: none; /* Asegura que no tenga subrayado. */
+    cursor: pointer; /* Mantiene el cursor en forma de mano. */
+}
+
+.modal-gratuito-contenido h2 {
+    margin-top: 0; /* Elimina el margen superior predeterminado del h2. */
+    color: #0056b3; /* Color del título. Puedes cambiarlo a tu color de marca. */
+}
+
+.modal-gratuito-contenido p {
+    margin-bottom: 20px; /* Espaciado debajo del párrafo introductorio. */
+}
+
+.checkbox-list {
+    text-align: left; /* Alinea los checkboxes a la izquierda dentro de este contenedor. */
+    margin-bottom: 20px; /* Espaciado debajo de la lista de checkboxes. */
+    max-height: 250px; /* Limita la altura de la lista. */
+    overflow-y: auto; /* Hace que aparezca una barra de desplazamiento si hay muchos checkboxes. */
+    padding-right: 15px; /* Espacio para que la barra de desplazamiento no se superponga al texto. */
+    border: 1px solid #eee; /* Borde ligero alrededor de la lista de checkboxes. */
+    padding: 10px; /* Espaciado interno para la lista. */
+    border-radius: 5px; /* Bordes redondeados para la lista. */
+}
+
+.checkbox-list label {
+    display: block; /* Hace que cada checkbox con su texto ocupe toda la línea. */
+    margin-bottom: 8px; /* Espaciado entre cada checkbox. */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima. */
+    font-size: 16px; /* Tamaño de la fuente del texto del checkbox. */
+    color: #555; /* Color del texto del checkbox. */
+}
+
+.checkbox-list input[type="checkbox"] {
+    margin-right: 8px; /* Espaciado a la derecha del propio checkbox. */
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño del checkbox para que sea más fácil de clicar. */
+}
+
+#user-email-gratuito {
+    width: calc(100% - 22px); /* Ocupa casi todo el ancho, ajustando por padding y borde. */
+    padding: 10px; /* Espaciado interno del campo de email. */
+    margin-bottom: 15px; /* Espaciado debajo del campo de email. */
+    border: 1px solid #ddd; /* Borde del campo de email. */
+    border-radius: 5px; /* Bordes redondeados del campo de email. */
+    font-size: 16px; /* Tamaño de la fuente dentro del campo de email. */
+}
+
+.btn-enviar-solicitud {
+    background-color: #007bff; /* Color de fondo del botón de enviar. Puedes cambiarlo. */
+    color: white; /* Color del texto del botón. */
+    padding: 12px 25px; /* Espaciado interno del botón. */
+    border: none; /* Elimina el borde predeterminado del botón. */
+    border-radius: 5px; /* Bordes redondeados del botón. */
+    cursor: pointer; /* Cambia el cursor a una mano. */
+    font-size: 18px; /* Tamaño de la fuente del botón. */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón. */
+}
+
+.btn-enviar-solicitud:hover {
+    background-color: #0056b3; /* Color de fondo del botón al pasar el ratón. */
+}
+
+/* Media Queries para pantallas más pequeñas (hace que el modal sea más responsivo) */
+@media (max-width: 768px) {
+    .modal-gratuito-contenido {
+        width: 95%; /* En pantallas pequeñas, ocupa casi todo el ancho. */
+        padding: 15px; /* Reduce el padding interno. */
+    }
+    .checkbox-list {
+        max-height: 200px; /* Reduce la altura máxima de la lista de checkboxes para móviles. */
+    }
+    .cerrar-modal-gratuito {
+        font-size: 24px; /* Ajusta el tamaño de la 'x'. */
+        top: 8px;
+        right: 15px;
+    }
+    #user-email-gratuito, .btn-enviar-solicitud {
+        font-size: 14px; /* Ajusta el tamaño de la fuente para campos y botones. */
+        padding: 10px 20px; /* Ajusta el padding para campos y botones. */
+    }
+}
