@@ -1,0 +1,2689 @@
+/* Estilos generales */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #fcfbf8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Header */
+.header {
+    background-color: #F1CB66;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+    height: 180px;
+}
+
+.logo img {
+    height: 200px;
+    width: 200px;
+    margin-top: -20px;
+    margin-left: 70px;
+}
+
+.header-text {
+    margin-left: 450px;   
+}
+
+.header-principal {
+    font-size:3.2em;
+    color: #FAE78B;
+    font-family: Merriweather;
+    margin-top: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
+}
+
+.header-subtitulo {
+    font-size: 1.3em;
+    color: #fff;
+    text-align: end;
+    font-family: Merriweather;
+   font-weight: bold;
+   margin-top: -20px;
+   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Menú */
+.nav-menu-section{
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+}
+.menu {
+    background-color: #FAE78B;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    height: auto;
+    width: 100%;
+
+}
+
+.menu-item {
+    color:black;
+    text-decoration: none;
+    padding: 0 15px;
+    position: relative;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 1.5em;
+    background-color: black;
+}
+
+.menu-item:last-child::after {
+    display: none;
+}
+
+/* Sección de fondo con imagen */
+.hero {
+    position: relative;
+    overflow: visible;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 900px;  
+}
+
+.hero img {
+    position: absolute;
+    right: 0;
+    top: 0; /* Imagen aún más abajo */
+    height: 800px;
+    width: 800px;
+    z-index: 1;
+}
+
+.hero-overlay {
+    background-color: #E6E9F0B0;
+    width: 100%;
+    height: 89%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.hero p {
+    position: relative; 
+    z-index: 7; 
+    font-size:6em; 
+    text-align: left; 
+    color: #0E0D09; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 0;
+    margin-right: auto;
+    transform: translateY(-550px);
+    margin-left: 5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Sección de servicios (contenedores principales) */
+.servicios {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 3; 
+    top: -450px; 
+}
+
+/* Título de la sección de servicios */
+.servicios h2 {
+    color: #333;
+    text-align: left;
+    transform: translateY(-50px);
+}
+
+/* Contenedor de la cuadrícula de servicios */
+.servicios-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -50px;
+    flex-wrap: wrap;
+}
+
+/* --- Estilos base para cada rectángulo de servicio (.servicio-item) --- */
+.servicio-item {
+    background-color: #E3AE3EFF; /* Color de fondo sólido del rectángulo */
+    padding: 15px; /* Espacio interno para el texto */
+    border-radius: 50px; /* Bordes redondeados */
+    width: 160px;
+    height: 220px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido (el span de texto) verticalmente */
+    align-items: center; /* Centra el contenido (el span de texto) horizontalmente */
+    position: relative; /* **Crucial:** Establece el contexto para los pseudo-elementos y el texto */
+    overflow: hidden; /* Recorta cualquier parte de la imagen que se salga de los límites del rectángulo */
+    /* **Importante:** Hemos quitado `color`, `font-weight`, `isolation`, `transform` y `z-index` de aquí.
+       Ahora los controlaremos en `.servicio-texto` o ya no son necesarios en este nivel. */
+}
+
+/* --- ESTILO CLAVE: Para el texto dentro de cada servicio-item (.servicio-texto) --- */
+.servicio-texto {
+    position: relative; /* **Esencial:** Permite que `z-index` funcione en el texto */
+    z-index: 3; /* **¡Este es el z-index que asegura que el texto esté por encima de las imágenes!** */
+    color: #000; /* Color del texto */
+    text-shadow: 
+        1px 1px 3px rgba(255, 255, 255, 0.9),  /* Sombra principal: más desplazamiento, más desenfoque, más opacidad */
+        -1px -1px 3px rgba(255, 255, 255, 0.6), /* Sombra superior-izquierda más sutil para un ligero contorno */
+        2px 2px 5px rgba(255, 255, 255, 0.7);  /* Una sombra más grande y difusa para el efecto de "flotar" */
+    font-weight: bold; /* Peso de la fuente para el texto */
+    text-align: center; /* Asegura que el texto dentro del span esté centrado */
+    width: 100%; /* El span debe ocupar el ancho completo para centrar su propio texto */
+    font-size: 1.4em;
+    font-family: Merriweather;
+}
+
+/* --- Estilos generales para los pseudo-elementos (capas de imágenes de fondo) --- */
+.servicio-item::before,
+.servicio-item::after {
+    content: "";
+    position: absolute; /* Posicionamiento absoluto dentro de `.servicio-item` */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat; /* Evita que las imágenes se repitan */
+    /* La opacidad, imagen, posición y tamaño se definirán en las clases específicas de cada servicio */
+}
+
+/* --- Control del apilamiento (z-index) para las capas de imágenes --- */
+/* Estas capas están configuradas para estar por debajo del texto (.servicio-texto con z-index: 3) */
+.servicio-item::before {
+    z-index: 1; /* La primera imagen de fondo (capa inferior) */
+}
+.servicio-item::after {
+    z-index: 2; /* La segunda imagen de fondo (capa superior), si existe, pero aún debajo del texto */
+}
+
+/* --- SERVICIO 1: Gestión en Redes Sociales (DOS IMÁGENES) --- */
+.servicio-1::before { 
+    background-image: url('../images/fon3.jpg'); 
+    background-position: center top; 
+    background-size: 150% 100%; 
+    opacity: 0.4;
+}
+.servicio-1::after {
+    background-image: url('../images/fon1.png'); 
+    background-position: top 100px left 30px; 
+    background-size: 250px 250px; 
+    opacity: 0.5;
+}
+.servicio-1 .servicio-texto {
+    /* Ejemplo 1: Mover el texto 10px hacia abajo */
+    margin-top: 90px; 
+    font-size: 1.3em;
+}
+
+/* --- SERVICIO 2: Pauta Publicitaria en Meta Ads y Google Ads (UNA IMAGEN) --- */
+.servicio-2::before {
+    background-image: url('../images/fon5.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left 20px top 100px; /* En el centro a la izquierda */
+    background-size: 250px 150px; /* 70% del ancho, altura automática */
+    opacity: 0.4; 
+}
+
+/* --- SERVICIO 3: Creación de Estrategia (UNA IMAGEN) --- */
+.servicio-3::before {
+    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left -40px bottom 15px; /* Centrada, 20px desde arriba */
+    background-size: 150% auto; /* 90% del ancho, altura automática */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 4: Diseño en Canva (UNA IMAGEN) --- */
+.servicio-4::before {
+    background-image: url('../images/fon6.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: bottom -10px left -10px; /* Abajo a la derecha, 15px de margen */
+    background-size: 150px 150px; /* Tamaño fijo */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 5: Desarrollo Web (UNA IMAGEN) --- */
+.servicio-5::before {
+    background-image: url('../images/fon5.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left top -120px;
+    background-size: cover; /* Cubrirá todo el espacio */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 6: Identidad de Marca (DOS IMÁGENES) --- */
+.servicio-6::before { /* Imagen de fondo principal (capa inferior): un patrón geométrico */
+    background-image: url('../images/fon7.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: left -10px top -10px; /* Arriba a la izquierda */
+    background-size: 50% 50%; /* Cubrir todo el espacio (puede distorsionarse ligeramente) */
+    opacity: 0.4; /* Muy, muy sutil */
+}
+.servicio-6::after { /* Segunda imagen (capa superior): un logo o icono de marca */
+    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
+    background-position: center left 30px; /* Centrado horizontal, 30px desde arriba */
+    background-size: 300px 250px; /* Tamaño fijo */
+    opacity: 0.4; /* Bien visible */
+    transform: rotate(-50deg);
+}
+/* Sección Quiénes Somos */
+.quienes-somos {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    margin-top: -345px;
+    font-family: Merriweather;
+
+}
+/* Alinea el título h2 al centro */
+.quienes-somos h2 {
+    text-align: center; /* Centra solo el título */
+    color: #F1CB66; /* Mantén el color que ya tienes */
+    margin-bottom: 20px; /* Agrega un poco de espacio debajo del título si es necesario */
+    font-size: 6em;
+    transform: translateY(-50px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Alinea el párrafo al margen (izquierda) */
+.quienes-somos p {
+    text-align: left; /* Alinea el texto del párrafo a la izquierda */
+    line-height: 1.2; /* Mejora la legibilidad del texto */
+    font-size: 1.6em;
+    margin-left: 50px;
+    color: #949398;
+}
+/* Sección Contenido Gratuito */
+.contenido-gratuito {
+    padding: 2px;
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos flexibles (la imagen y el wrapper) */
+    justify-content: center; /* Centra horizontalmente los elementos flexibles */
+    text-align: center;
+    background-color: #FAE78B;
+    position: relative;
+    overflow: hidden; /* Asegura que nada se desborde de la sección */
+    height: 600px; /* Establece una altura mínima para la sección si la imagen es muy corta */
+}
+
+.contenido-gratuito img {
+    width: 100%;
+    height: auto; /* Mantiene la proporción */
+    display: block;
+    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+}
+
+.contenido-texto-y-boton-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 5%; /* Ajusta este valor si querés que esté más cerca o más lejos del borde derecho */
+    transform: translateY(-50%); /* Ajuste para centrado vertical perfecto */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los elementos (texto y botón) a la derecha dentro de este wrapper */
+    text-align: right; /* ¡IMPORTANTE! Alinea el texto en sí a la derecha dentro de sus líneas */
+    max-width: 45%; /* Reduje un poco el max-width, puedes ajustar este valor */
+    z-index: 1; /* Asegura que esté por encima de la imagen */
+    /* Agrega un poco de padding para que el contenido no esté pegado al borde del wrapper */
+    padding: 10px;
+    box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
+}
+
+.contenido-texto {
+    font-family: Merriweather;
+    font-size: 2.8em;
+    align-items: center;
+    text-align: center;
+    line-height: 1.2;
+    color: #757575;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.contenido-texto h3 {
+    font-size: inherit;
+    color: inherit;
+    text-shadow: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.contenido-gratuito .boton-descargar {
+    background-color: #757575;
+    cursor:pointer;
+    text-align: center;
+    margin-right: 95px;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1em;
+    width: 300px; /* ¡CAMBIO! Deja que el ancho se ajuste al contenido del botón */
+    max-width: 100%; /* Evita que el botón se desborde del wrapper si el texto es muy largo */
+    transform: translateY(80px);
+    white-space: nowrap; /* Evita que el texto del botón se rompa en varias líneas */
+
+}
+/*sección reseñas*/
+.reseñas-section{
+    height: 550px;
+    background-color: #555;
+    position: relative;
+    
+}
+.reseñas-container{
+    z-index: 1000;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+}
+.reseñas-card {
+    width: 235px;
+    background-color: white;
+    height: 450px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    font-family: "Open Sans", sans-serif;
+    margin-top: -40px;
+    border: 3px solid #FAE78B;
+    
+}
+.reseña-title{
+    font-size: 2.5rem;
+    color: white;
+    text-align: center;
+    font-family: Merriweather;
+    font-weight: bold;
+    -webkit-text-stroke: 1.5px #FAE78B;
+    margin-top: 10px;
+
+}
+.reseñas-card img {
+    /* Quitar z-index: 1000; de aquí, no es necesario para <img> */
+    max-width: 90%;   /* La imagen ocupará como máximo el 90% del ancho de la tarjeta */
+    max-height: 90%;  /* La imagen ocupará como máximo el 90% de la altura de la tarjeta */
+    object-fit: contain; /* Ajusta la imagen dentro de los límites sin recortarla, manteniendo proporciones */
+    display: block;   /* Para que margin: auto funcione si no usas flexbox en la tarjeta */
+    margin: auto;     
+    margin-top: 22px;
+    border-radius: 10px;
+    border: 3px solid #FAE78B;
+}
+
+/* Para la última tarjeta con texto, asegurate de que el párrafo se vea bien */
+.reseñas-card p {
+    color: #E3AE3E; /* Un color oscuro para que el texto sea legible sobre fondo blanco */
+    font-size: 2em; /* Ajusta el tamaño de la fuente */
+    text-align: center;
+    padding: 10px; /* Un poco de padding para que el texto no se pegue a los bordes */
+    font-weight: bold;
+    /* Aseguramos que el párrafo ocupe el espacio para que se centre con align-items: center en la tarjeta */
+    width: 100%; 
+    margin-top: 120px;
+    box-sizing: border-box;
+     -webkit-text-stroke: 1.5px #58585821;/* Incluir padding en el ancho */
+}
+.reseñas-card .card-link {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;  
+    height: 100%; 
+    z-index: 1;   
+    text-decoration: none; 
+    color: transparent; 
+}
+/* Sección Certificados */
+.certificados {
+    padding: 40px 1px;
+    text-align: center;
+    background-color: #fff;
+    position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
+    overflow: hidden; /* Recorta lo que se salga */
+}
+
+/* El h2 y el contenedor de círculos deben tener un z-index más alto */
+.certificados h2,
+.certificados-container {
+    position: relative; /* Necesario para z-index */
+    z-index: 3; /* Asegura que el contenido quede por encima de todas las imágenes de fondo */
+}
+.certificados h2{
+    text-align: left;  
+    font-family: Merriweather ;
+    font-size: 2.5em;  
+    margin-top: -20px;
+    margin-left: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.certificados-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
+    /* Importante: Si el z-index de este contenedor fuera menor que los pseudo-elementos de la sección,
+       sus propios pseudo-elementos podrían terminar debajo de los de la sección.
+       Asegúrate de que su z-index sea al menos igual o mayor al de la sección, si los pseudo-elementos de la sección tienen uno. */
+    z-index: 3; /* Mismo z-index que el h2 para que estén ambos encima */
+    flex-wrap: wrap;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* --- Estilos comunes para los pseudo-elementos de fondo --- */
+.certificados::before,
+.certificados::after,
+.certificados-container::before,
+.certificados-container::after {
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain; /* Ajusta según necesites: 'cover', '100% 100%', etc. */
+    z-index: 1; /* Por debajo del contenido principal */
+    pointer-events: none; /* Impide que interfieran con clics o interacciones */
+}
+
+/* --- Imágenes de Fondo Individuales --- */
+
+/* Imagen 1: Pseudo-elemento de la sección principal */
+.certificados::before {
+    background-image: url('../images/fon5.png');
+    width: 200px;
+    height: 180px;
+    top: 5px;
+    left: 390px;
+    transform: rotate(50deg);
+}
+
+/* Imagen 2: Otro pseudo-elemento de la sección principal */
+.certificados::after {
+    background-image: url('../images/fon5.png');
+    width: 200px;
+    height: 180px;
+    bottom: -40px;
+    right: 190px;
+    transform: rotate(5deg);
+}
+
+/* Estilos comunes para los nuevos divs de fondo */
+.certificado-bg-extra-1,
+.certificado-bg-extra-2 {
+    position: absolute; /* Posicionamiento absoluto respecto a .certificados */
+    background-image: url('../images/fon5.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    width: 200px; /* Mismo tamaño que tus pseudo-elementos */
+    height: 180px;
+    z-index: 0; /* ¡CLAVE! Detrás del contenido del carrusel */
+    /* opacity: 0.5; /* Opcional: para un efecto más de fondo */
+}
+
+/* IMAGEN 3: La que antes estaba en .certificados-container::before */
+.certificado-bg-extra-1 {
+    /* Estas coordenadas son RELATIVAS a la sección .certificados,
+       tendrás que ajustarlas ligeramente por prueba y error para que queden donde te gustaba.
+       Usa las que tenías para .certificados-container::before como punto de partida. */
+    top: 100px; /* Ajusta este valor */
+    right: 20px; /* Ajusta este valor */
+    transform: rotate(180deg); /* Mantenemos la rotación original */
+}
+
+/* IMAGEN 4: La que antes estaba en .certificados-container::after */
+.certificado-bg-extra-2 {
+    /* Estas coordenadas también son RELATIVAS a la sección .certificados.
+       Ajusta estas para que quede donde te gustaba. */
+    bottom: 0px; /* Ajusta este valor */
+    left: 20px; /* Ajusta este valor */
+    /* Tu cuarto pseudo-elemento no tenía transform, puedes añadirlo si quieres */
+}
+
+
+/* Asegura que el contenido del carrusel y el título estén SIEMPRE por encima */
+.certificados h2,
+.carousel-viewport,
+.carousel-dots,
+.carousel-prev-btn,
+.carousel-next-btn {
+    position: relative; /* Crea un contexto de apilamiento para el z-index */
+    z-index: 5; /* Un valor alto para que esté por encima de z-index: 0 de las imágenes de fondo */
+}
+.certificado-circulo:last-child {
+    margin-right: 0;
+}
+
+.certificado-circulo {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background-color: #E3AE3E;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    margin-bottom: 40px;
+    margin-top: -5px;
+    z-index: 5;
+    font-family: Merriweather ;
+    font-weight: bold;
+        margin-right: 30px; /* Esto crea el espacio entre los círculos */
+    flex-shrink: 0;
+    text-shadow: 2px 2px 4px rgb(250, 247, 247);
+}
+
+/* --- Nuevo CSS para el carrusel JS puro (añadir al final de tu style.css) --- */
+
+.carousel-viewport {
+    /* Es la ventana visible del carrusel. Oculta lo que se desborda. */
+    overflow: hidden; 
+    position: relative; /* Para posicionar flechas si las pusiéramos dentro (no es el caso aquí) */
+    max-width: 1300px; /* Ya lo tienes en tu .certificados-container. Lo repetimos por claridad. */
+    margin: 30px auto; /* Centra el viewport y le da margen */
+    /* Ajuste del padding para que quepan 5 círculos más sus márgenes */
+    /* 5 círculos * 220px/círculo = 1100px.
+       Hay 4 espacios entre 5 círculos. Cada círculo tiene 15px de margen a cada lado (total 30px).
+       Así que necesitamos 4 * 30px (entre círculos) + 2 * 15px (margen exterior) = 120 + 30 = 150px de margen total.
+       Ancho total necesario: 1100px (círculos) + 150px (márgenes) = 1250px.
+       Si el max-width es 1300px, y el contenido necesita 1250px, sobran 50px.
+       Dividimos 50px / 2 = 25px de padding a cada lado. */
+    padding: 0 25px; 
+    z-index: 4; /* Asegura que esté por encima de tus imágenes de fondo */
+}
+
+/* Apuntamos a tu .certificados-container cuando tiene la clase adicional .carousel-track */
+/* Esto sobrescribe sus propiedades para el carrusel, sin afectar tu .certificados-container original */
+.certificados-container.carousel-track {
+    flex-wrap: nowrap; /* **CLAVE**: Impide que los círculos salten de línea. Se mantienen en una fila. */
+    justify-content: flex-start; /* Alinea los ítems al inicio para que el JS pueda moverlos desde allí. */
+    gap: 0; /* Aseguramos que el gap no interfiera; los márgenes del círculo definen el espaciado. */
+    transition: transform 0.5s ease-in-out; /* Para una animación suave al deslizar. */
+}
+
+/* --- Estilos para las flechas de navegación del carrusel JS puro --- */
+.carousel-prev-btn,
+.carousel-next-btn {
+    font-size: 0; /* Oculta cualquier texto por defecto */
+    line-height: 1;
+    position: absolute; /* Posiciona las flechas respecto a la sección .certificados */
+    top: 50%; /* A la mitad de la altura de la sección */
+    transform: translateY(-50%); /* Centrado vertical perfecto */
+    display: block;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    cursor: pointer;
+    background: #F1CB66;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    z-index: 10; /* Por encima de todo */
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el ÍCONO dentro de las flechas (si usas Font Awesome) */
+.carousel-prev-btn:before,
+.carousel-next-btn:before {
+    font-family: "Font Awesome 5 Free"; /* Indica la fuente de iconos a usar */
+    font-weight: 900; /* Necesario para los íconos sólidos */
+    font-size: 25px; /* Tamaño del ícono */
+    color: white; /* Color del ícono */
+    line-height: 1;
+    display: block;
+    text-align: center;
+}
+
+.carousel-prev-btn:before {
+    content: "\f053"; /* Código Unicode para el ícono de flecha izquierda (chevron-left) */
+}
+.carousel-next-btn:before {
+    content: "\f054"; /* Código Unicode para el ícono de flecha derecha (chevron-right) */
+}
+
+.carousel-prev-btn {
+    left: 10px; /* Posición izquierda respecto al borde de la sección */
+}
+.carousel-next-btn {
+    right: 10px; /* Posición derecha respecto al borde de la sección */
+}
+
+.carousel-prev-btn:hover,
+.carousel-next-btn:hover {
+    background-color: #e0b04a;
+}
+
+.carousel-prev-btn:disabled,
+.carousel-next-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* --- Estilos para los puntos de paginación (carousel-dots) --- */
+.carousel-dots {
+    text-align: center;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #FAE78B;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #F1CB66;
+}
+
+.dot:hover {
+    background-color: #e0b04a;
+}
+/* Sección Ubicación y Formulario: Contenedor principal de la sección */
+.ubicacion-formulario {
+    padding: 60px 20px; /* Relleno interno para espacio alrededor del contenido */
+    display: flex; /* Activa Flexbox para organizar los elementos internos */
+    flex-direction: column; /* Apila los elementos hijos verticalmente (mapa arriba, bloque de form/redes abajo) */
+    align-items: flex-start; /* Alinea los elementos hijos al inicio (izquierda) del eje transversal */
+    gap: 40px; /* Espacio vertical entre los elementos principales (mapa y el contenedor de form/redes) */
+    background-color: #F1CB66; /* Color de fondo de toda la sección */
+    width: 100%; /* Asegura que la sección ocupe todo el ancho disponible */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho total */
+}
+
+/* Contenedor del Mapa */
+.ubicacion {
+    width: 90%; /* Ancho del contenedor del mapa dentro de la sección */
+    max-width: 1000px; /* Ancho máximo para el mapa en pantallas grandes */
+    background-color: #F1CB66; /* Mismo color de fondo que la sección */
+    text-align: left; /* Alinea el título "Ubicación" a la izquierda dentro de este contenedor */
+    margin: 0 auto; /* Centra el contenedor del mapa horizontalmente dentro de la sección */
+    margin-top: 20px;
+}
+
+.ubicacion h2 {
+    color: #333; /* Color del texto del título */
+    margin-bottom: 20px; /* Espacio debajo del título */
+    font-size: 3em; /* Tamaño de la fuente del título */
+    font-family: Merriweather;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgb(250, 248, 248);
+}
+
+.ubicacion iframe {
+    width: 100%; /* El iframe del mapa ocupa el 100% del ancho de su contenedor */
+    height: 500px; /* Altura fija para el mapa, dándole una forma rectangular/cuadrada */
+    border: none; /* Elimina el borde predeterminado del iframe */
+    border-radius: 10px; /* Esquinas redondeadas para un estilo moderno */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
+    overflow: hidden; /* Asegura que las esquinas redondeadas se apliquen correctamente */
+}
+
+/* Contenedor Principal para el Formulario Y las Redes Sociales (SOLO DISPOSICIÓN) */
+/* Este div (.form-redes-wrapper) solo se encarga de posicionar al formulario y las redes AL LADO. */
+/* NO LLEVA FONDO, PADDING, NI SOMBRA; es transparente. */
+.form-redes-wrapper {
+    width: 90%; /* Ancho general para este bloque combinado */
+    max-width: 900px; /* Ancho máximo para el bloque combinado (ajusta si quieres que coincida con el mapa) */
+    display: flex; /* ¡ACTIVA FLEXBOX PARA ALINEAR HIJOS! */
+    flex-direction: row; /* ¡ESTO LOS PONE UNO AL LADO DEL OTRO! */
+    flex-wrap: wrap; /* Permite que los elementos salten a la siguiente línea si no hay espacio en pantallas pequeñas */
+    justify-content: flex-start; /* Alinea el formulario y las redes sociales al inicio (izquierda) de este contenedor */
+    align-items: flex-start; /* Alinea el contenido de ambos (formulario y redes) en la parte superior */
+    gap: 40px; /* Espacio horizontal entre el recuadro del formulario y las redes sociales */
+    margin: 0 auto; /* Centra este contenedor combinado para que se alinee con el mapa */
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+}
+
+/* Formulario de Consulta: ESTE ES EL ÚNICO QUE TIENE RECUADRO BLANCO */
+.formulario-consulta {
+    width: 400px; /* Ancho máximo deseado para el formulario */
+    text-align: left;
+    background-color: #fff; /* ¡FONDO BLANCO PARA EL RECUADRO DEL FORMULARIO! */
+    padding: 30px; /* Relleno interno para el formulario */
+    border-radius: 10px; /* Esquinas redondeadas para el formulario */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para el formulario */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+    margin-left: -50px;
+    
+}
+
+
+.formulario-consulta label {
+    display: block; /* Cada etiqueta en su propia línea */
+    margin-bottom: 8px; /* Espacio debajo de las etiquetas */
+    font-weight: bold; /* Etiquetas en negrita */
+    color: #555;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.formulario-consulta input[type="text"],
+.formulario-consulta input[type="email"],
+.formulario-consulta textarea {
+    width: 100%; /* Los campos ocupan todo el ancho de su contenedor */
+    padding: 12px; /* Relleno interno de los campos */
+    margin-bottom: 20px; /* Espacio entre campos */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
+    font-size: 1.05em; /* Tamaño de la fuente de entrada */
+}
+
+.formulario-consulta textarea {
+    resize: vertical; /* Permite al usuario redimensionar el textarea solo verticalmente */
+}
+
+.formulario-consulta button[type="submit"] {
+    background-color: #F1CB66; /* Color de fondo del botón de envío */
+    color: #333; /* Color del texto del botón */
+    padding: 12px 25px; /* Relleno del botón */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 1.1em; /* Tamaño de la fuente del botón */
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
+    width: 97%;
+}
+
+.formulario-consulta button[type="submit"]:hover {
+    background-color: #e0b85d; /* Color al pasar el ratón por encima del botón */
+}
+/* Estilos para el botón de WhatsApp */
+.whatsapp-button {
+    display: block; /* **Hace que el botón ocupe todo el ancho y se comporte como un bloque** */
+    width: 96%; /* **Asegura que ocupe el 100% del ancho disponible** */
+    background-color: #25D366; /* Color verde de WhatsApp */
+    color: white; /* Texto blanco */
+    padding: 12px 25px; /* **Mismo padding para igualar la altura visual** */
+    border: none;
+    border-radius: 8px; /* **Mismas esquinas redondeadas** */
+    cursor: pointer;
+    font-size: 1.1em; /* **Mismo tamaño de fuente** */
+    font-weight: bold;
+    text-align: center; /* Centra el texto y el ícono */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    margin-top: 5px; /* No necesita margen superior ya que `margin-bottom` del submit lo maneja */
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851; /* Un verde más oscuro al pasar el ratón */
+}
+
+.whatsapp-button i {
+    margin-right: 8px; /* Espacio entre el ícono de WhatsApp y el texto */
+    font-size: 1.2em; /* Tamaño del ícono, un poco más grande que el texto para que destaque */
+}
+
+/* Redes Sociales: Al lado del formulario, sin ningún recuadro principal */
+.redes-sociales {
+    display: flex;
+    flex-direction: column; /* Apila los enlaces de redes sociales verticalmente */
+    align-items: flex-start; /* Alinea los elementos (título, links) a la izquierda de este bloque */
+    justify-content: flex-start;
+    flex-grow: 1; /* Permite que este bloque crezca para ocupar espacio disponible */
+    min-width: 180px; /* Ancho mínimo para el bloque de redes sociales */
+    /* Ya no es necesario 'gap' aquí, los 'margin-bottom' de los botones manejarán el espaciado vertical. */
+    margin-top: 60px;
+}
+
+
+/* --- ESTILOS PARA LOS BOTONES SOCIALES INDIVIDUALES --- */
+/* Esta clase 'social-button' aplica los estilos base de los círculos */
+.social-button {
+    display: inline-flex; /* Permite que el contenido (ícono) se centre dentro */
+    justify-content: center; /* Centra el ícono horizontalmente */
+    align-items: center; /* Centra el ícono verticalmente */
+    width: 70px; /* Define el ancho del círculo */
+    height: 70px; /* Define la altura del círculo */
+    border-radius: 50%; /* Hace que el elemento sea un círculo perfecto */
+    margin-bottom: 5pxpx; /* Espacio debajo de cada botón social, apilándolos verticalmente */
+    /* margin-right: 10px; */ /* Si los botones fueran horizontales, este margen separaría uno del otro */
+    color: white; /* Color del ícono de Font Awesome dentro del círculo */
+    font-size: 2.5em; /* Tamaño del ícono */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    transition: transform 0.2s ease-in-out; /* Animación suave al pasar el ratón */
+}
+
+.social-button i {
+    /* Asegura que el ícono ocupe su espacio y esté perfectamente centrado */
+    line-height: 1;
+}
+
+.social-button:hover {
+    transform: scale(1.1); /* Agranda el botón ligeramente al pasar el ratón por encima */
+}
+
+/* --- COLORES DE FONDO ESPECÍFICOS PARA CADA RED SOCIAL --- */
+/* Cada clase específica define el color de fondo de su respectivo botón */
+
+.social-button.email {
+    background-color: #f86132; /* Azul de Outlook/Microsoft para correo */
+}
+
+.social-button.facebook {
+    background-color: #1877F2; /* Azul de Facebook */
+}
+
+.social-button.tiktok {
+    background-color: #000; /* Negro de TikTok (puedes ajustar si quieres un color más vivo) */
+}
+
+.social-button.instagram {
+    /* Gradiente de Instagram - fiel al logo oficial */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+.social-name{
+    color: #363536;
+    font-size: 2em;
+    margin-left: 100px;
+    transform: translateY(-50px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.social-name a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.social-name a:hover{
+    text-decoration: none;
+    color: #555;
+}
+
+footer {
+    background-color: #f2f2f2; /* Un gris claro para el fondo */
+    color: #555; /* Color de texto gris oscuro */
+    padding: 15px 0; /* Espaciado interno superior e inferior, sin espaciado lateral */
+    text-align: center; /* Centra el texto */
+    font-size: 0.8em; /* Tamaño de fuente un poco más pequeño que el predeterminado */
+    border-top: 1px solid #e7e7e7; /* Una línea fina en la parte superior para separarlo del contenido */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+.footer-content {
+    max-width: 960px; /* Ancho máximo para centrar el contenido en pantallas grandes */
+    margin: 0 auto; /* Centra el div en la página */
+}
+
+footer a {
+    color: #007bff; /* Color de los enlaces */
+    text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Subraya los enlaces al pasar el ratón */
+}
+
+/* --- Media Queries --- */
+
+/* Para pantallas de 1920px de ancho */
+@media (min-width: 1920px) {
+    /* HEADER */
+    .header{
+        height: 280px;
+    }
+    .header-text {
+        margin-left: 700px; 
+/* Centra el texto un poco más en pantallas muy anchas */
+    }
+    .logo img{
+        height: 300px;
+        width: 250px;
+    }
+    .header-principal {
+        font-size: 5em; /* Hace el título más grande */
+    }
+    .header-subtitulo {
+        font-size: 2.5em; /* Hace el subtítulo más grande */
+    }
+    /*MENU*/
+    .menu{
+        height: 50px;
+    }
+    .menu-item{
+        font-size: 1.7em;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        height: 1000px; /* Aumenta la altura del hero */
+    }
+    .hero img {
+        height: 1250px;
+        width: 1200px;
+        /* No necesitas top:0, right:0 a menos que quieras ajustarlo */
+    }
+    .hero-overlay{
+        height: 1250px;
+    }
+    .hero p {
+        font-size: 10em; /* Texto del hero más grande */
+        transform: translateY(-350px); /* Ajusta para que el texto siga encima de la imagen */
+        margin-left: 15%; /* Más margen para separar del borde */
+    }
+
+    /* SERVICIOS SECTION */
+    .servicios {
+        top: -250px; /* Ajusta la posición de toda la sección */
+        padding: 60px 40px;
+    }
+    .servicios h2 {
+        font-size: 3.5em;
+        margin-left: 100px; /* Título de servicios más grande */
+    }
+    .servicios-grid{
+        gap: 40px;
+    }
+    .servicio-item {
+        width: 250px; /* Haz los items un poco más grandes */
+        height: 320px;
+        padding: 20px;
+    }
+    .servicio-texto {
+        font-size: 2em; /* Texto dentro de los servicios */
+        margin-top: 20px; /* Ajusta si es necesario por el nuevo tamaño de item */
+    }
+
+    /* QUIENES SOMOS */
+    .quienes-somos {
+        margin-top: -250px; /* Ajusta el margen superior */
+        padding: 50px 80px; /* Más padding para los lados */
+    }
+    .quienes-somos h2 {
+        font-size: 7em;
+    }
+    .quienes-somos p {
+        font-size: 1.8em;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    /* CONTENIDO GRATUITO */
+    .contenido-gratuito img {
+        width: 450px; /* Imágenes más grandes */
+        height: 480px;
+    }
+    .contenido-texto {
+        font-size: 4em;
+        margin-left: 200px;
+        transform: translateX(150px);
+    }
+    .contenido-gratuito .boton-descargar {
+        transform: translateX(-150px); /* Ajusta la posición del botón */
+        width: 350px;
+        margin-top: 370px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    /* CERTIFICADOS */
+    .certificados h2 {
+        font-size: 3em;
+        margin-left: 50px;
+    }
+    .certificado-circulo {
+        width: 350px;
+        height: 350px;
+        font-size: 2.2em;
+    }
+    /* Ajustes de imágenes de fondo para certificados en 1920px */
+    .certificados::before {
+        left: 500px;
+        top: 20px;
+    }
+    .certificados::after {
+        right: 250px;
+        bottom: -60px;
+    }
+    .certificados-container::before {
+        right: 50px;
+        top: -150px;
+    }
+    .certificados-container::after {
+        left: 10px;
+        bottom: -90px;
+    }
+    .carousel-viewport {
+        max-width: 1920px; /* Ancho suficiente para 5 certificados + padding */
+        /* Asegúrate de que el padding de 0 25px se mantenga si es tu intención */
+        padding: 0 25px; 
+    }
+
+    /* UBICACION Y FORMULARIO */
+    .ubicacion h2 {
+        font-size: 3.5em;
+    }
+    .ubicacion iframe {
+        height: 700px;
+        width: 130%;
+        margin-left: -120px;
+    }
+    .form-redes-wrapper {
+        max-width: 1100px; /* Permite más espacio para el formulario y las redes */
+        justify-content: center;
+         /* Centra el bloque de formulario/redes */
+    }
+    .formulario-consulta {
+        width: 550px; /* Mayor ancho para el formulario */
+        margin-left: -70px;
+         /* Elimina el margen negativo si ya se centra */
+    }
+    .redes-sociales {
+        margin-top: 70px;
+        margin-left: 50px; /* Ajusta la posición vertical de las redes */
+    }
+    .social-button{
+        width: 70px;
+        height: 70px;
+        font-size: 2.2em;
+    }
+}
+
+
+/* Para pantallas de 1440px de ancho */
+@media (width: 1440px) {
+    /* HEADER */
+    .header-text {
+        margin-left: 550px; /* Ajusta para 1440px */
+    }
+    .header-principal {
+        font-size: 3.8em;
+    }
+    .header-subtitulo {
+        font-size: 1.7em;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        height: 950px;
+    }
+    .hero img {
+        height: 1050px;
+        width: 950px;
+    }
+    .hero p {
+        font-size: 8em;
+        transform: translateY(-400px);
+        margin-left: 15%;
+    }
+    .hero-overlay{
+        height: 1050px;
+    }
+
+    /* SERVICIOS SECTION */
+    .servicios {
+        top: -270px;
+    }
+    .servicios h2 {
+        font-size: 2.7em;
+    }
+    .servicio-item {
+        width: 190px;
+        height: 220px;
+    }
+    .servicio-texto {
+        font-size: 1.4em;
+        margin-top: 10px;
+    }
+
+    /* QUIENES SOMOS */
+    .quienes-somos {
+        margin-top: -300px;
+    }
+    .quienes-somos h2 {
+        font-size: 6.2em;
+    }
+    .quienes-somos p {
+        font-size: 1.65em;
+        margin-left: 60px;
+        margin-right: 60px;
+    }
+
+    /* CONTENIDO GRATUITO */
+    .contenido-gratuito img {
+        width: 380px;
+        height: 410px;
+    }
+    .contenido-texto {
+        font-size: 3em;
+        margin-left: 170px;
+    }
+    .contenido-gratuito .boton-descargar {
+        transform: translateX(-150px);
+        margin-top: 300px;
+        width: 210px;
+    }
+
+    /* CERTIFICADOS */
+    .certificados h2 {
+        font-size: 2.7em;
+        margin-left: 40px;
+    }
+    .certificado-circulo {
+        width: 230px;
+        height: 230px;
+        font-size: 2.1em;
+    }
+
+    /* UBICACION Y FORMULARIO */
+    .ubicacion h2 {
+        font-size: 3.2em;
+    }
+    .ubicacion iframe {
+        height: 520px;
+    }
+    .form-redes-wrapper {
+        max-width: 950px;
+    }
+    .formulario-consulta {
+        width: 480px;
+        margin-left: -20px;
+    }
+    .redes-sociales {
+        margin-top: 70px;
+        margin-left: 50px;
+    }
+    .social-button{
+        width: 70px;
+        height: 70px;
+        font-size: 2.2em;
+    }
+}
+
+
+/* Para pantallas de 1024px de ancho (típicamente laptops más pequeñas o netbooks) */
+@media (width: 1024px) {
+    body {
+        overflow-x: hidden; /* Asegura que no haya desplazamiento horizontal */
+    }
+
+    /* HEADER */
+    .header {
+        height: 90px;
+    }
+    .logo img {
+        height: 100px;
+        width: 100px;
+        margin-top: -5px;
+    }
+    .header-text {
+        margin-left: -450;/* Reduce bastante el margen */
+    }
+    .header-principal {
+        font-size: 2.5em;
+    }
+    .header-subtitulo {
+        font-size: 1em;
+        margin-top: -20px;
+    }
+
+    /* MENÚ */
+    .menu {
+        padding: 6px 0;
+        margin-top: -10px;
+    }
+    .menu-item {
+        padding: 0 8px;
+        font-size: 0.85em;
+    }
+
+    /* HERO SECTION */
+    .hero {
+        height: 650px; /* Reduce más la altura */
+    }
+    .hero img {
+        height: 580px;
+        width: 680px;
+        top: 30px;
+        right: -80px; /* Podría necesitar moverse más a la izquierda */
+    }
+    .hero-overlay {
+        height: 80%;
+    }
+    .hero p {
+        font-size: 3.5em;
+        transform: translateY(-380px);
+        margin-left: 2%;
+    }
+
+    /* SERVICIOS SECTION */
+    .servicios {
+        top: -300px; /* Sube la sección */
+        padding: 20px 10px;
+    }
+    .servicios h2 {
+        font-size: 2em;
+        transform: translateY(-20px);
+    }
+    .servicios-grid {
+        gap: 10px;
+        margin-top: -20px;
+    }
+    .servicio-item {
+        width: 130px; /* Hazlos más pequeños */
+        height: 180px;
+        padding: 8px;
+        border-radius: 30px;
+    }
+    .servicio-texto {
+        font-size: 1.1em;
+        margin-top: 70px; /* Ajusta según el nuevo tamaño de item */
+    }
+
+    /* QUIENES SOMOS */
+    .quienes-somos {
+        margin-top: -200px;
+        padding: 20px 10px;
+    }
+    .quienes-somos h2 {
+        font-size: 4.5em;
+        transform: translateY(-20px);
+    }
+    .quienes-somos p {
+        font-size: 1.3em;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    /* CONTENIDO GRATUITO */
+    .contenido-gratuito {
+        flex-direction: column; /* Apila imagen y texto */
+        align-items: center;
+        padding: 15px 0;
+    }
+    .contenido-gratuito img {
+        width: 250px;
+        height: 280px;
+        margin-bottom: 15px;
+    }
+    .contenido-texto {
+        font-size: 1.8em;
+        text-align: center;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .contenido-gratuito .boton-descargar {
+        transform: translateX(0);
+        margin-top: 15px;
+        width: 160px;
+    }
+
+    /* CERTIFICADOS */
+    .certificados {
+        padding: 20px 5px;
+    }
+    .certificados h2 {
+        font-size: 1.8em;
+        margin-left: 10px;
+    }
+    .certificados-container {
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .certificado-circulo {
+        width: 160px;
+        height: 160px;
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    /* UBICACION Y FORMULARIO */
+    .ubicacion-formulario {
+        padding: 30px 10px;
+    }
+    .ubicacion h2 {
+        font-size: 2.2em;
+    }
+    .ubicacion iframe {
+        height: 350px;
+    }
+    .form-redes-wrapper {
+        flex-direction: column; /* Apila el formulario y las redes */
+        align-items: center;
+        gap: 20px;
+        max-width: 95%;
+    }
+    .formulario-consulta {
+        width: 98%; /* Ocupa casi todo el ancho */
+        margin-left: 0;
+        padding: 15px;
+    }
+    .whatsapp-button {
+        width: 100%;
+    }
+    .redes-sociales {
+        margin-top: 0;
+        width: 98%;
+        align-items: center;
+    }
+}
+
+/* --- Media Queries para Celulares --- */
+
+/* Teléfonos muy pequeños o características específicas */
+@media (max-width: 320px) {
+  /* Estilos para iPhone 5/SE y otros dispositivos muy compactos */
+  /* Aquí podrías reducir aún más los tamaños de fuente, espaciados, etc. */
+}
+
+/* Teléfonos en formato vertical (la mayoría de los smartphones) */
+@media (max-width: 576px) {
+  /* Estilos para la mayoría de los teléfonos en modo vertical */
+  /* Aquí es clave hacer la mayoría de los ajustes para que todo sea legible y usable */
+  /* Por ejemplo: */
+  .header {
+    height: 80px; /* Reduce la altura del encabezado */
+    justify-content: center; /* Centra los elementos del encabezado */
+  }
+
+  .logo img {
+    height: 80px;
+    width: 80px;
+    margin: 0; /* Elimina márgenes complejos */
+  }
+
+  .header-text {
+    margin-left: 0; /* Elimina el margen a la izquierda */
+    text-align: center;
+  }
+
+  .header-principal {
+    font-size: 1.8em;
+    margin-top: 15px;
+    /* Ajusta el tamaño de la fuente principal */
+  }
+
+  .header-subtitulo {
+    font-size: 0.9em;
+    margin-top: -15px;
+  }
+
+  .menu {
+    flex-direction: column; /* Apila los elementos del menú verticalmente */
+    height: auto;
+    margin-top: 0;
+  }
+
+  .menu-item {
+    padding: 10px 0; /* Más espacio vertical para cada ítem */
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separador visual */
+  }
+
+  .menu-item::after {
+    display: none; /* Oculta los divisores verticales */
+  }
+
+  .hero {
+    height: 400px; /* Reduce la altura de la sección hero */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el área */
+    position: relative;
+    top: 0;
+    right: 150px;
+  }
+
+  .hero-overlay {
+    height: 100%;
+    opacity: 0.7; /* Aumenta la opacidad de la superposición si la imagen es muy prominente */
+  }
+
+  .hero p {
+    font-size: 2.8em; /* Reduce el tamaño del texto principal del hero */
+    text-align: left;
+    transform: translateY(0); /* Reinicia la transformación */
+    margin: 0 auto; /* Centra el texto */
+    padding: 10px;
+    margin-left: 170px;
+  }
+
+  .servicios {
+    top: 0; /* Elimina el margen negativo para que no se superponga */
+    padding: 20px 10px;
+  }
+
+  .servicios h2 {
+    font-size: 1.8em;
+    text-align: center;
+    transform: translateY(0);
+  }
+
+  .servicios-grid {
+    flex-direction: column; /* Apila los servicios verticalmente */
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .servicio-item {
+    width: 90%; /* Ocupa casi todo el ancho disponible */
+    max-width: 250px; /* Limita el tamaño en pantallas más grandes de este rango */
+    height: 180px;
+    margin: 0 auto; /* Centra los ítems */
+  }
+
+  .servicio-texto {
+    font-size: 1.2em;
+    margin-top: 0; /* Reinicia el margen */
+  }
+
+  .quienes-somos {
+    margin-top: 0;
+    padding: 30px 15px;
+  }
+
+  .quienes-somos h2 {
+    font-size: 3em;
+    text-align: center;
+    transform: translateY(0);
+  }
+
+  .quienes-somos p {
+    font-size: 1.1em;
+    margin: 0 10px;
+    text-align: justify; /* Justifica el texto para mejor lectura */
+  }
+
+  .contenido-gratuito {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contenido-gratuito img {
+    width: 80%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .contenido-texto {
+    font-size: 1.8em;
+    margin: 0 15px;
+    text-align: center;
+  }
+
+  .contenido-gratuito .boton-descargar {
+    transform: translateX(0);
+    margin-top: 20px;
+    width: 80%;
+    max-width: 250px;
+    font-size: 1em;
+  }
+
+  .certificados h2 {
+    font-size: 1.8em;
+    text-align: center;
+    margin-left: 0;
+  }
+
+   .certificados-container {
+    /* flex-direction: column; <--- ¡ELIMINA O COMENTA ESTA LÍNEA! */
+    flex-wrap: nowrap; /* Asegura que no se envuelvan */
+    justify-content: flex-start; /* Alinea los elementos al inicio */
+    gap: 20px; /* Mantén tu espacio entre certificados */
+    /* Asegúrate de que el ancho sea suficiente o que el overflow: hidden funcione en el viewport */
+    /* width: auto; O asegúrate de que no tenga un width fijo aquí que los apriete */
+  }
+
+  .certificado-circulo {
+    width: 250px; /* Ajusta este ancho para que un solo certificado sea visible a la vez */
+    height: 250px; /* Mantén la proporción */
+    font-size: 1.5em;
+    /* margin: 0 auto 20px auto; <--- CAMBIA ESTO PARA EL CARRUSEL */
+    margin: 0 15px; /* Pequeño margen horizontal para que no se peguen a los bordes */
+    flex-shrink: 0; /* ¡MUY IMPORTANTE! Evita que los círculos se encojan */
+  }
+
+  /* **Añade o modifica esto si no lo tienes:** */
+  .carousel-viewport {
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    overflow: hidden; /* ¡CLAVE para ocultar los certificados fuera de vista! */
+    margin: 20px auto; /* Centra el carrusel y añade margen vertical */
+    padding: 0 10px; /* Un poco de padding a los lados para que el primer/último no se pegue */
+  }
+
+  /* Asegúrate de que las flechas y puntos se vean y funcionen */
+  .carousel-prev-btn,
+  .carousel-next-btn,
+  .carousel-dots {
+     /* Asegura que sean visibles si los ocultaste antes */
+    /* Asegúrate de que estén posicionados fuera del flujo de los certificados */
+    position: absolute; /* O absolute si quieres controlarlos con top/left/right/bottom */
+    z-index: 10; /* Para que estén por encima de todo */
+  }
+  
+  .carousel-dots {
+    text-align: center;
+    margin-top: 15px;
+  }
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translateX(30px);
+  }
+  .dot.active {
+    background-color: #717171;
+  }
+
+
+  /* Ajusta las imágenes de fondo de certificados para que no molesten */
+  .certificados::before,
+  .certificados::after,
+  .certificados-container::before,
+  .certificados-container::after {
+    display: none; /* Oculta las imágenes de fondo decorativas en móviles */
+  }
+
+  .ubicacion-formulario {
+    padding: 30px 15px;
+  }
+
+  .ubicacion h2 {
+    font-size: 2em;
+  }
+
+  .ubicacion iframe {
+    height: 300px; /* Reduce la altura del mapa */
+  }
+
+  .form-redes-wrapper {
+    flex-direction: column; /* Apila el formulario y las redes */
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+  }
+
+  .formulario-consulta {
+    width: 90%; /* Ocupa casi todo el ancho */
+    margin-left: 0; /* Elimina margen negativo */
+  }
+
+  .redes-sociales {
+    margin-top: 0; /* Ajusta el margen si es necesario */
+    margin-left: 0;
+    align-items: left; /* Centra los iconos de redes sociales */
+  }
+
+  .social-button {
+    width: 60px;
+    height: 60px;
+    font-size: 2em;
+  }
+  .social-name{
+    margin-left: 0;
+    text-align: center;
+    font-size: 1.5em;
+    transform: translateY(-40px);
+    margin-left: 100px;
+  }
+}
+
+/* Teléfonos en formato horizontal (landscape) y algunas tabletas pequeñas */
+@media (min-width: 577px) and (max-width: 768px) {
+  /* Estilos para teléfonos grandes en horizontal o tabletas pequeñas */
+  /* Aquí puedes empezar a reintroducir algunos diseños de dos columnas si el espacio lo permite */
+  .header-text {
+    margin-left: 100px; /* Ajusta un poco el margen */
+  }
+
+  .hero img {
+    height: 600px;
+    width: 600px;
+    right: -50px;
+  }
+
+  .hero p {
+    font-size: 4em;
+    transform: translateY(-250px);
+  }
+
+  .servicios-grid {
+    justify-content: center; /* Centra los ítems */
+    gap: 15px;
+  }
+
+  .servicio-item {
+    width: 150px;
+    height: 200px;
+  }
+
+  .form-redes-wrapper {
+    flex-direction: row; /* Vuelve a ponerlos uno al lado del otro si hay espacio */
+    justify-content: center;
+  }
+
+  .formulario-consulta {
+    width: 350px; /* Permite un ancho fijo */
+    margin-left: 0;
+  }
+
+  .redes-sociales {
+    margin-top: 0;
+    margin-left: 20px;
+  }
+}
+
+/* Tabletas en formato vertical */
+@media (min-width: 769px) and (max-width: 992px) {
+  /* Estilos para tabletas en vertical */
+  /* Aquí los diseños pueden ser más cercanos a la versión de escritorio, pero aún simplificados */
+  .header-text {
+    margin-left: 250px;
+  }
+
+  .hero img {
+    height: 700px;
+    width: 700px;
+    right: 0;
+  }
+
+  .hero p {
+    font-size: 5em;
+    transform: translateY(-300px);
+  }
+
+  .servicios-grid {
+    gap: 20px;
+  }
+
+  .servicio-item {
+    width: 170px;
+    height: 210px;
+  }
+
+  .formulario-consulta {
+    width: 400px; /* Ancho original o cercano */
+    margin-left: 0;
+  }
+
+  .redes-sociales {
+    margin-top: 40px;
+    margin-left: 30px;
+  }
+}
+
+/* Teléfonos grandes o tablets pequeñas en horizontal */
+@media (min-width: 481px) and (max-width: 767px) {
+  /* Otra forma de abordar el rango de teléfonos grandes y tablets pequeñas */
+}
+
+
+/* --- Estilos para el Modal de Certificados --- */
+
+.certificado-modal {
+    display: none; /* Oculto por defecto. JavaScript lo cambiará a 'flex' para mostrarlo. */
+    position: fixed; /* Fijo en la pantalla. No se desplaza con el contenido. */
+    z-index: 1000; /* Asegura que el modal esté por encima de todos los demás elementos. */
+    left: 0;
+    top: 0;
+    width: 100%; /* El modal ocupa todo el ancho de la ventana. */
+    height: 100%; /* El modal ocupa todo el alto de la ventana. */
+    overflow: auto; /* Permite desplazamiento si el contenido (imagen) es más grande que la ventana. */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente para el overlay. */
+    justify-content: center; /* Centra el contenido (la imagen) horizontalmente con Flexbox. */
+    align-items: center; /* Centra el contenido (la imagen) verticalmente con Flexbox. */
+    backdrop-filter: blur(5px); /* Efecto de desenfoque aplicado al contenido detrás del modal (opcional, para navegadores compatibles). */
+}
+
+.modal-contenido {
+    margin: auto; /* Centra la imagen dentro del modal si el tamaño lo permite. */
+    display: block; /* La imagen se comporta como un bloque, permitiendo ajustar ancho/alto. */
+    max-width: 90%; /* La imagen no será más ancha que el 90% del modal. */
+    max-height: 90vh; /* La imagen no será más alta que el 90% del viewport (alto de la ventana). */
+    object-fit: contain; /* Ajusta la imagen dentro de sus límites sin recortarla, manteniendo su relación de aspecto. */
+    border-radius: 8px; /* Bordes redondeados para la imagen del certificado. */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra suave para la imagen, dándole profundidad. */
+}
+
+.cerrar-modal {
+    position: absolute; /* Posiciona la 'x' de cierre de forma absoluta respecto al modal. */
+    top: 15px; /* Margen superior. */
+    right: 35px; /* Margen derecho. */
+    color: #f1f1f1; /* Color del ícono de cierre. */
+    font-size: 40px; /* Tamaño grande para el ícono de cierre. */
+    font-weight: bold; /* Texto en negrita. */
+    transition: 0.3s; /* Transición suave al pasar el ratón por encima. */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima. */
+    z-index: 1001; /* Asegura que la 'x' esté por encima de la imagen del modal. */
+}
+
+.cerrar-modal:hover,
+.cerrar-modal:focus {
+    color: #bbb; /* Color del ícono al pasar el ratón/enfocar. */
+    text-decoration: none; /* Asegura que no haya subrayado. */
+    cursor: pointer; /* Mantiene el cursor en forma de mano. */
+}
+
+.modal-caption {
+    margin-top: 10px; /* Margen superior para la descripción. */
+    text-align: center; /* Centra el texto de la descripción. */
+    color: #ccc; /* Color del texto de la descripción. */
+    font-size: 17px; /* Tamaño de fuente de la descripción. */
+    padding: 10px 0; /* Espaciado interno. */
+    max-width: 90%; /* Ancho máximo para el texto. */
+    margin-left: auto; /* Centra el bloque de texto. */
+    margin-right: auto; /* Centra el bloque de texto. */
+}
+
+/* Efecto de aparición (opcional, para una transición suave del modal) */
+.modal-contenido {
+    animation-name: zoom; /* Aplica la animación 'zoom' al contenido. */
+    animation-duration: 0.6s; /* Duración de la animación. */
+}
+
+@keyframes zoom {
+    from {transform: scale(0)} /* Inicia con escala 0 (invisible). */
+    to {transform: scale(1)} /* Termina con escala 1 (tamaño normal). */
+}
+
+/* Media Queries para responsividad del modal (ajuste en pantallas más pequeñas) */
+@media only screen and (max-width: 700px){
+    .modal-contenido {
+        width: 100%; /* En pantallas pequeñas, la imagen ocupa el 100% del ancho del modal. */
+        max-height: 80vh; /* Un poco menos alto en móviles para dejar espacio a la 'x' y el caption. */
+    }
+}
+/* --- Estilos para el Modal de Contenido Gratuito --- */
+
+.modal-gratuito-general {
+    display: none; /* Por defecto, el modal estará oculto. JavaScript lo cambiará a 'flex' para mostrarlo. */
+    position: fixed; /* Mantiene el modal fijo en la ventana del navegador, sin desplazarse con el contenido. */
+    z-index: 1002; /* Asegura que este modal esté por encima de todos los demás elementos, incluyendo otros modales. */
+    left: 0;
+    top: 0;
+    width: 100%; /* El modal ocupará todo el ancho de la ventana. */
+    height: 100%; /* El modal ocupará todo el alto de la ventana. */
+    overflow: auto; /* Permite desplazamiento si el contenido dentro del modal es más grande que la ventana. */
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro semi-transparente para el overlay. */
+    justify-content: center; /* Centra el contenido (el formulario) horizontalmente usando Flexbox. */
+    align-items: center; /* Centra el contenido (el formulario) verticalmente usando Flexbox. */
+    backdrop-filter: blur(5px); /* Aplica un efecto de desenfoque al contenido detrás del modal (opcional, para navegadores compatibles). */
+}
+
+.modal-gratuito-contenido {
+    background-color: #fefefe; /* Color de fondo del cuadro blanco del modal. */
+    margin: auto; /* Centra el cuadro del modal dentro del espacio disponible. */
+    padding: 20px; /* Espaciado interno alrededor del contenido del modal. */
+    border: 1px solid #888; /* Borde sutil alrededor del cuadro. */
+    width: 80%; /* El cuadro del modal ocupará el 80% del ancho del contenedor del modal. */
+    max-width: 700px; /* Limita el ancho máximo del modal en pantallas grandes para que no sea demasiado ancho. */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19); /* Sombra para dar profundidad al modal. */
+    animation-name: animatetop; /* Aplica una animación al abrir el modal. */
+    animation-duration: 0.4s; /* Duración de la animación de apertura. */
+    position: relative; /* Es necesario para posicionar la 'x' de cerrar de forma absoluta dentro de este contenedor. */
+    border-radius: 8px; /* Bordes ligeramente redondeados para el cuadro del modal. */
+    text-align: center; /* Centra el texto y los elementos inline dentro del modal. */
+    color: #333; /* Color de texto general para el contenido del modal. */
+}
+
+/* Animación que hace que el modal "caiga" desde arriba */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0} /* Inicia 300px por encima y completamente transparente. */
+    to {top: 0; opacity: 1} /* Termina en su posición y completamente visible. */
+}
+
+.cerrar-modal-gratuito {
+    color: #aaa; /* Color del icono de cerrar (la 'x'). */
+    float: right; /* Flota la 'x' a la derecha dentro de su flujo normal. */
+    font-size: 28px; /* Tamaño de la fuente de la 'x'. */
+    font-weight: bold; /* Hace la 'x' negrita. */
+    position: absolute; /* Posiciona la 'x' de forma absoluta con respecto al '.modal-gratuito-contenido'. */
+    top: 10px; /* Distancia desde la parte superior del modal. */
+    right: 20px; /* Distancia desde la derecha del modal. */
+    cursor: pointer; /* Cambia el cursor a una mano para indicar que es clicable. */
+}
+
+.cerrar-modal-gratuito:hover,
+.cerrar-modal-gratuito:focus {
+    color: black; /* Color de la 'x' al pasar el ratón o enfocar. */
+    text-decoration: none; /* Asegura que no tenga subrayado. */
+    cursor: pointer; /* Mantiene el cursor en forma de mano. */
+}
+
+.modal-gratuito-contenido h2 {
+    margin-top: 0; /* Elimina el margen superior predeterminado del h2. */
+    color: #0056b3; /* Color del título. Puedes cambiarlo a tu color de marca. */
+}
+
+.modal-gratuito-contenido p {
+    margin-bottom: 20px; /* Espaciado debajo del párrafo introductorio. */
+}
+
+.checkbox-list {
+    text-align: left; /* Alinea los checkboxes a la izquierda dentro de este contenedor. */
+    margin-bottom: 20px; /* Espaciado debajo de la lista de checkboxes. */
+    max-height: 250px; /* Limita la altura de la lista. */
+    overflow-y: auto; /* Hace que aparezca una barra de desplazamiento si hay muchos checkboxes. */
+    padding-right: 15px; /* Espacio para que la barra de desplazamiento no se superponga al texto. */
+    border: 1px solid #eee; /* Borde ligero alrededor de la lista de checkboxes. */
+    padding: 10px; /* Espaciado interno para la lista. */
+    border-radius: 5px; /* Bordes redondeados para la lista. */
+}
+
+.checkbox-list label {
+    display: block; /* Hace que cada checkbox con su texto ocupe toda la línea. */
+    margin-bottom: 8px; /* Espaciado entre cada checkbox. */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima. */
+    font-size: 16px; /* Tamaño de la fuente del texto del checkbox. */
+    color: #555; /* Color del texto del checkbox. */
+}
+
+.checkbox-list input[type="checkbox"] {
+    margin-right: 8px; /* Espaciado a la derecha del propio checkbox. */
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño del checkbox para que sea más fácil de clicar. */
+}
+
+#user-email-gratuito {
+    width: calc(100% - 22px); /* Ocupa casi todo el ancho, ajustando por padding y borde. */
+    padding: 10px; /* Espaciado interno del campo de email. */
+    margin-bottom: 15px; /* Espaciado debajo del campo de email. */
+    border: 1px solid #ddd; /* Borde del campo de email. */
+    border-radius: 5px; /* Bordes redondeados del campo de email. */
+    font-size: 16px; /* Tamaño de la fuente dentro del campo de email. */
+}
+
+.btn-enviar-solicitud {
+    background-color: #007bff; /* Color de fondo del botón de enviar. Puedes cambiarlo. */
+    color: white; /* Color del texto del botón. */
+    padding: 12px 25px; /* Espaciado interno del botón. */
+    border: none; /* Elimina el borde predeterminado del botón. */
+    border-radius: 5px; /* Bordes redondeados del botón. */
+    cursor: pointer; /* Cambia el cursor a una mano. */
+    font-size: 18px; /* Tamaño de la fuente del botón. */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón. */
+}
+
+.btn-enviar-solicitud:hover {
+    background-color: #0056b3; /* Color de fondo del botón al pasar el ratón. */
+}
+
+/* ========================================================= */
+/* --- Media Query: Pantallas pequeñas (celulares) --- */
+/* --- max-width: 767px --- */
+/* ========================================================= */
+@media (max-width: 767px) {
+    /* Header */
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 20px;
+        justify-content: center;
+        padding-left: 10px; /* Asegura un pequeño padding para evitar que el logo toque el borde */
+        padding-right: 10px;
+    }
+
+    .logo img {
+        height: 120px; /* Un poco más chico el logo para móviles */
+        width: 120px;
+        margin: 10px auto 0;
+    }
+
+    .header-text {
+        margin-left: 0;
+        text-align: center;
+        width: 100%;
+        padding: 0 5px; /* Reduce aún más el padding */
+    }
+
+    .header-principal {
+        font-size: 1.8em; /* Más chico */
+    }
+
+    .header-subtitulo {
+        font-size: 0.9em; /* Más chico */
+        margin-top: 2px;
+    }
+
+    /* Menú */
+    .menu {
+        flex-direction: column;
+        padding: 5px 0; /* Menos padding */
+    }
+
+    .menu-item {
+        padding: 8px 0;
+        font-size: 0.9em; /* Más chico */
+        width: 100%;
+    }
+
+    .menu-item::after {
+        display: none;
+    }
+
+    /* Sección de fondo con imagen (Hero) */
+    .hero {
+        height: 450px; /* Ajuste para móvil */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero img {
+        height: 100%;
+        width: 100%; /* Ajuste para que la imagen no desborde */
+        object-fit: cover;
+        left: 0;
+        right: 0;
+        top: 0;
+        transform: none; /* Elimina cualquier transformación que pueda causar desbordamiento */
+    }
+
+    .hero-overlay {
+        height: 100%;
+        width: 100%; /* Asegura que el overlay no desborde */
+    }
+    
+    .hero p {
+        font-size: 2em; /* Texto más chico */
+        text-align: center;
+        transform: translateY(0);
+        margin: auto;
+        padding: 0 15px; /* Padding reducido */
+        width: 90%; /* Limita el ancho del párrafo */
+        max-width: 300px;
+        z-index: 10;
+        height: auto; /* Permite que el texto se ajuste a su contenido */
+    }
+
+    /* Sección de servicios */
+    .servicios {
+        top: 0;
+        padding: 15px 5px; /* Padding reducido */
+    }
+
+    .servicios h2 {
+        text-align: center;
+        transform: translateY(0);
+        font-size: 1.8em;
+    }
+
+    .servicios-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Menor espacio */
+        margin-top: 15px;
+    }
+
+    .servicio-item {
+        width: 90%; /* Más flexible */
+        max-width: 200px; /* Límite para que no sean enormes */
+        height: 220px; /* Ajusta altura */
+        padding: 15px;
+        border-radius: 40px; /* Ajusta el radio si es necesario */
+    }
+
+    .servicio-texto {
+        font-size: 1.1em;
+        margin-top: 0;
+    }
+    
+    /* Aseguramos que las imágenes de fondo dentro de .servicio-item no desborden */
+    .servicio-item::before,
+    .servicio-item::after {
+        background-size: cover !important; /* Fuerza a cubrir el espacio sin desbordar */
+        background-position: center !important; /* Centra la imagen */
+    }
+
+    /* Sección Quiénes Somos */
+    .quienes-somos {
+        margin-top: 0;
+        padding: 15px 10px;
+    }
+
+    .quienes-somos h2 {
+        font-size: 2.5em;
+        transform: translateY(0);
+    }
+
+    .quienes-somos p {
+        font-size: 1em;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: justify;
+    }
+
+    /* Sección Contenido Gratuito */
+    .contenido-gratuito {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    .contenido-gratuito img {
+        width: 100%;
+        height: 200px; /* Altura más pequeña */
+        object-fit: cover;
+    }
+
+    .contenido-texto-y-boton-wrapper {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        max-width: 95%; /* Más espacio */
+        width: 100%;
+        padding: 15px 10px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contenido-texto {
+        font-size: 1.5em;
+    }
+
+    .contenido-gratuito .boton-descargar {
+        margin-right: 0;
+        width: 90%; /* Más ancho */
+        max-width: 250px;
+        transform: translateY(0);
+        margin-top: 15px;
+    }
+
+    /* Sección Reseñas */
+    .reseñas-section {
+        height: auto;
+        padding-bottom: 20px;
+    }
+
+    .reseñas-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding: 15px 10px;
+    }
+
+    .reseñas-card {
+        width: 95%; /* Las tarjetas ocupan casi todo el ancho */
+        max-width: 280px; /* Límite */
+        height: 380px;
+        margin-top: 0;
+        border-width: 2px; /* Borde más fino */
+    }
+    
+    .reseña-title {
+        font-size: 1.6rem;
+        -webkit-text-stroke: 1px #FAE78B; /* Borde de texto más fino */
+        margin-top: 5px;
+    }
+
+    .reseñas-card img {
+        margin-top: 10px;
+        max-width: 85%;
+        max-height: 85%;
+        border-width: 2px;
+    }
+
+    .reseñas-card p {
+        font-size: 1.3em;
+        margin-top: 40px; /* Ajusta el margen del texto de la última tarjeta */
+        padding: 8px;
+        -webkit-text-stroke: 0.5px rgba(88, 88, 88, 0.129);
+    }
+
+    /* Sección Certificados */
+    .certificados {
+        padding: 15px 5px;
+    }
+    
+    .certificados h2 {
+        font-size: 1.8em;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .carousel-viewport {
+        max-width: 100%;
+        padding: 0 5px; /* Reduce el padding del viewport */
+    }
+    
+    .certificado-circulo {
+        width: 160px; /* Círculos más chicos */
+        height: 160px;
+        font-size: 1.3em;
+        margin-right: 10px; /* Espacio entre círculos más pequeño */
+        margin-bottom: 20px;
+    }
+
+    /* Ocultar imágenes de fondo extra */
+    .certificados::before,
+    .certificados::after,
+    .certificado-bg-extra-1,
+    .certificado-bg-extra-2 {
+        display: none;
+    }
+
+    /* Carrusel Nav Buttons (Flechas) */
+    .carousel-prev-btn,
+    .carousel-next-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 15px;
+    }
+    .carousel-prev-btn { left: 2px; }
+    .carousel-next-btn { right: 2px; }
+
+    /* Puntos de paginación */
+    .carousel-dots {
+        margin-top: 8px;
+    }
+    .dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+    }
+
+    /* Sección Ubicación y Formulario */
+    .ubicacion-formulario {
+        padding: 20px 10px;
+        gap: 20px;
+    }
+
+    .ubicacion {
+        width: 100%;
+        padding: 0 5px;
+    }
+
+    .ubicacion h2 {
+        font-size: 1.8em;
+    }
+
+    .ubicacion iframe {
+        height: 250px; /* Mapa más chico */
+        border-radius: 8px;
+    }
+
+    .form-redes-wrapper {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 5px;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .formulario-consulta {
+        width: 100%;
+        max-width: 300px; /* Limite el ancho máximo del formulario */
+        margin-left: 0;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .formulario-consulta label {
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+
+    .formulario-consulta input[type="text"],
+    .formulario-consulta input[type="email"],
+    .formulario-consulta textarea {
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 0.9em;
+    }
+
+    .formulario-consulta button[type="submit"],
+    .whatsapp-button {
+        width: 100%;
+        max-width: 280px; /* Limite el ancho del botón */
+        padding: 10px 15px;
+        font-size: 0.95em;
+        margin-top: 10px; /* Más espacio entre los botones */
+        margin-bottom: 10px;
+    }
+    .whatsapp-button i {
+        font-size: 1em;
+        margin-right: 5px;
+    }
+
+    .redes-sociales {
+        align-items: center;
+        margin-top: 0;
+        width: 100%;
+    }
+    .social-name{
+        font-size: 1.2em;
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 10px; /* Espacio antes de los iconos */
+    }
+    .social-button {
+        width: 50px; /* Íconos más chicos */
+        height: 50px;
+        font-size: 1.8em;
+        margin-bottom: 8px;
+    }
+}
+
+/* ========================================================= */
+/* --- Media Query: Tabletas (min-width: 768px y max-width: 1023px) --- */
+/* ========================================================= */
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* Header */
+    .header {
+        height: 140px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .logo img {
+        height: 160px;
+        width: 160px;
+        margin-left: 20px;
+    }
+
+    .header-text {
+        margin-left: auto; 
+        margin-right: 20px;
+    }
+
+    .header-principal {
+        font-size: 2.5em;
+    }
+
+    .header-subtitulo {
+        font-size: 1em;
+    }
+
+    /* Menú */
+    .menu-item {
+        padding: 0 12px;
+        font-size: 1em;
+    }
+
+    /* Hero */
+    .hero {
+        height: 600px;
+    }
+
+    .hero img {
+        height: 550px;
+        width: 550px;
+    }
+    
+    .hero p {
+        font-size: 3.8em;
+        transform: translateY(-300px); /* Ajusta la posición */
+        margin-left: 5%;
+        margin-right: auto;
+        text-align: left;
+        width: 60%; /* Limita el ancho del texto */
+    }
+
+    /* Servicios */
+    .servicios {
+        top: -250px; /* Ajusta el desplazamiento */
+        padding: 30px 10px;
+    }
+
+    .servicios h2 {
+        font-size: 2.2em;
+    }
+
+    .servicios-grid {
+        gap: 15px;
+        justify-content: center;
+    }
+    
+    .servicio-item {
+        width: 160px;
+        height: 220px;
+        padding: 15px;
+    }
+
+    .servicio-texto {
+        font-size: 1.2em;
+    }
+
+    /* Quiénes Somos */
+    .quienes-somos {
+        margin-top: -200px; /* Ajusta el margen negativo */
+        padding: 25px 15px;
+    }
+    .quienes-somos h2 {
+        font-size: 3.5em;
+    }
+    .quienes-somos p {
+        font-size: 1.2em;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    /* Contenido Gratuito */
+    .contenido-gratuito {
+        height: 450px;
+    }
+    .contenido-gratuito img {
+        height: 100%;
+        width: auto;
+    }
+    .contenido-texto-y-boton-wrapper {
+        max-width: 55%; /* Ajusta el ancho */
+        padding: 10px;
+    }
+    .contenido-texto {
+        font-size: 2em;
+    }
+    .contenido-gratuito .boton-descargar {
+        width: 220px;
+        transform: translateY(60px);
+    }
+
+    /* Reseñas */
+    .reseñas-section {
+        height: 480px;
+    }
+    .reseñas-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px; /* Menor gap */
+    }
+    .reseñas-card {
+        width: 180px; /* Más chicas */
+        height: 380px;
+        margin-top: -20px;
+    }
+    .reseñas-card img {
+        margin-top: 15px;
+        max-width: 85%;
+        max-height: 85%;
+    }
+    .reseñas-card p {
+        font-size: 1.6em;
+        margin-top: 80px;
+    }
+
+    /* Certificados */
+    .certificados {
+        padding: 25px 10px;
+    }
+    .certificados h2 {
+        font-size: 2em;
+        margin-left: 15px;
+    }
+    .carousel-viewport {
+        max-width: 90%; /* Ajusta el tamaño del carrusel */
+        padding: 0 10px;
+    }
+    .certificado-circulo {
+        width: 180px;
+        height: 180px;
+        font-size: 1.6em;
+        margin-right: 20px;
+    }
+
+    /* Ajuste de posición para las imágenes de fondo extra */
+    .certificados::before {
+        width: 120px; height: 100px; top: 5px; left: 200px;
+    }
+    .certificados::after {
+        width: 120px; height: 100px; bottom: -20px; right: 80px;
+    }
+    .certificado-bg-extra-1 {
+        width: 120px; height: 100px; top: 60px; right: 5px;
+    }
+    .certificado-bg-extra-2 {
+        width: 120px; height: 100px; bottom: 0; left: 5px;
+    }
+    
+    /* Ubicación y Formulario */
+    .ubicacion-formulario {
+        padding: 40px 15px;
+        gap: 25px;
+    }
+    .ubicacion h2 {
+        font-size: 2.2em;
+    }
+    .ubicacion iframe {
+        height: 350px;
+    }
+    .form-redes-wrapper {
+        flex-direction: row;
+        justify-content: center; /* Centra ambos bloques */
+        flex-wrap: wrap;
+        max-width: 700px; /* Limite el ancho */
+        margin: 0 auto;
+        gap: 25px;
+    }
+    .formulario-consulta {
+        width: 350px; /* Ancho ajustable */
+        margin-left: 0;
+        padding: 20px;
+    }
+    .redes-sociales {
+        margin-top: 0;
+        align-items: flex-start;
+    }
+    .social-name {
+        font-size: 1.5em;
+        text-align: left;
+    }
+    .social-button {
+        width: 60px;
+        height: 60px;
+        font-size: 2.2em;
+        margin-bottom: 10px;
+    }
+}
+
+/* ========================================================= */
+/* --- Media Query: Monitores grandes (min-width: 1024px y max-width: 1200px) --- */
+/* ========================================================= */
+@media (min-width: 1024px) and (max-width: 1200px) {
+    /* Header */
+    .header {
+        height: 150px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .logo img {
+        height: 170px;
+        width: 170px;
+        margin-left: 40px;
+    }
+    .header-text {
+        margin-left: 250px;
+    }
+    .header-principal {
+        font-size: 2.7em;
+    }
+    .header-subtitulo {
+        font-size: 1.15em;
+    }
+
+    /* Menú */
+    .menu-item {
+        padding: 0 15px;
+        font-size: 1.1em;
+    }
+
+    /* Hero */
+    .hero {
+        height: 750px;
+    }
+    .hero img {
+        height: 650px;
+        width: 650px;
+    }
+    .hero p {
+        font-size: 4.8em;
+        transform: translateY(-450px);
+        margin-left: 6%; /* Ligeramente más hacia la derecha */
+        width: 50%;
+    }
+
+    /* Servicios */
+    .servicios {
+        top: -350px;
+        padding: 35px 20px;
+    }
+    .servicios h2 {
+        font-size: 2.5em;
+    }
+    .servicios-grid {
+        gap: 18px;
+    }
+    .servicio-item {
+        width: 170px;
+        height: 230px;
+    }
+    .servicio-texto {
+        font-size: 1.3em;
+    }
+
+    /* Quiénes Somos */
+    .quienes-somos {
+        margin-top: -280px;
+        padding: 35px 20px;
+    }
+    .quienes-somos h2 {
+        font-size: 4.5em;
+    }
+    .quienes-somos p {
+        font-size: 1.3em;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    /* Contenido Gratuito */
+    .contenido-gratuito {
+        height: 500px;
+    }
+    .contenido-texto-y-boton-wrapper {
+        max-width: 50%;
+    }
+    .contenido-texto {
+        font-size: 2.2em;
+    }
+    .contenido-gratuito .boton-descargar {
+        width: 250px;
+        margin-right: 80px;
+        transform: translateY(70px);
+    }
+
+    /* Reseñas */
+    .reseñas-section {
+        height: 500px;
+    }
+    .reseñas-container {
+        gap: 15px;
+    }
+    .reseñas-card {
+        width: 200px;
+        height: 400px;
+        margin-top: -30px;
+    }
+    .reseñas-card img {
+        margin-top: 18px;
+    }
+    .reseñas-card p {
+        font-size: 1.7em;
+        margin-top: 100px;
+    }
+
+    /* Certificados */
+    .certificados {
+        padding: 30px 15px;
+    }
+    .certificados h2 {
+        font-size: 2.2em;
+        margin-left: 20px;
+    }
+    .carousel-viewport {
+        max-width: 950px;
+        padding: 0 15px;
+    }
+    .certificado-circulo {
+        width: 190px;
+        height: 190px;
+        font-size: 1.7em;
+        margin-right: 22px;
+    }
+
+    /* Posicionamiento de imágenes de fondo extra de certificados */
+    .certificados::before {
+        width: 160px; height: 140px; top: 8px; left: 250px;
+    }
+    .certificados::after {
+        width: 160px; height: 140px; bottom: -30px; right: 120px;
+    }
+    .certificado-bg-extra-1 {
+        width: 160px; height: 140px; top: 80px; right: 10px;
+    }
+    .certificado-bg-extra-2 {
+        width: 160px; height: 140px; bottom: 0; left: 10px;
+    }
+
+    /* Ubicación y Formulario */
+    .ubicacion-formulario {
+        padding: 45px 20px;
+        gap: 30px;
+    }
+    .ubicacion h2 {
+        font-size: 2.5em;
+    }
+    .ubicacion iframe {
+        height: 400px;
+    }
+    .form-redes-wrapper {
+        max-width: 800px;
+        gap: 30px;
+    }
+    .formulario-consulta {
+        width: 400px;
+    }
+    .redes-sociales {
+        margin-top: 20px;
+    }
+    .social-name {
+        font-size: 1.8em;
+    }
+    .social-button {
+        width: 65px;
+        height: 65px;
+        font-size: 2.3em;
+        margin-bottom: 10px;
+    }
+}

@@ -1,10 +1,12 @@
-/* Estilos generales */
+/* Estilos generales*/
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-
+html{
+    font-size: 16px;
+}
 html, body {
     overflow-x: hidden;
 } 
@@ -17,198 +19,275 @@ body {
     min-height: 100vh;
 }
 
+
 /* Header */
 .header {
+    
     background-color: #F1CB66;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    
-    height: 180px;
+    /* QUITAMOS: align-items: center; justify-content: flex-start; height: 12rem; padding-right: 0.75rem; */
+    /* AÑADIMOS para posicionamiento y responsividad: */
+    flex-direction: column; /* Apila el contenido (logo, texto) verticalmente */
+    align-items: center; /* Centra los ítems horizontalmente en el contenedor */
+    justify-content: center; /* Centra los ítems verticalmente en el contenedor */
+    padding: 0.2rem 0.2rem; /* Padding general para dar aire alrededor del contenido */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+    max-width: 100vw; /* Previene cualquier desborde horizontal */
+    overflow: hidden; /* Oculta contenido que se salga, crucial para evitar scroll horizontal */
+    /* Mantenemos tus estilos originales si no pediste quitarlos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Mantener sombra si la tenías originalmente o similar */
+    /* text-align: center; (se hereda de header-text-container si lo agregas) */
+}
+
+.logo {
+    display: flex; /* Asegura que la imagen dentro se pueda centrar */
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
 }
 
 .logo img {
-    height: 200px;
-    width: 200px;
-    margin-top: -20px;
-    margin-left: 70px;
+    height: clamp(9rem, 21vw, 11rem); /* Logo responsivo: tamaño mínimo 6rem, preferido 18vw, máximo 8rem */
+    width: clamp(9rem, 21vw, 11rem); /* Mismo para ancho para mantener proporción */
+    object-fit: cover; /* Si ya lo tenías para el ajuste de imagen */
+    margin: 0; /* Reinicia los márgenes para que Flexbox los controle */
 }
 
 .header-text {
-    margin-left: 450px;   
+
+}
+
+.header-text-container {
+    display: flex;
+    flex-direction: column; /* Apila los títulos uno debajo del otro */
+    align-items: center; /* Centra los títulos horizontalmente */
+    text-align: center; /* Asegura que el texto esté centrado */
 }
 
 .header-principal {
-    font-size:3.2em;
+    /* AÑADIMOS para medidas responsivas: */
+    font-size: clamp(1.8rem, 6.8vw, 2.8rem); /* Título responsivo: mínimo 2rem, preferido 7vw, máximo 3rem */
+    /* Mantenemos tus estilos originales: */
     color: #FAE78B;
     font-family: Merriweather;
     margin-top: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    
 }
 
 .header-subtitulo {
-    font-size: 1.3em;
+    /* AÑADIMOS para medidas responsivas y posicionamiento: */
+    font-size: clamp(1rem, 3.5vw, 1.4rem); /* Subtítulo responsivo: mínimo 1rem, preferido 3.5vw, máximo 1.4rem */
     color: #fff;
-    text-align: end;
+    text-align: center; /* Tu estilo original */
     font-family: Merriweather;
-   font-weight: bold;
-   margin-top: -20px;
-   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    margin-top: -1rem;
 }
 
-/* Menú */
+/* --- Menú Responsivo (Mobile-First) --- */
 .menu {
     background-color: #FAE78B;
     display: flex;
+    flex-direction: column; /* Ítems apilados verticalmente */
     justify-content: center;
-    padding: 10px 0;
+    align-items: center;
+    padding: 1.5rem 1rem;
     height: auto;
-    margin-top: -22px;
+    margin-top: 0;
+    gap: 0.8rem; /* Espacio vertical entre los ítems */
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item {
-    color:black;
+    color: black;
     text-decoration: none;
-    padding: 0 15px;
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    padding: 0.8rem 1.2rem;
     position: relative;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    width: 90%; /* Los ítems ocupan casi todo el ancho de su contenedor apilados */
+    text-align: center;
 }
 
+/* Efecto hover/focus para cada ítem */
+.menu-item:hover,
+.menu-item:focus {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #333;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+/* **AJUSTE CLAVE:** Línea inferior para cada menú */
 .menu-item::after {
     content: "";
     position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 1.5em;
-    background-color: black;
+    bottom: 0; /* Coloca la línea en la parte inferior del ítem */
+    left: 10%; /* Inicia la línea un 10% desde la izquierda del ítem */
+    width: 80%; /* La línea ocupa el 80% del ancho del ítem */
+    height: 0.08rem; /* Grosor de la línea */
+    background-color: rgba(0, 0, 0, 0.2); /* Color de la línea (un gris sutil) */
+    /* No necesitamos transform o top:50% ya que está en la parte inferior */
+    display: block; /* Asegura que la línea sea visible */
 }
 
+/* Eliminamos la línea del último elemento para que no haya un divisor extra al final */
 .menu-item:last-child::after {
     display: none;
 }
 
-/* Sección de fondo con imagen */
+/* --- Sección de fondo con imagen (Hero) - Mobile-First para 320px --- */
 .hero {
-    position: relative;
-    overflow: visible;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 900px;  
+    position: relative; /* Contenedor para elementos posicionados absolutamente (imagen, overlay, texto) */
+    display: flex; /* Usamos flex para centrar contenido si es necesario, pero aquí el texto está abs. */
+    flex-direction: column; /* Asegura un layout vertical si hay varios elementos en el flujo */
+    justify-content: center; /* Centra el contenido verticalmente por defecto */
+    align-items: center; /* Centra el contenido horizontalmente por defecto */
+    height: clamp(20rem, 100vw, 40rem); /* Altura responsiva: mínimo 20rem (para 320px), preferido 100vw (se ajusta al ancho del viewport), máximo 30rem */
+    width: 100%; /* Ocupa todo el ancho */
+    max-width: 100vw; /* Crucial para evitar scroll horizontal */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    padding: 0; /* Sin padding en el contenedor principal del Hero */
 }
 
 .hero img {
-    position: absolute;
-    right: 0;
-    top: 0; /* Imagen aún más abajo */
-    height: 660px;
-    width: 800px;
-    z-index: 1;
+    position: absolute; /* La imagen de fondo se posiciona absolutamente */
+    top: 0;
+    left: 0; /* Aseguramos que empiece desde la esquina superior izquierda */
+    width: 100%; /* La imagen ocupa todo el ancho del Hero */
+    height: 100%; /* La imagen ocupa toda la altura del Hero */
+    z-index: 1; /* Fondo, debajo del overlay y el texto */
+    object-fit: cover; /* Recorta la imagen para cubrir el área sin distorsionar */
+    object-position: center center; /* Centra la imagen, útil si hay recortes */
+    /* Quitamos right y top fijos para que sea 100% de width/height */
 }
 
 .hero-overlay {
-    background-color: #E6E9F0B0;
+    background-color: rgba(230, 233, 240, 0.7); /* Usamos RGBA para control de opacidad (B0 es aprox. 70%) */
     width: 100%;
-    height: 73.5%;
+    height: 100%; /* El overlay cubre todo el Hero */
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 2; /* Encima de la imagen, debajo del texto */
 }
+
 .hero p {
-    position: relative; /* Para que el texto esté por encima de la superposición */
-    z-index: 7; /* Coloca el texto encima de la superposición */
-    font-size:6em; /* Tamaño de fuente más grande para que destaque */
-    text-align: left; /* Centrar el texto */
-    color: #0E0D09; /* **Esta es la línea CLAVE: Cambia el color del texto a blanco** */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 130px;
-    margin-right: auto;
-    transform: translateY(-550px);
-    margin-left: 5%;
+    position: absolute;
+    z-index: 7;
+    font-size: clamp(2.5rem, 10vw, 4rem);
+    /* AJUSTE CLAVE AQUÍ: Alineamos el texto a la izquierda */
+    text-align: left; /* Alinea el texto a la izquierda dentro de su propio contenedor */
+    color: #0E0D09;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     font-family: Arial, Helvetica, sans-serif;
+    /* QUITAMOS: left: 50%; top: 50%; transform: translate(-50%, -50%); para evitar el centrado */
+    /* AÑADIMOS para posicionamiento en la esquina superior izquierda (con padding) */
+    top: 5rem; /* Pequeño margen desde la parte superior del Hero */
+    left: 1rem; /* Pequeño margen desde la parte izquierda del Hero */
+    width: calc(100% - 2rem); /* Ocupa el 100% del ancho del Hero menos 1rem de padding a cada lado */
+    margin: 0;
 }
 
 
-/* Sección de servicios (contenedores principales) */
+/* --- Sección de servicios (contenedores principales) --- */
 .servicios {
-    padding: 40px 20px;
+    padding: 2.5rem 1rem; /* Padding responsivo, ligeramente más ajustado a los lados */
     text-align: center;
     position: relative;
-    z-index: 3; /* Asegura que la sección de servicios se apile correctamente en el layout general */
-    top: -550px; 
+    z-index: 3;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    max-width: 100vw; /* Previene scroll horizontal */
+    overflow: hidden; /* Oculta cualquier desborde */
 }
 
 /* Título de la sección de servicios */
 .servicios h2 {
+    /* Tamaño de fuente responsivo con clamp() */
+    font-size: clamp(2rem, 7vw, 3rem); /* Mín 2rem, preferido 7vw, máx 3rem */
     color: #333;
-    text-align: left;
-    transform: translateY(-50px);
-    margin-left: 40px;
+    text-align: center; /* Centramos el título para mobile-first */
+    /* Eliminamos transform y margin-left fijos para responsividad. */
+    margin: 0 0 2rem 0; /* Margen inferior para separarlo de la cuadrícula */
 }
 
 /* Contenedor de la cuadrícula de servicios */
 .servicios-grid {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
-    margin-top: -50px;
-    flex-wrap: wrap;
+    flex-direction: column; /* ¡CLAVE mobile-first! Los ítems se apilan verticalmente */
+    align-items: center; /* Centra los ítems apilados */
+    justify-content: center; /* Centra el grupo de ítems apilados */
+    gap: clamp(1rem, 3vw, 1.5rem); /* Espacio vertical entre los ítems apilados */
+    margin-top: 0; /* Eliminamos el margen negativo rígido */
+    flex-wrap: wrap; /* Permitimos que los ítems envuelvan si hay espacio horizontal (útil en transición a desktop) */
 }
 
 /* --- Estilos base para cada rectángulo de servicio (.servicio-item) --- */
 .servicio-item {
-    background-color: #E3AE3EFF; /* Color de fondo sólido del rectángulo */
-    padding: 15px; /* Espacio interno para el texto */
-    border-radius: 50px; /* Bordes redondeados */
-    width: 180px;
-    height: 240px;
+    background-color: #E3AE3EFF;
+    padding: 1rem;
+    border-radius: 2rem; /* Border-radius responsivo, ya no es tan exagerado */
+    /* Ancho y alto responsivos usando vw y clamp() */
+    width: clamp(15rem, 80vw, 16rem); /* Mín 15rem, preferido 80vw (80% del ancho del viewport), máx 20rem */
+    height: clamp(18rem, 90vw, 25rem); /* Mín 18rem, preferido 90vw, máx 25rem */
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra el contenido (el span de texto) verticalmente */
-    align-items: center; /* Centra el contenido (el span de texto) horizontalmente */
-    position: relative; /* **Crucial:** Establece el contexto para los pseudo-elementos y el texto */
-    overflow: hidden; /* Recorta cualquier parte de la imagen que se salga de los límites del rectángulo */
-    /* **Importante:** Hemos quitado `color`, `font-weight`, `isolation`, `transform` y `z-index` de aquí.
-       Ahora los controlaremos en `.servicio-texto` o ya no son necesarios en este nivel. */
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Mantiene las imágenes de fondo dentro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para cada tarjeta */
 }
 
 /* --- ESTILO CLAVE: Para el texto dentro de cada servicio-item (.servicio-texto) --- */
 .servicio-texto {
-    position: relative; /* **Esencial:** Permite que `z-index` funcione en el texto */
-    z-index: 3; /* **¡Este es el z-index que asegura que el texto esté por encima de las imágenes!** */
-    color: #000; /* Color del texto */
-    text-shadow: 
-        1px 1px 3px rgba(255, 255, 255, 0.9),  /* Sombra principal: más desplazamiento, más desenfoque, más opacidad */
-        -1px -1px 3px rgba(255, 255, 255, 0.6), /* Sombra superior-izquierda más sutil para un ligero contorno */
-        2px 2px 5px rgba(255, 255, 255, 0.7);  /* Una sombra más grande y difusa para el efecto de "flotar" */
-    font-weight: bold; /* Peso de la fuente para el texto */
-    text-align: center; /* Asegura que el texto dentro del span esté centrado */
-    width: 100%; /* El span debe ocupar el ancho completo para centrar su propio texto */
-    font-size: 1.4em;
+    position: relative;
+    z-index: 3; /* Asegura que el texto esté por encima de las imágenes */
+    color: #000;
+    text-shadow:
+        1px 1px 3px rgba(255, 255, 255, 0.7), /* Ajuste la opacidad de la sombra para un mejor contraste */
+        -1px -1px 3px rgba(255, 255, 255, 0.4);
+    font-weight: bold;
+    text-align: center;
+    width: 90%; /* Ancho responsivo para el texto dentro del ítem */
+    /* Tamaño de fuente responsivo para el texto del servicio */
+    font-size: clamp(1.8rem, 7vw, 2.5rem); /* Mín 1.8rem, preferido 7vw, máx 2.5rem */
     font-family: Merriweather;
+    /* Eliminamos margin-top fijo si no es necesario con el nuevo layout */
+    margin: 0;
 }
 
 /* --- Estilos generales para los pseudo-elementos (capas de imágenes de fondo) --- */
 .servicio-item::before,
 .servicio-item::after {
     content: "";
-    position: absolute; /* Posicionamiento absoluto dentro de `.servicio-item` */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-repeat: no-repeat; /* Evita que las imágenes se repitan */
-    /* La opacidad, imagen, posición y tamaño se definirán en las clases específicas de cada servicio */
+    background-repeat: no-repeat;
+    background-size: cover; /* ¡CLAVE! Asegura que la imagen de fondo cubra el área responsivamente */
+    background-position: center center; /* Centra la imagen de fondo */
 }
 
-/* --- Control del apilamiento (z-index) para las capas de imágenes --- */
+.servicio-item::before {
+    z-index: 1;
+    opacity: 0.4; /* Opacidad general de la capa de fondo */
+}
+.servicio-item::after {
+    z-index: 2;
+    opacity: 0.5; /* Opacidad general de la segunda capa de fondo (si existe) */
+}
+
 /* Estas capas están configuradas para estar por debajo del texto (.servicio-texto con z-index: 3) */
 .servicio-item::before {
     z-index: 1; /* La primera imagen de fondo (capa inferior) */
@@ -218,141 +297,189 @@ body {
 }
 
 /* --- SERVICIO 1: Gestión en Redes Sociales (DOS IMÁGENES) --- */
-.servicio-1::before { /* Imagen de fondo principal (capa inferior) */
-    background-image: url('../images/fon3.jpg'); /* **RUTA DE TU IMAGEN: 'fon3.jpg'** */
-    background-position: center top; /* Centrada en la parte inferior */
-    background-size: 150% 100%; /* Ocupa todo el ancho, 70% del alto */
-    opacity: 0.4; /* Opacidad deseada */
+.servicio-1::before {
+    background-image: url('../images/fon3.jpg');
+    background-position: center top; /* 'center top' ya es responsivo */
+    background-size: 150% 100%; /* Puedes considerar 'cover' si quieres que siempre cubra el área */
+    opacity: 0.4;
 }
-.servicio-1::after { /* Segunda imagen (capa superior): un icono de "like" */
-    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: top 100px left 30px; /* Arriba a la derecha, 10px de margen */
-    background-size: 250px 250px; /* Tamaño fijo de icono */
-    opacity: 0.5; /* Opacidad deseada */
+.servicio-1::after {
+    background-image: url('../images/fon1.png');
+    /* Original: background-position: top 100px left 30px; */
+    /* top 100px: Ahora 10vw desde arriba. left 30px: Ahora 3vw desde la izquierda. */
+    background-position:  top 60px left 20px;
+    background-size: 160% 120%;
+    opacity: 0.5;
 }
 .servicio-1 .servicio-texto {
-    /* Ejemplo 1: Mover el texto 10px hacia abajo */
-    margin-top: 90px; 
-    font-size: 1.3em;
+    /* Original: margin-top: 90px; */
+    margin-top: clamp(40px, 50vw, 90px); /* Aquí sí usamos clamp para el margen del texto */
+    font-size: 2em;
 }
 
 /* --- SERVICIO 2: Pauta Publicitaria en Meta Ads y Google Ads (UNA IMAGEN) --- */
 .servicio-2::before {
-    background-image: url('../images/fon5.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: left 20px top 100px; /* En el centro a la izquierda */
-    background-size: 250px 150px; /* 70% del ancho, altura automática */
-    opacity: 0.4; 
+    background-image: url('../images/fon5.png');
+    /* Original: background-position: left 20px top 100px; */
+    /* top 100px: 10vw desde arriba. left 20px: 2vw desde la izquierda. */
+    background-position: 2vw 7vw; /* Vertical (offset desde top), Horizontal (offset desde left) */
+    background-size: 20vw 13vw; /* Tamaño responsivo */
+    opacity: 0.4;
 }
 
 /* --- SERVICIO 3: Creación de Estrategia (UNA IMAGEN) --- */
 .servicio-3::before {
-    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: left -40px bottom 15px; /* Centrada, 20px desde arriba */
-    background-size: 150% auto; /* 90% del ancho, altura automática */
+    background-image: url('../images/fon1.png');
+    /* Original: background-position: left -40px bottom 15px; */
+    /* bottom 15px: 1.5vw desde abajo. left -40px: -4vw fuera de la izquierda. */
+    background-position: bottom 1.5vw left -4vw; /* Posición vertical (desde bottom), Posición horizontal (desde left) */
+    background-size: 160% auto; /* 150% ya es responsivo */
     opacity: 0.4;
 }
 
 /* --- SERVICIO 4: Diseño en Canva (UNA IMAGEN) --- */
 .servicio-4::before {
-    background-image: url('../images/fon6.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: bottom -10px left -10px; /* Abajo a la derecha, 15px de margen */
-    background-size: 150px 150px; /* Tamaño fijo */
+    background-image: url('../images/fon6.png');
+    /* Original: background-position: bottom -10px left -10px; */
+    background-position: bottom -1vw left -1vw; /* 1vw desde bottom, 1vw fuera de left */
+    background-size: 10vw 10vw; /* Tamaño responsivo */
     opacity: 0.4;
 }
 
 /* --- SERVICIO 5: Desarrollo Web (UNA IMAGEN) --- */
 .servicio-5::before {
-    background-image: url('../images/fon5.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: left top -120px;
-    background-size: cover; /* Cubrirá todo el espacio */
+    background-image: url('../images/fon5.png');
+    /* Original: background-position: left top -120px; */
+    /* top -120px: -12vw fuera de top. left: 0% horizontal */
+    background-position: top 0vw left 0%; /* Posición vertical (desde top), Posición horizontal (desde left) */
+    background-size: 15vw 15vw; /* 'cover' ya es responsivo */
     opacity: 0.4;
 }
 
 /* --- SERVICIO 6: Identidad de Marca (DOS IMÁGENES) --- */
-.servicio-6::before { /* Imagen de fondo principal (capa inferior): un patrón geométrico */
-    background-image: url('../images/fon7.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: left -10px top -10px; /* Arriba a la izquierda */
-    background-size: 50% 50%; /* Cubrir todo el espacio (puede distorsionarse ligeramente) */
-    opacity: 0.4; /* Muy, muy sutil */
+.servicio-6::before {
+    background-image: url('../images/fon7.png');
+    /* Original: background-position: left -10px top -10px; */
+    background-position: top -1vw left -1vw; /* 1vw fuera de top, 1vw fuera de left */
+    background-size: 50% 50%; /* 50% ya es responsivo */
+    opacity: 0.4;
 }
-.servicio-6::after { /* Segunda imagen (capa superior): un logo o icono de marca */
-    background-image: url('../images/fon1.png'); /* **RUTA DE TU IMAGEN** */
-    background-position: center left 30px; /* Centrado horizontal, 30px desde arriba */
-    background-size: 300px 250px; /* Tamaño fijo */
-    opacity: 0.4; /* Bien visible */
-    transform: rotate(-50deg);
+.servicio-6::after {
+    background-image: url('../images/fon1.png');
+    /* Original: background-position: center left 30px; */
+    /* center: 50% vertical. left 30px: 3vw desde la izquierda. */
+    background-position: center left 7vw; /* Posición vertical (center), Posición horizontal (desde left) */
+     /* Tamaño responsivo */
+    opacity: 0.4;
+    background-size: 20vw 20vw;
+    
 }
-/* Sección Quiénes Somos */
+
+/* --- Sección Quienes Somos (contenedor principal) --- */
 .quienes-somos {
-    padding: 40px 20px;
-    text-align: center;
+    padding: 2.5rem 1rem; /* Padding responsivo, ajustado para móviles */
+    text-align: center; /* Centramos el contenido por defecto para móviles */
     background-color: #fff;
-    margin-top: -550px;
     font-family: Merriweather;
-
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    max-width: 100vw; /* Previene desbordes horizontales */
+    overflow: hidden; /* Oculta cualquier contenido que se salga */
 }
-/* Alinea el título h2 al centro */
+
+/* Título de la sección "Quiénes Somos" */
 .quienes-somos h2 {
-    text-align: center; /* Centra solo el título */
-    color: #F1CB66; /* Mantén el color que ya tienes */
-    margin-bottom: 20px; /* Agrega un poco de espacio debajo del título si es necesario */
-    font-size: 6em;
-    transform: translateY(-50px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center; /* Se mantiene centrado para mobile-first */
+    color: #F1CB66;
+    margin-bottom: 1.25rem;
+    /* Tamaño de fuente responsivo con clamp() */
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Mín 2rem, preferido 8vw, máx 3.5rem */
+    /* Eliminamos el transform fijo para mayor fluidez */
+    transform: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
+    margin-top: 0; /* Aseguramos que no haya margen superior indeseado */
 }
 
-/* Alinea el párrafo al margen (izquierda) */
+/* Párrafo de la sección "Quiénes Somos" */
 .quienes-somos p {
-    text-align: left; /* Alinea el texto del párrafo a la izquierda */
-    line-height: 1.2; /* Mejora la legibilidad del texto */
-    font-size: 1.6em;
-    margin-left: 50px;
+    text-align: left; /* Alineado a la izquierda según tu pedido */
+    line-height: 1.5; /* Interlineado responsivo para mejor legibilidad en cualquier tamaño */
+    /* Tamaño de fuente responsivo con clamp() */
+    font-size: clamp(1rem, 4vw, 1.3rem); /* Mín 1rem, preferido 4vw, máx 1.3rem */
+    /* Margen lateral responsivo para que no se pegue a los bordes */
+    margin-left: 5%; /* 5% de margen a la izquierda del contenedor */
+    margin-right: 5%; /* Y también 5% a la derecha para que no se pegue */
+    width: 90%; /* Ocupa el 90% del ancho (100% - 5% left - 5% right) */
     color: #949398;
+    /* Ajuste para centrar el bloque de texto en la página si no quieres margen */
+    margin-left: auto;
+    margin-right: auto;
 }
-/* Sección Contenido Gratuito */
+/* --- Sección Contenido Gratuito --- */
 .contenido-gratuito {
-    padding: 2px;
     display: flex;
-    align-items: center; /* Centra verticalmente los elementos flexibles (la imagen y el wrapper) */
-    justify-content: center; /* Centra horizontalmente los elementos flexibles */
+    flex-direction: column; /* Esto apila la imagen y el wrapper */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: flex-start; /* Alinea los elementos al inicio (arriba) */
     text-align: center;
     background-color: #FAE78B;
     position: relative;
-    overflow: hidden; /* Asegura que nada se desborde de la sección */
-    height: 600px; /* Establece una altura mínima para la sección si la imagen es muy corta */
+    overflow: hidden;
+    /* AJUSTE CLAVE: Volvemos a darle una min-height responsiva al contenedor principal */
+    min-height: clamp(40rem, 150vw, 60rem); /* Aseguramos suficiente altura para imagen + texto/botón */
+    height: auto; /* Permite que la altura se ajuste si el contenido es mayor */
+    width: 100%;
+    max-width: 100vw;
+    
+    gap: 1.5rem; /* Espacio entre la imagen y el wrapper */
 }
 
 .contenido-gratuito img {
-    width: 100%;
-    height: auto; /* Mantiene la proporción */
+    /* CAMBIO CLAVE: Quitamos 'position: absolute' para que la imagen fluya */
+    position: absolute; /* La imagen ahora está en el flujo normal de Flexbox */
+    /* Mantenemos el width: 100% como lo tenías */
+    width: clamp(50rem, 155vw, 95rem);  /* La imagen ocupará el 100% del ancho de su contenedor */
+    /* CLAVE: height: auto para mantener las proporciones y evitar que se estire */
+    height: auto; /* Esto hace que la altura se ajuste proporcionalmente al 100% del ancho */
     display: block;
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    /* object-fit: cover; y object-position: 8% center; se mantienen si así lo querías originalmente para el recorte de la imagen */
+    object-fit: cover; /* Si la imagen debe cubrir todo su espacio y recortarse */
+    left: 0.1rem; /* Mantiene tu ajuste para enfocar la imagen */
+    z-index: 1; /* Sigue estando encima del fondo, pero ahora interactúa con el flujo */
+    margin-bottom: 0; /* Aseguramos que el gap del padre controle el espaciado */
 }
 
 .contenido-texto-y-boton-wrapper {
-    position: absolute;
-    top: 50%;
-    right: 5%; /* Ajusta este valor si querés que esté más cerca o más lejos del borde derecho */
-    transform: translateY(-50%); /* Ajuste para centrado vertical perfecto */
+    /* CAMBIO CLAVE: Quitamos todo posicionamiento absoluto para que fluya debajo de la imagen */
+    position: absolute; /* Aseguramos que sea un elemento de flujo normal */
+    top: 26rem; /* Eliminar */
+    left: auto; /* Eliminar */
+    right: auto; /* Eliminar */
+    transform: none; /* Eliminar */
+
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Alinea los elementos (texto y botón) a la derecha dentro de este wrapper */
-    text-align: right; /* ¡IMPORTANTE! Alinea el texto en sí a la derecha dentro de sus líneas */
-    max-width: 45%; /* Reduje un poco el max-width, puedes ajustar este valor */
-    z-index: 1; /* Asegura que esté por encima de la imagen */
-    /* Agrega un poco de padding para que el contenido no esté pegado al borde del wrapper */
-    padding: 10px;
-    box-sizing: border-box; /* Incluye padding y border en el ancho/alto */
+    align-items: center;
+    justify-content: center;
+
+    /* Max-width para el wrapper de texto/botón para que no sea demasiado ancho */
+    max-width: clamp(18rem, 80vw, 35rem);
+    width: 100%;
+    z-index: 2; /* Sigue estando encima del fondo */
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .contenido-texto {
     font-family: Merriweather;
-    font-size: 2.8em;
-    align-items: center;
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
     text-align: center;
     line-height: 1.2;
     color: #757575;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
 }
 
 .contenido-texto h3 {
@@ -365,99 +492,132 @@ body {
 
 .contenido-gratuito .boton-descargar {
     background-color: #757575;
-    cursor:pointer;
+    cursor: pointer;
     text-align: center;
-    margin-right: 95px;
     color: white;
-    padding: 15px 20px;
+    padding: clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 6vw, 2rem);
     text-decoration: none;
-    border-radius: 25px;
-    font-size: 1em;
-    width: 300px; /* ¡CAMBIO! Deja que el ancho se ajuste al contenido del botón */
-    max-width: 100%; /* Evita que el botón se desborde del wrapper si el texto es muy largo */
-    transform: translateY(80px);
-    white-space: nowrap; /* Evita que el texto del botón se rompa en varias líneas */
-
+    border-radius: 5rem;
+    font-size: clamp(1em, 4vw, 1.5em);
+    width: clamp(15rem, 70vw, 25rem);
+    height: auto;
+    max-width: 100%;
+    white-space: normal;
+    display: block;
 }
-
-/*sección reseñas*/
-.reseñas-section{
-    height: 550px;
+/* --- Sección Reseñas --- */
+.reseñas-section {
+    position: relative;
+    /* La altura será responsiva y se ajustará al contenido o a un mínimo */
+    height: auto; /* Permite que la altura se ajuste al contenido */
+    min-height: clamp(20rem, 90vh, 38rem); /* Altura mínima responsiva */
     background-color: #555;
     position: relative;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    max-width: 100vw; /* Previene desbordes horizontales */
+    overflow: hidden; /* Oculta cualquier desborde vertical que no sea scrollable */
+    padding-bottom: 2rem; /* Espacio para el posible indicador de scroll */
     
 }
-.reseñas-container{
-    z-index: 1000;
-    padding: 20px;
-    display: flex;
-    gap: 20px;
+
+.reseña-title {
+    font-size: clamp(1.9rem, 7.4vw, 2.9rem); /* Tamaño de título responsivo */
+    color: white;
+    text-align: center;
+    font-family: Merriweather;
+    font-weight: bold;
+    -webkit-text-stroke: 0.09375rem #FAE78B;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agregamos sombra para mejor legibilidad */
+    margin-top: 1.5rem; /* Margen superior responsivo */
+    margin-bottom: 2.5rem;
+    z-index: 20;
+    position: relative; /* Espacio antes de las tarjetas */
 }
+
+.reseñas-container {
+    z-index: 11;
+    padding: 0 1rem; /* Padding horizontal responsivo, permite que las tarjetas lleguen a los bordes */
+    display: flex;
+    gap: 1.25rem; /* Espacio entre tarjetas */
+    flex-wrap: nowrap; /* CLAVE: Mantiene las tarjetas en una sola línea horizontal */
+    justify-content: flex-start; /* CLAVE: Alinea las tarjetas al inicio para el scroll */
+    overflow-x: scroll; /* CLAVE: Permite el desplazamiento horizontal */
+    -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en iOS */
+    scroll-snap-type: x mandatory; /* CLAVE: Fuerza que las tarjetas se "enganchen" al deslizar */
+    scroll-padding: 0 1rem; /* Padding para el scroll-snap */
+    scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+    -ms-overflow-style: none;  /* Oculta la barra de desplazamiento en Edge/IE */
+}
+
+/* Oculta la barra de desplazamiento en WebKit (Chrome, Safari) */
+.reseñas-container::-webkit-scrollbar {
+    display: none;
+}
+
 .reseñas-card {
-    width: 235px;
+    /* Anchura responsiva con clamp, permitiendo que una o dos se vean en móvil */
+    width: clamp(18rem, 80vw, 21.5rem); /* Ancho responsivo de la tarjeta */
     background-color: white;
-    height: 450px;
-    border-radius: 10px;
+    height: clamp(28rem, 90vw, 38rem); /* Altura responsiva de la tarjeta */
+    border-radius: 0.625rem;
     background-size: cover;
     background-position: center;
     color: #fff;
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    cursor: grab; /* Cambia el cursor para indicar que se puede arrastrar */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
-    flex-shrink: 0;
+    flex-shrink: 0; /* CLAVE: Evita que las tarjetas se encojan */
+    scroll-snap-align: center; /* CLAVE: Alinea la tarjeta al centro al deslizar */
     font-family: "Open Sans", sans-serif;
-    margin-top: -40px;
-    border: 3px solid #FAE78B;
-    
+     /* Mantienes tu margen negativo para un efecto visual */
+    border: 0.1875rem solid #FAE78B;
 }
-.reseña-title{
-    font-size: 2.5rem;
-    color: white;
-    text-align: center;
-    font-family: Merriweather;
-    font-weight: bold;
-    -webkit-text-stroke: 1.5px #FAE78B;
-    margin-top: 10px;
 
+.reseñas-card:active {
+    cursor: grabbing; /* Muestra el cursor de arrastre al hacer clic */
 }
+
 .reseñas-card img {
-    /* Quitar z-index: 1000; de aquí, no es necesario para <img> */
-    max-width: 90%;   /* La imagen ocupará como máximo el 90% del ancho de la tarjeta */
-    max-height: 90%;  /* La imagen ocupará como máximo el 90% de la altura de la tarjeta */
-    object-fit: contain; /* Ajusta la imagen dentro de los límites sin recortarla, manteniendo proporciones */
-    display: block;   /* Para que margin: auto funcione si no usas flexbox en la tarjeta */
-    margin: auto;     
-    margin-top: 22px;
-    border-radius: 10px;
-    border: 3px solid #FAE78B;
+    max-width: 90%; /* Máx. ancho de imagen dentro de la tarjeta */
+    max-height: 90%; /* Máx. altura de imagen dentro de la tarjeta */
+    object-fit: contain;
+    display: block;
+    margin: auto;
+    margin-top: 1rem; /* Margen superior responsivo */
+    border-radius: 0.625rem;
+    border: 0.1875rem solid #FAE78B;
 }
 
 /* Para la última tarjeta con texto, asegurate de que el párrafo se vea bien */
 .reseñas-card p {
-    color: #E3AE3E; /* Un color oscuro para que el texto sea legible sobre fondo blanco */
-    font-size: 2em; /* Ajusta el tamaño de la fuente */
+    color: #E3AE3E;
+    font-size: clamp(1.8rem, 6vw, 3em); /* Tamaño de fuente responsivo */
     text-align: center;
-    padding: 10px; /* Un poco de padding para que el texto no se pegue a los bordes */
+    padding: 0.625rem;
     font-weight: bold;
-    /* Aseguramos que el párrafo ocupe el espacio para que se centre con align-items: center en la tarjeta */
-    width: 100%; 
-    margin-top: 120px;
+    width: 100%;
+    margin-top: clamp(3rem, 10vw, 7.5rem); /* Margen superior responsivo */
     box-sizing: border-box;
-     -webkit-text-stroke: 1.5px #58585821;/* Incluir padding en el ancho */
+    -webkit-text-stroke: 0.09375rem rgba(88, 88, 88, 0.13); /* Usamos rgba para la opacidad */
+    padding: clamp(0.5rem, 2vw, 1rem); /* Padding responsivo para el texto */
 }
+
 .reseñas-card .card-link {
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;  
-    height: 100%; 
-    z-index: 1;   
-    text-decoration: none; 
-    color: transparent; 
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    text-decoration: none;
+    color: transparent;
 }
-.img-container-res{
+
+/* --- Íconos Decorativos (i1, i2, i3) --- */
+/* Estos elementos siguen siendo absolutos y se ajustan al tamaño de la reseña-card */
+.img-container-res {
     position: absolute;
     top: 0;
     left: 0;
@@ -466,255 +626,217 @@ body {
     pointer-events: none;
     z-index: 1;
 }
-.i1, .i2, .i3{
+
+.i1, .i2, .i3 {
     position: absolute;
     pointer-events: none;
-    width: 150px;
-    height: 100px;
+    /* Ajustamos el tamaño de los contenedores de íconos para ser responsivos */
+    width: clamp(6rem, 20vw, 9.375rem); /* Ancho responsivo */
+    height: clamp(4rem, 15vw, 6.25rem); /* Altura responsiva */
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.i1{
-    top: 0;
-    left: 0;
+
+.i1 {
+    top: 0; /* Posición responsiva */
+    left: 0; /* Posición responsiva */
     z-index: 10;
     transform: rotate(180deg);
 }
-.i2{
-    top: 24px;
-    right: -30px;
+
+.i2 {
+    top: clamp(1.5rem, 5vw, 6.5%); /* Posición responsiva */
+    right: -5%; /* Posición responsiva */
     z-index: 10;
     transform: rotate(-90deg);
 }
-.i3{
-    bottom: -15px;
-    left: 35%;
+
+.i3 {
+    bottom: 0; /* Posición responsiva */
+    left: clamp(10rem, 35vw, 35%); /* Posición responsiva */
     z-index: 10;
 }
+
 .i1 img,
-.i2 img{
-    width: 100%;
-    height: 100%;
+.i2 img {
+    /* Hacemos las imágenes de los íconos responsivas */
+    width: 100%; /* Ancho responsivo de la imagen dentro del ícono */
+    height: 100%; /* Altura responsiva de la imagen dentro del ícono */
     display: block;
 }
-.i3 img{
-    width: 70%;
-    height: 70%;
+
+.i3 img {
+    /* Hacemos las imágenes de los íconos responsivas */
+    width: clamp(6rem, 22vw, 110%); /* Ancho responsivo de la imagen dentro del ícono */
+    height: clamp(4rem, 18vw, 110%); /* Altura responsiva de la imagen dentro del ícono */
     display: block;
 }
-/* Sección Certificados */
+/* --- Sección Certificados --- */
 .certificados {
-    padding: 40px 1px;
-    height: 450px;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    
+    
     text-align: center;
     background-color: #fff;
-    position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
-    overflow: hidden; /* Recorta lo que se salga */
+    position: relative;
+    overflow: hidden; /* Mantenemos overflow hidden para los elementos de fondo y para el recorte general de la sección */
+    width: 100%;
+    max-width: 100vw;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
-/* El h2 y el contenedor de círculos deben tener un z-index más alto */
-.certificados h2,
-.certificados-container {
-    position: relative; /* Necesario para z-index */
-    z-index: 3; /* Asegura que el contenido quede por encima de todas las imágenes de fondo */
-}
-.certificados h2{
-    text-align: left;  
-    font-family: Merriweather ;
-    font-size: 2.5em;  
-    margin-top: -20px;
-    margin-left: 30px;
+.certificados h2 {
+    text-align: center;
+    font-family: Merriweather;
+    font-size: clamp(2rem, 7vw, 3rem);
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 5;
 }
 
-.certificados-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 30px;
-    position: relative; /* Contexto de posicionamiento para sus propios ::before y ::after */
-    /* Importante: Si el z-index de este contenedor fuera menor que los pseudo-elementos de la sección,
-       sus propios pseudo-elementos podrían terminar debajo de los de la sección.
-       Asegúrate de que su z-index sea al menos igual o mayor al de la sección, si los pseudo-elementos de la sección tienen uno. */
-    z-index: 3; /* Mismo z-index que el h2 para que estén ambos encima */
-    flex-wrap: wrap;
-    transition: transform 0.5s ease-in-out;
-}
-
-/* --- Estilos comunes para los pseudo-elementos de fondo --- */
+/* --- Elementos de fondo (sin cambios, ya que no son el problema) --- */
 .certificados::before,
-.certificados::after,
-.certificados-container::before,
-.certificados-container::after {
+.certificados::after {
     content: "";
     position: absolute;
     background-repeat: no-repeat;
-    background-size: contain; /* Ajusta según necesites: 'cover', '100% 100%', etc. */
-    z-index: 1; /* Por debajo del contenido principal */
-    pointer-events: none; /* Impide que interfieran con clics o interacciones */
+    background-size: contain;
+    pointer-events: none;
+    z-index: 1;
+    width: clamp(8rem, 25vw, 12.5rem);
+    height: clamp(7rem, 20vh, 11.25rem);
 }
 
-/* --- Imágenes de Fondo Individuales --- */
-
-/* Imagen 1: Pseudo-elemento de la sección principal */
 .certificados::before {
     background-image: url('../images/fon5.png');
-    width: 200px;
-    height: 180px;
-    top: 5px;
-    left: 390px;
+    top: clamp(0.5rem, 2vh, 0.3125rem);
+    left: clamp(1rem, 5vw, 24.375rem);
     transform: rotate(50deg);
 }
 
-/* Imagen 2: Otro pseudo-elemento de la sección principal */
 .certificados::after {
     background-image: url('../images/fon5.png');
-    width: 200px;
-    height: 180px;
-    bottom: 25px;
-    right: 190px;
+    bottom: clamp(1rem, 3vh, 1.5625rem);
+    right: clamp(1rem, 5vw, 11.875rem);
     transform: rotate(5deg);
 }
 
-/* Estilos comunes para los nuevos divs de fondo */
 .certificado-bg-extra-1,
 .certificado-bg-extra-2 {
-    position: absolute; /* Posicionamiento absoluto respecto a .certificados */
+    position: absolute;
     background-image: url('../images/fon5.png');
     background-size: contain;
     background-repeat: no-repeat;
     pointer-events: none;
-    width: 200px; /* Mismo tamaño que tus pseudo-elementos */
-    height: 180px;
-    z-index: 0; /* ¡CLAVE! Detrás del contenido del carrusel */
-    /* opacity: 0.5; /* Opcional: para un efecto más de fondo */
+    z-index: 0;
+    width: clamp(8rem, 25vw, 12.5rem);
+    height: clamp(7rem, 20vh, 11.25rem);
 }
 
-/* IMAGEN 3: La que antes estaba en .certificados-container::before */
 .certificado-bg-extra-1 {
-    /* Estas coordenadas son RELATIVAS a la sección .certificados,
-       tendrás que ajustarlas ligeramente por prueba y error para que queden donde te gustaba.
-       Usa las que tenías para .certificados-container::before como punto de partida. */
-    top: 10px; /* Ajusta este valor */
-    right: 0; /* Ajusta este valor */
-    transform: rotate(180deg); /* Mantenemos la rotación original */
+    top: clamp(0.5rem, 2vh, 0.625rem);
+    right: 0;
+    transform: rotate(180deg);
 }
 
-/* IMAGEN 4: La que antes estaba en .certificados-container::after */
 .certificado-bg-extra-2 {
-    /* Estas coordenadas también son RELATIVAS a la sección .certificados.
-       Ajusta estas para que quede donde te gustaba. */
-    bottom: 0; /* Ajusta este valor */
-    left: 0; /* Ajusta este valor */
-    /* Tu cuarto pseudo-elemento no tenía transform, puedes añadirlo si quieres */
+    bottom: 0;
+    left: 0;
 }
 
-
-/* Asegura que el contenido del carrusel y el título estén SIEMPRE por encima */
-.certificados h2,
-.carousel-viewport,
-.carousel-dots,
-.carousel-prev-btn,
-.carousel-next-btn {
-    position: relative; /* Crea un contexto de apilamiento para el z-index */
-    z-index: 5; /* Un valor alto para que esté por encima de z-index: 0 de las imágenes de fondo */
-}
-.certificado-circulo:last-child {
-    margin-right: 0;
+/* --- Carousel Viewport: ESTE ES EL CONTENEDOR QUE RECORTA --- */
+.carousel-viewport {
+    overflow: hidden; /* CLAVE: Este es el que oculta lo que no está a la vista */
+    position: relative;
+    max-width: clamp(90vw, 800px, 90vw); /* Ajusta este max-width según tus necesidades visuales */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0; /* Aseguramos que no haya padding aquí para el recorte */
+    padding-right: 0; /* Aseguramos que no haya padding aquí para el recorte */
+    z-index: 4;
 }
 
+/* --- El Track del Carrusel (dentro del Viewport) --- */
+.certificados-container { /* Este es tu '.carousel-track' en el JS */
+    display: flex;
+    margin-top: 1rem;
+    position: relative; /* Relative para el transform */
+    z-index: 3;
+    transition: transform 0.5s ease-in-out; /* Mantenemos la transición aquí */
+    flex-wrap: nowrap; /* CLAVE: Mantiene todos los slides en una sola línea */
+    justify-content: flex-start;
+    padding-left: clamp(1.5rem, 4vw, 3rem); /* Alinea los slides al inicio */
+    
+    /* ELIMINAMOS: overflow-x: scroll; y scroll-snap-type;
+       Porque el JS se encargará del movimiento con transform */
+    /* Estas propiedades ya no son necesarias ni deseadas aquí:
+       overflow-x: scroll;
+       -webkit-overflow-scrolling: touch;
+       scroll-snap-type: x mandatory;
+       scroll-padding-inline: 2vw;
+       scrollbar-width: none;
+       -ms-overflow-style: none; */
+}
+
+/* --- Cada Certificado (Slide) --- */
 .certificado-circulo {
-    width: 220px;
-    height: 220px;
+    width: clamp(15rem, 70vw, 20rem);
+    height: clamp(15rem, 70vw, 20rem);
     border-radius: 50%;
     background-color: #E3AE3E;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
-    margin-bottom: 40px;
-    margin-top: -5px;
+    font-size: clamp(2em, 8vw, 3em);
+    margin-bottom: clamp(1rem, 3vw, 2.5rem);
+    margin-top: clamp(0rem, 1vw, -0.3125rem);
     z-index: 5;
-    font-family: Merriweather ;
+    font-family: Merriweather;
     font-weight: bold;
-        margin-right: 30px; /* Esto crea el espacio entre los círculos */
-    flex-shrink: 0;
+    margin-right: clamp(1.5rem, 3vw, 2.25rem); /* Mantén el margen entre slides */
+    flex-shrink: 0; /* CLAVE: Evita que los slides se achiquen */
     text-shadow: 2px 2px 4px rgb(250, 247, 247);
+    /* ELIMINAMOS: scroll-snap-align: start; porque ya no usamos scroll-snap */
 }
 
-/* --- Nuevo CSS para el carrusel JS puro (añadir al final de tu style.css) --- */
-
-.carousel-viewport {
-    /* Es la ventana visible del carrusel. Oculta lo que se desborda. */
-    overflow: hidden; 
-    position: relative; /* Para posicionar flechas si las pusiéramos dentro (no es el caso aquí) */
-    max-width: 1300px; /* Ya lo tienes en tu .certificados-container. Lo repetimos por claridad. */
-    margin: 30px auto; /* Centra el viewport y le da margen */
-    /* Ajuste del padding para que quepan 5 círculos más sus márgenes */
-    /* 5 círculos * 220px/círculo = 1100px.
-       Hay 4 espacios entre 5 círculos. Cada círculo tiene 15px de margen a cada lado (total 30px).
-       Así que necesitamos 4 * 30px (entre círculos) + 2 * 15px (margen exterior) = 120 + 30 = 150px de margen total.
-       Ancho total necesario: 1100px (círculos) + 150px (márgenes) = 1250px.
-       Si el max-width es 1300px, y el contenido necesita 1250px, sobran 50px.
-       Dividimos 50px / 2 = 25px de padding a cada lado. */
-    padding: 0 25px; 
-    z-index: 4; /* Asegura que esté por encima de tus imágenes de fondo */
+.certificado-circulo:last-child {
+    margin-right: 0; /* Asegura que el último no tenga margen extra */
 }
 
-/* Apuntamos a tu .certificados-container cuando tiene la clase adicional .carousel-track */
-/* Esto sobrescribe sus propiedades para el carrusel, sin afectar tu .certificados-container original */
-.certificados-container.carousel-track {
-    flex-wrap: nowrap; /* **CLAVE**: Impide que los círculos salten de línea. Se mantienen en una fila. */
-    justify-content: flex-start; /* Alinea los ítems al inicio para que el JS pueda moverlos desde allí. */
-    gap: 0; /* Aseguramos que el gap no interfiera; los márgenes del círculo definen el espaciado. */
-    transition: transform 0.5s ease-in-out; /* Para una animación suave al deslizar. */
-}
-
-/* --- Estilos para las flechas de navegación del carrusel JS puro --- */
+/* --- Flechas de navegación y Dots (sin cambios, ya están bien) --- */
 .carousel-prev-btn,
 .carousel-next-btn {
-    font-size: 0; /* Oculta cualquier texto por defecto */
+    font-size: 0;
     line-height: 1;
-    position: absolute; /* Posiciona las flechas respecto a la sección .certificados */
-    top: 50%; /* A la mitad de la altura de la sección */
-    transform: translateY(-50%); /* Centrado vertical perfecto */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: block;
-    width: 40px;
-    height: 40px;
+    width: clamp(2rem, 8vw, 2.5rem);
+    height: clamp(2rem, 8vw, 2.5rem);
     padding: 0;
     cursor: pointer;
     background: #F1CB66;
     border-radius: 50%;
     border: none;
     outline: none;
-    z-index: 10; /* Por encima de todo */
+    z-index: 10;
     transition: background-color 0.3s ease;
 }
 
-/* Estilo para el ÍCONO dentro de las flechas (si usas Font Awesome) */
-.carousel-prev-btn:before,
-.carousel-next-btn:before {
-    font-family: "Font Awesome 5 Free"; /* Indica la fuente de iconos a usar */
-    font-weight: 900; /* Necesario para los íconos sólidos */
-    font-size: 25px; /* Tamaño del ícono */
-    color: white; /* Color del ícono */
-    line-height: 1;
-    display: block;
-    text-align: center;
-}
-
-.carousel-prev-btn:before {
-    content: "\f053"; /* Código Unicode para el ícono de flecha izquierda (chevron-left) */
-}
-.carousel-next-btn:before {
-    content: "\f054"; /* Código Unicode para el ícono de flecha derecha (chevron-right) */
-}
 
 .carousel-prev-btn {
-    left: 10px; /* Posición izquierda respecto al borde de la sección */
+    left: clamp(0.5rem, 2vw, 0.625rem);
 }
+
 .carousel-next-btn {
-    right: 10px; /* Posición derecha respecto al borde de la sección */
+    right: clamp(0.5rem, 2vw, 0.625rem);
 }
 
 .carousel-prev-btn:hover,
@@ -729,21 +851,20 @@ body {
     opacity: 0.6;
 }
 
-/* --- Estilos para los puntos de paginación (carousel-dots) --- */
 .carousel-dots {
     text-align: center;
-    margin-top: 20px;
+    margin-top: clamp(1rem, 3vw, 1.25rem);
     position: relative;
     z-index: 3;
 }
 
 .dot {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: clamp(0.5rem, 2vw, 0.625rem);
+    height: clamp(0.5rem, 2vw, 0.625rem);
     background-color: #FAE78B;
     border-radius: 50%;
-    margin: 0 5px;
+    margin: 0 clamp(0.2rem, 1vw, 0.3125rem);
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -755,32 +876,33 @@ body {
 .dot:hover {
     background-color: #e0b04a;
 }
-/* Sección Ubicación y Formulario: Contenedor principal de la sección */
+
+/* --- Sección Ubicación y Formulario: Contenedor principal de la sección (Mobile First) --- */
 .ubicacion-formulario {
-    padding: 60px 20px; /* Relleno interno para espacio alrededor del contenido */
-    display: flex; /* Activa Flexbox para organizar los elementos internos */
-    flex-direction: column; /* Apila los elementos hijos verticalmente (mapa arriba, bloque de form/redes abajo) */
-    align-items: flex-start; /* Alinea los elementos hijos al inicio (izquierda) del eje transversal */
-    gap: 40px; /* Espacio vertical entre los elementos principales (mapa y el contenedor de form/redes) */
-    background-color: #F1CB66; /* Color de fondo de toda la sección */
-    width: 100%; /* Asegura que la sección ocupe todo el ancho disponible */
-    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho total */
+    padding: clamp(2rem, 5vw, 3.75rem) clamp(1rem, 3vw, 1.25rem); /* Padding responsivo */
+    display: flex;
+    flex-direction: column; /* POR DEFECTO: Apilado en columnas para mobile */
+    align-items: center; /* Centra los elementos apilados horizontalmente */
+    gap: clamp(1.5rem, 4vw, 2.5rem); /* Espacio responsivo entre los elementos hijos */
+    background-color: #F1CB66;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Contenedor del Mapa */
+/* --- Contenedor del Mapa (Mobile First) --- */
 .ubicacion {
-    width: 90%; /* Ancho del contenedor del mapa dentro de la sección */
-    max-width: 1000px; /* Ancho máximo para el mapa en pantallas grandes */
-    background-color: #F1CB66; /* Mismo color de fondo que la sección */
-    text-align: left; /* Alinea el título "Ubicación" a la izquierda dentro de este contenedor */
-    margin: 0 auto; /* Centra el contenedor del mapa horizontalmente dentro de la sección */
-    margin-top: 20px;
+    width: 95%; /* Ocupa casi todo el ancho disponible en móviles */
+    max-width: 120rem; /* Mantiene un máximo para pantallas muy grandes */
+    background-color: #F1CB66;
+    text-align: center; /* Centramos el contenido por defecto */
+    margin: 0 auto; /* Centra el contenedor del mapa */
+    margin-top: clamp(2rem, 5vw, 5rem); /* Margen superior responsivo */
 }
 
 .ubicacion h2 {
-    color: #333; /* Color del texto del título */
-    margin-bottom: 20px; /* Espacio debajo del título */
-    font-size: 3em; /* Tamaño de la fuente del título */
+    color: #333;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem); /* Margen inferior responsivo */
+    font-size: clamp(2.2rem, 8vw, 4em); /* Tamaño de fuente con clamp */
     font-family: Merriweather;
     text-align: center;
     font-weight: bold;
@@ -788,1065 +910,238 @@ body {
 }
 
 .ubicacion iframe {
-    width: 100%; /* El iframe del mapa ocupa el 100% del ancho de su contenedor */
-    height: 500px; /* Altura fija para el mapa, dándole una forma rectangular/cuadrada */
-    border: none; /* Elimina el borde predeterminado del iframe */
-    border-radius: 10px; /* Esquinas redondeadas para un estilo moderno */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para darle profundidad */
-    overflow: hidden; /* Asegura que las esquinas redondeadas se apliquen correctamente */
+    width: 100%;
+    height: clamp(20rem, 50vw, 40rem); /* Altura del mapa responsiva con clamp */
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* Contenedor Principal para el Formulario Y las Redes Sociales (SOLO DISPOSICIÓN) */
-/* Este div (.form-redes-wrapper) solo se encarga de posicionar al formulario y las redes AL LADO. */
-/* NO LLEVA FONDO, PADDING, NI SOMBRA; es transparente. */
+/* --- Contenedor Principal para el Formulario Y las Redes Sociales (Mobile First) --- */
 .form-redes-wrapper {
-    width: 90%; /* Ancho general para este bloque combinado */
-    max-width: 900px; /* Ancho máximo para el bloque combinado (ajusta si quieres que coincida con el mapa) */
-    display: flex; /* ¡ACTIVA FLEXBOX PARA ALINEAR HIJOS! */
-    flex-direction: row; /* ¡ESTO LOS PONE UNO AL LADO DEL OTRO! */
-    flex-wrap: wrap; /* Permite que los elementos salten a la siguiente línea si no hay espacio en pantallas pequeñas */
-    justify-content: flex-start; /* Alinea el formulario y las redes sociales al inicio (izquierda) de este contenedor */
-    align-items: flex-start; /* Alinea el contenido de ambos (formulario y redes) en la parte superior */
-    gap: 40px; /* Espacio horizontal entre el recuadro del formulario y las redes sociales */
-    margin: 0 auto; /* Centra este contenedor combinado para que se alinee con el mapa */
-    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+    width: 95%; /* Ocupa casi todo el ancho en móviles */
+    max-width: 120rem; /* Mantiene un máximo para pantallas muy grandes */
+    display: flex;
+    flex-direction: column; /* POR DEFECTO: Apilado en columnas para mobile */
+    flex-wrap: nowrap; /* No envuelve en mobile, queremos una columna limpia */
+    justify-content: flex-start;
+    align-items: center; /* Centra el formulario y las redes cuando están apilados */
+    gap: clamp(2rem, 5vw, 3rem); /* Espacio entre formulario y redes sociales (responsivo) */
+    margin-top: clamp(2rem, 5vw, 5rem); /* Margen superior responsivo */
+    box-sizing: border-box;
+    margin-left: auto; /* Centra el wrapper horizontalmente */
+    margin-right: auto; /* Centra el wrapper horizontalmente */
 }
 
-/* Formulario de Consulta: ESTE ES EL ÚNICO QUE TIENE RECUADRO BLANCO */
+/* --- Formulario de Consulta: ESTE ES EL ÚNICO QUE TIENE RECUADRO BLANCO (Mobile First) --- */
 .formulario-consulta {
-    width: 400px; /* Ancho máximo deseado para el formulario */
+    /* Ancho responsivo para el formulario */
+    width: clamp(18rem, 90vw, 42rem); /* Min 18rem, hasta 90vw, max 42rem */
     text-align: left;
-    background-color: #fff; /* ¡FONDO BLANCO PARA EL RECUADRO DEL FORMULARIO! */
-    padding: 30px; /* Relleno interno para el formulario */
-    border-radius: 10px; /* Esquinas redondeadas para el formulario */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para el formulario */
-    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
-    margin-left: -50px;
-    
-}
+    background-color: #fff;
+    padding: clamp(1.5rem, 5vw, 4rem); /* Padding responsivo para el formulario */
+    border-radius: 0.625rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    font-size: clamp(1rem, 4vw, 2rem); /* Tamaño de fuente base responsivo */
 
+    flex-shrink: 0;
+    flex-grow: 1; /* Permite que crezca si hay espacio */
+}
 
 .formulario-consulta label {
-    display: block; /* Cada etiqueta en su propia línea */
-    margin-bottom: 8px; /* Espacio debajo de las etiquetas */
-    font-weight: bold; /* Etiquetas en negrita */
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
     color: #555;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1em; /* Relativo al font-size del padre (.formulario-consulta) */
 }
 
 .formulario-consulta input[type="text"],
 .formulario-consulta input[type="email"],
 .formulario-consulta textarea {
-    width: 100%; /* Los campos ocupan todo el ancho de su contenedor */
-    padding: 12px; /* Relleno interno de los campos */
-    margin-bottom: 20px; /* Espacio entre campos */
-    border: 1px solid #ddd; /* Borde suave */
-    border-radius: 8px; /* Esquinas redondeadas */
-    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho */
-    font-size: 1.05em; /* Tamaño de la fuente de entrada */
+    width: 100%;
+    padding: clamp(0.8rem, 2vw, 1rem); /* Padding de inputs/textarea responsivo */
+    margin-bottom: clamp(1rem, 3vw, 1.5rem); /* Margen inferior responsivo */
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    font-size: 1em; /* Relativo al font-size del padre (.formulario-consulta) */
 }
 
 .formulario-consulta textarea {
-    resize: vertical; /* Permite al usuario redimensionar el textarea solo verticalmente */
+    resize: vertical;
 }
 
 .formulario-consulta button[type="submit"] {
-    background-color: #F1CB66; /* Color de fondo del botón de envío */
-    color: #333; /* Color del texto del botón */
-    padding: 12px 25px; /* Relleno del botón */
-    border: none; /* Sin borde */
-    border-radius: 8px; /* Esquinas redondeadas */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    font-size: 1.1em; /* Tamaño de la fuente del botón */
+    background-color: #a1a1a1;
+    color: #faf9f9;
+    padding: clamp(0.75rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5625rem); /* Padding responsivo */
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: clamp(1em, 3vw, 1.1em); /* Tamaño de fuente responsivo */
     font-weight: bold;
-    transition: background-color 0.3s ease; /* Transición suave para el efecto hover */
-    width: 97%;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Ocupa el 100% del contenedor padre ahora */
 }
 
 .formulario-consulta button[type="submit"]:hover {
-    background-color: #e0b85d; /* Color al pasar el ratón por encima del botón */
+    background-color: #e0b85d;
 }
-/* Estilos para el botón de WhatsApp */
+
+/* --- Estilos para el botón de WhatsApp --- */
 .whatsapp-button {
-    display: block; /* **Hace que el botón ocupe todo el ancho y se comporte como un bloque** */
-    width: 96%; /* **Asegura que ocupe el 100% del ancho disponible** */
-    background-color: #25D366; /* Color verde de WhatsApp */
-    color: white; /* Texto blanco */
-    padding: 12px 25px; /* **Mismo padding para igualar la altura visual** */
+    display: block;
+    width: 100%; /* Ocupa el 100% del contenedor padre ahora */
+    background-color: #25D366;
+    color: white;
+    padding: clamp(0.75rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5625rem); /* Padding responsivo */
     border: none;
-    border-radius: 8px; /* **Mismas esquinas redondeadas** */
+    border-radius: 0.5rem;
     cursor: pointer;
-    font-size: 1.1em; /* **Mismo tamaño de fuente** */
+    font-size: clamp(1em, 3vw, 1.1em); /* Tamaño de fuente responsivo */
     font-weight: bold;
-    text-align: center; /* Centra el texto y el ícono */
-    text-decoration: none; /* Elimina el subrayado del enlace */
-    margin-top: 5px; /* No necesita margen superior ya que `margin-bottom` del submit lo maneja */
+    text-align: center;
+    text-decoration: none;
+    margin-top: clamp(0.3rem, 1vw, 0.3125rem); /* Margen superior responsivo */
     transition: background-color 0.3s ease;
 }
 
 .whatsapp-button:hover {
-    background-color: #1DA851; /* Un verde más oscuro al pasar el ratón */
+    background-color: #1DA851;
 }
 
 .whatsapp-button i {
-    margin-right: 8px; /* Espacio entre el ícono de WhatsApp y el texto */
-    font-size: 1.2em; /* Tamaño del ícono, un poco más grande que el texto para que destaque */
+    margin-right: 0.5rem;
+    font-size: 1.2em; /* Relativo al font-size del botón */
 }
 
-/* Redes Sociales: Al lado del formulario, sin ningún recuadro principal */
+/* Contenedor general de Redes Sociales */
 .redes-sociales {
     display: flex;
-    flex-direction: column; /* Apila los enlaces de redes sociales verticalmente */
-    align-items: flex-start; /* Alinea los elementos (título, links) a la izquierda de este bloque */
+    flex-direction: column; /* Apila los 'social-item' verticalmente en mobile */
+    align-items: center;   /* Centra los 'social-item' en mobile */
     justify-content: flex-start;
-    flex-grow: 1; /* Permite que este bloque crezca para ocupar espacio disponible */
-    min-width: 180px; /* Ancho mínimo para el bloque de redes sociales */
-    /* Ya no es necesario 'gap' aquí, los 'margin-bottom' de los botones manejarán el espaciado vertical. */
-    margin-top: 60px;
+    flex-grow: 1;
+    min-width: clamp(10rem, 40vw, 15rem); 
+    margin-top: clamp(3rem, 8vw, 12rem); 
+    width: 100%;
 }
 
+/* Contenedor individual para cada botón + nombre (social-item) */
+.social-item {
+    display: flex;
+    flex-direction: column; /* CLAVE MOBILE: Ícono arriba, nombre abajo */
+    align-items: center;   /* Centra ícono y nombre dentro del 'social-item' */
+    margin-bottom: clamp(1.5rem, 4vw, 2rem); /* Espacio entre cada item social */
+    width: 100%; /* Permite centrar los elementos internos */
+    gap: 0.5rem; /* Pequeño espacio entre el icono y el texto en mobile */
+}
 
-/* --- ESTILOS PARA LOS BOTONES SOCIALES INDIVIDUALES --- */
-/* Esta clase 'social-button' aplica los estilos base de los círculos */
+/* Botón social (el círculo con el ícono) */
 .social-button {
-    display: inline-flex; /* Permite que el contenido (ícono) se centre dentro */
-    justify-content: center; /* Centra el ícono horizontalmente */
-    align-items: center; /* Centra el ícono verticalmente */
-    width: 70px; /* Define el ancho del círculo */
-    height: 70px; /* Define la altura del círculo */
-    border-radius: 50%; /* Hace que el elemento sea un círculo perfecto */
-    margin-bottom: 5pxpx; /* Espacio debajo de cada botón social, apilándolos verticalmente */
-    /* margin-right: 10px; */ /* Si los botones fueran horizontales, este margen separaría uno del otro */
-    color: white; /* Color del ícono de Font Awesome dentro del círculo */
-    font-size: 2.5em; /* Tamaño del ícono */
-    text-decoration: none; /* Elimina el subrayado del enlace */
-    transition: transform 0.2s ease-in-out; /* Animación suave al pasar el ratón */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(3.5rem, 10vw, 6rem); 
+    height: clamp(3.5rem, 10vw, 6rem); 
+    border-radius: 50%;
+    /* margin-bottom se gestiona con 'gap' en .social-item en mobile */
+    color: white;
+    font-size: clamp(1.8em, 6vw, 3.5em); 
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Animación de sombra y escala */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para profundidad */
 }
 
 .social-button i {
-    /* Asegura que el ícono ocupe su espacio y esté perfectamente centrado */
     line-height: 1;
 }
 
 .social-button:hover {
-    transform: scale(1.1); /* Agranda el botón ligeramente al pasar el ratón por encima */
+    transform: scale(1.1); /* Efecto de crecimiento al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada al hover */
 }
 
-/* --- COLORES DE FONDO ESPECÍFICOS PARA CADA RED SOCIAL --- */
-/* Cada clase específica define el color de fondo de su respectivo botón */
+/* Colores de fondo específicos para cada red social */
+.social-button.email { background-color: #f86132; }
+.social-button.facebook { background-color: #1877F2; }
+.social-button.tiktok { background-color: #000; }
+.social-button.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
 
-.social-button.email {
-    background-color: #f86132; /* Azul de Outlook/Microsoft para correo */
-}
-
-.social-button.facebook {
-    background-color: #1877F2; /* Azul de Facebook */
-}
-
-.social-button.tiktok {
-    background-color: #000; /* Negro de TikTok (puedes ajustar si quieres un color más vivo) */
-}
-
-.social-button.instagram {
-    /* Gradiente de Instagram - fiel al logo oficial */
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-}
-.social-name{
+/* Nombre de la red social */
+.social-name {
     color: #363536;
-    font-size: 2em;
-    margin-left: 100px;
-    transform: translateY(-50px);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: clamp(1rem, 4vw, 2.8em); 
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.626);
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+    text-align: center; /* Centra el texto debajo del ícono en mobile */
+    font-weight: 600; /* Hace el texto un poco más grueso */
+    letter-spacing: 0.05em; /* Pequeño espaciado entre letras */
+    transition: color 0.3s ease; /* Transición para el color del texto */
 }
 
-.social-name a{
+.social-name a {
     text-decoration: none;
-    color: inherit;
+    color: inherit; /* Hereda el color del .social-name */
 }
 
-.social-name a:hover{
-    text-decoration: none;
-    color: #555;
+.social-name a:hover {
+    color: #007bff; /* Cambia el color del texto al pasar el mouse */
+    text-decoration: underline; /* Subraya el texto al pasar el mouse */
 }
 
+
+/* --- FOOTER (Mobile First) - Estilo Creativo --- */
 footer {
-    background-color: #f2f2f2; /* Un gris claro para el fondo */
-    color: #555; /* Color de texto gris oscuro */
-    padding: 15px 0; /* Espaciado interno superior e inferior, sin espaciado lateral */
-    text-align: center; /* Centra el texto */
-    font-size: 0.8em; /* Tamaño de fuente un poco más pequeño que el predeterminado */
-    border-top: 1px solid #e7e7e7; /* Una línea fina en la parte superior para separarlo del contenido */
-    width: 100%; /* Asegura que ocupe todo el ancho */
-    box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+    background-color: #363536; /* Color de fondo más oscuro para contraste */
+    color: #f0f0f0; /* Color de texto claro para el fondo oscuro */
+    padding: clamp(2rem, 5vw, 4rem) 0; /* Padding vertical más generoso y responsivo */
+    text-align: center;
+    font-size: clamp(0.9em, 3vw, 1.2em); /* Tamaño de fuente responsivo, quizás un poco más pequeño */
+    border-top: 1px solid #555; /* Borde sutil */
+    width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Necesario para pseudoelementos o fondos creativos */
+    overflow: hidden; /* Asegura que nada se salga */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.15); /* Sombra superior para "elevarlo" */
 }
+
+/* Puedes añadir un pseudoelemento para una forma o textura sutil */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0)); /* Gradiente sutil */
+    pointer-events: none; /* Permite clics a través del pseudoelemento */
+    z-index: 0; /* Asegura que esté detrás del contenido */
+}
+
 
 .footer-content {
-    max-width: 960px; /* Ancho máximo para centrar el contenido en pantallas grandes */
-    margin: 0 auto; /* Centra el div en la página */
+    max-width: 70rem; /* Un poco más ancho en general */
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 3vw, 2rem); /* Padding horizontal responsivo */
+    position: relative; /* Para que el contenido esté por encima del pseudoelemento */
+    z-index: 1; /* Asegura que el contenido esté por encima del pseudoelemento */
 }
 
 footer a {
-    color: #007bff; /* Color de los enlaces */
-    text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
+    color: #F1CB66; /* Color amarillo/naranja para los enlaces, que contraste */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
-    text-decoration: underline; /* Subraya los enlaces al pasar el ratón */
+    color: #e0b85d; /* Tono más oscuro al pasar el mouse */
+    text-decoration: underline;
 }
-
-/* --- Media Queries --- */
-
-/* Para pantallas de 1920px de ancho */
-@media (min-width: 1920px) {
-    /* HEADER */
-    .header{
-        height: 280px;
-    }
-    .header-text {
-        margin-left: 700px; 
-/* Centra el texto un poco más en pantallas muy anchas */
-    }
-    .logo img{
-        height: 300px;
-        width: 250px;
-    }
-    .header-principal {
-        font-size: 5em; /* Hace el título más grande */
-    }
-    .header-subtitulo {
-        font-size: 2.5em; /* Hace el subtítulo más grande */
-    }
-    /*MENU*/
-    .menu{
-        height: 50px;
-    }
-    .menu-item{
-        font-size: 1.7em;
-    }
-
-    /* HERO SECTION */
-    .hero {
-        height: 1000px; /* Aumenta la altura del hero */
-    }
-    .hero img {
-        height: 1000px;
-        width: 1200px;
-        /* No necesitas top:0, right:0 a menos que quieras ajustarlo */
-    }
-    .hero-overlay{
-        height: 1000px;
-    }
-    .hero p {
-        font-size: 9em; /* Texto del hero más grande */
-        /* Ajusta para que el texto siga encima de la imagen */
-        margin-left: 3%; /* Más margen para separar del borde */
-    }
-
-    /* SERVICIOS SECTION */
-    .servicios {
-        top: -550px; /* Ajusta la posición de toda la sección */
-        padding: 60px 40px;
-    }
-    .servicios h2 {
-        font-size: 3.5em;
-        margin-left: 100px; /* Título de servicios más grande */
-    }
-    .servicios-grid{
-        gap: 40px;
-    }
-    .servicio-item {
-        width: 250px; /* Haz los items un poco más grandes */
-        height: 320px;
-        padding: 20px;
-    }
-    .servicio-texto {
-        font-size: 2em; /* Texto dentro de los servicios */
-        margin-top: 20px; /* Ajusta si es necesario por el nuevo tamaño de item */
-    }
-
-    /* QUIENES SOMOS */
-    .quienes-somos {
-        margin-top: -500px; /* Ajusta el margen superior */
-        padding: 50px 80px; /* Más padding para los lados */
-    }
-    .quienes-somos h2 {
-        font-size: 7em;
-    }
-    .quienes-somos p {
-        font-size: 1.8em;
-        margin-left: 100px;
-        margin-right: 100px;
-    }
-
-    /* CONTENIDO GRATUITO */
-    .contenido-gratuito{
-        height: 800px;
-    }
-    .contenido-gratuito img {
-        width: 1920px; /* Imágenes más grandes */
-        height: auto;
-    }
-    .contenido-texto {
-        font-size: 5em;
-        margin-left: -500px;
-        margin-top: 100px;
-    }
-    .contenido-gratuito .boton-descargar {
-        transform: translateX(-80px); /* Ajusta la posición del botón */
-        width: 500px;
-        margin-top: 100px;
-        height: 70px;
-        font-size: 2em;
-    }
-    /*Reseñas*/
-    .reseñas-section{
-        height: 800px;
-    }
-    .reseñas-card {
-    width: 350px;
-    height: 650px;
-    margin-top: -35px;
-    left: 30px;
-    }
-.reseña-title{
-    font-size: 4em;
-}
-.reseñas-card p{
-    font-size: 3.3em;
-    margin-top: 150px;
-}
-.i1, .i2, .i3{
-
-    width: 250px;
-    height: 150px;
-}
-.i1{
-    margin-top: 2px;
-}
-.i2{
-    margin-top: 30px;
-    right: -50px;
-}
-.i3{
-    margin-bottom: -5px;
-}
-    /* CERTIFICADOS */
-    .certificados{
-        height: 600px;
-    }
-    .certificados h2 {
-        font-size: 3.5em;
-        margin-left: 50px;
-    }
-    .certificado-circulo {
-        width: 350px;
-        height: 350px;
-        font-size: 2.2em;
-        margin-top: -30px;
-    }
-    /* Ajustes de imágenes de fondo para certificados en 1920px */
-    .certificados::before {
-        left: 600px;
-        top: 50px;
-    }
-    .certificados::after {
-        right: 250px;
-        bottom: -60px;
-    }
-    .certificados-container::before {
-        right: 50px;
-        top: -150px;
-    }
-    .certificados-container::after {
-        left: 10px;
-        bottom: -90px;
-    }
-    .carousel-viewport {
-        max-width: 1920px; /* Ancho suficiente para 5 certificados + padding */
-        /* Asegúrate de que el padding de 0 25px se mantenga si es tu intención */
-        padding: 0 25px; 
-    }
-
-    /* UBICACION Y FORMULARIO */
-    .ubicacion h2 {
-        font-size: 3.5em;
-    }
-    .ubicacion iframe {
-        height: 700px;
-        width: 130%;
-        margin-left: -120px;
-    }
-    .form-redes-wrapper {
-        max-width: 1100px; /* Permite más espacio para el formulario y las redes */
-        justify-content: center;
-         /* Centra el bloque de formulario/redes */
-    }
-    .formulario-consulta {
-        width: 550px; /* Mayor ancho para el formulario */
-        margin-left: -70px;
-         /* Elimina el margen negativo si ya se centra */
-    }
-    .redes-sociales {
-        margin-top: 70px;
-        margin-left: 50px; /* Ajusta la posición vertical de las redes */
-    }
-    .social-button{
-        width: 70px;
-        height: 70px;
-        font-size: 2.2em;
-    }
-}
-
-
-/* Para pantallas de 1440px de ancho */
-@media (width: 1440px) {
-    /* HEADER */
-    .header-text {
-        margin-left: 550px; /* Ajusta para 1440px */
-    }
-    .header-principal {
-        font-size: 3.8em;
-    }
-    .header-subtitulo {
-        font-size: 1.7em;
-    }
-
-    /* HERO SECTION */
-    .hero {
-        height: 950px;
-    }
-    .hero img {
-        height: 900px;
-        width: 950px;
-    }
-    .hero p {
-        font-size: 7em;
-        margin-left: 3%;
-    }
-    .hero-overlay{
-        height: 900px;
-    }
-
-    /* SERVICIOS SECTION */
-    .servicios {
-        top: -400px;
-    }
-    .servicios h2 {
-        font-size: 2.7em;
-    }
-    .servicio-item {
-        width: 190px;
-        height: 220px;
-    }
-    .servicio-texto {
-        font-size: 1.4em;
-        margin-top: 10px;
-    }
-
-    /* QUIENES SOMOS */
-    .quienes-somos {
-        margin-top: -300px;
-    }
-    .quienes-somos h2 {
-        font-size: 6.2em;
-    }
-    .quienes-somos p {
-        font-size: 1.65em;
-        margin-left: 60px;
-        margin-right: 60px;
-    }
-
-    /* CONTENIDO GRATUITO */
-    .contenido-gratuito img {
-        width: 100%;
-        height: 100%;
-    }
-    .contenido-texto {
-        font-size: 3.3em;
-       margin-top: 50px;
-        
-    }
-    .contenido-gratuito .boton-descargar {
-        transform: translateX(10px);
-        margin-top: 50px;
-        width: 400px;
-    }
-    /*reseñas*/
-    .reseñas-card{
-        width: 255px;
-        left: 2%;
-    }
-
-    /* CERTIFICADOS */
-    .certificados h2 {
-        font-size: 2.7em;
-        margin-left: 40px;
-    }
-    .certificado-circulo {
-        width: 230px;
-        height: 230px;
-        font-size: 2.1em;
-    }
-
-    /* UBICACION Y FORMULARIO */
-    .ubicacion h2 {
-        font-size: 3.2em;
-    }
-    .ubicacion iframe {
-        height: 520px;
-    }
-    .form-redes-wrapper {
-        max-width: 950px;
-    }
-    .formulario-consulta {
-        width: 480px;
-        margin-left: -20px;
-    }
-    .redes-sociales {
-        margin-top: 70px;
-        margin-left: 50px;
-    }
-    .social-button{
-        width: 70px;
-        height: 70px;
-        font-size: 2.2em;
-    }
-}
-
-
-/* Para pantallas de 1024px de ancho (típicamente laptops más pequeñas o netbooks) */
-@media (width: 1024px) {
-    body {
-        overflow-x: hidden; /* Asegura que no haya desplazamiento horizontal */
-    }
-
-    /* HEADER */
-    .header {
-        height: 90px;
-    }
-    .logo img {
-        height: 100px;
-        width: 100px;
-        margin-top: -5px;
-    }
-    .header-text {
-        margin-left: -450;/* Reduce bastante el margen */
-    }
-    .header-principal {
-        font-size: 2.5em;
-    }
-    .header-subtitulo {
-        font-size: 1em;
-        margin-top: -20px;
-    }
-
-    /* MENÚ */
-    .menu {
-        padding: 6px 0;
-        margin-top: -10px;
-    }
-    .menu-item {
-        padding: 0 8px;
-        font-size: 0.85em;
-    }
-
-    /* HERO SECTION */
-    .hero {
-        height: 650px; /* Reduce más la altura */
-    }
-    .hero img {
-        height: 580px;
-        width: 680px;
-        top: 30px;
-        right: -80px; /* Podría necesitar moverse más a la izquierda */
-    }
-    .hero-overlay {
-        height: 80%;
-    }
-    .hero p {
-        font-size: 3.5em;
-        transform: translateY(-380px);
-        margin-left: 2%;
-    }
-
-    /* SERVICIOS SECTION */
-    .servicios {
-        top: -300px; /* Sube la sección */
-        padding: 20px 10px;
-    }
-    .servicios h2 {
-        font-size: 2em;
-        transform: translateY(-20px);
-    }
-    .servicios-grid {
-        gap: 10px;
-        margin-top: -20px;
-    }
-    .servicio-item {
-        width: 130px; /* Hazlos más pequeños */
-        height: 180px;
-        padding: 8px;
-        border-radius: 30px;
-    }
-    .servicio-texto {
-        font-size: 1.1em;
-        margin-top: 70px; /* Ajusta según el nuevo tamaño de item */
-    }
-
-    /* QUIENES SOMOS */
-    .quienes-somos {
-        margin-top: -200px;
-        padding: 20px 10px;
-    }
-    .quienes-somos h2 {
-        font-size: 4.5em;
-        transform: translateY(-20px);
-    }
-    .quienes-somos p {
-        font-size: 1.3em;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
-    /* CONTENIDO GRATUITO */
-    .contenido-gratuito {
-        flex-direction: column; /* Apila imagen y texto */
-        align-items: center;
-        padding: 15px 0;
-    }
-    .contenido-gratuito img {
-        width: 250px;
-        height: 280px;
-        margin-bottom: 15px;
-    }
-    .contenido-texto {
-        font-size: 1.8em;
-        text-align: center;
-        margin-left: 0;
-        margin-top: 15px;
-    }
-    .contenido-gratuito .boton-descargar {
-        transform: translateX(0);
-        margin-top: 15px;
-        width: 160px;
-    }
-
-    /* CERTIFICADOS */
-    .certificados {
-        padding: 20px 5px;
-    }
-    .certificados h2 {
-        font-size: 1.8em;
-        margin-left: 10px;
-    }
-    .certificados-container {
-        gap: 15px;
-        margin-top: 15px;
-    }
-    .certificado-circulo {
-        width: 160px;
-        height: 160px;
-        font-size: 1.6em;
-        margin-bottom: 20px;
-    }
-
-    /* UBICACION Y FORMULARIO */
-    .ubicacion-formulario {
-        padding: 30px 10px;
-    }
-    .ubicacion h2 {
-        font-size: 2.2em;
-    }
-    .ubicacion iframe {
-        height: 350px;
-    }
-    .form-redes-wrapper {
-        flex-direction: column; /* Apila el formulario y las redes */
-        align-items: center;
-        gap: 20px;
-        max-width: 95%;
-    }
-    .formulario-consulta {
-        width: 98%; /* Ocupa casi todo el ancho */
-        margin-left: 0;
-        padding: 15px;
-    }
-    .whatsapp-button {
-        width: 100%;
-    }
-    .redes-sociales {
-        margin-top: 0;
-        width: 98%;
-        align-items: center;
-    }
-}
-
-/* --- Media Queries para Celulares --- */
-
-/* Teléfonos muy pequeños o características específicas */
-@media (max-width: 320px) {
-    /*.reseñas-container{
-        overflow-x: scroll;
-    }
-    .reseñas-card{
-        border-radius: 70px;
-    }
-  /* Estilos para iPhone 5/SE y otros dispositivos muy compactos */
-  /* Aquí podrías reducir aún más los tamaños de fuente, espaciados, etc. */
-}
-
-/* Teléfonos en formato vertical (la mayoría de los smartphones) */
-@media (max-width: 576px) {
-  /* Estilos para la mayoría de los teléfonos en modo vertical */
-  /* Aquí es clave hacer la mayoría de los ajustes para que todo sea legible y usable */
-  /* Por ejemplo: */
-  .header {
-    height: 80px; /* Reduce la altura del encabezado */
-    justify-content: center; /* Centra los elementos del encabezado */
-  }
-
-  .logo img {
-    height: 80px;
-    width: 80px;
-    margin: 0; /* Elimina márgenes complejos */
-  }
-
-  .header-text {
-    margin-left: 0; /* Elimina el margen a la izquierda */
-    text-align: center;
-  }
-
-  .header-principal {
-    font-size: 1.8em;
-    margin-top: 15px;
-    /* Ajusta el tamaño de la fuente principal */
-  }
-
-  .header-subtitulo {
-    font-size: 0.9em;
-    margin-top: -15px;
-  }
-
-  .menu {
-    flex-direction: column; /* Apila los elementos del menú verticalmente */
-    height: auto;
-    margin-top: 0;
-  }
-
-  .menu-item {
-    padding: 10px 0; /* Más espacio vertical para cada ítem */
-    text-align: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Separador visual */
-  }
-
-  .menu-item::after {
-    display: none; /* Oculta los divisores verticales */
-  }
-
-  .hero {
-    height: 400px; /* Reduce la altura de la sección hero */
-    justify-content: center;
-    align-items: center;
-  }
-
-  .hero img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra el área */
-    position: relative;
-    top: 0;
-    right: 150px;
-  }
-
-  .hero-overlay {
-    height: 100%;
-    opacity: 0.7; /* Aumenta la opacidad de la superposición si la imagen es muy prominente */
-  }
-
-  .hero p {
-    font-size: 2.8em; /* Reduce el tamaño del texto principal del hero */
-    text-align: left;
-    transform: translateY(0); /* Reinicia la transformación */
-    margin: 0 auto; /* Centra el texto */
-    padding: 10px;
-    margin-left: 170px;
-  }
-
-  .servicios {
-    top: 0; /* Elimina el margen negativo para que no se superponga */
-    padding: 20px 10px;
-  }
-
-  .servicios h2 {
-    font-size: 1.8em;
-    text-align: center;
-    transform: translateY(0);
-  }
-
-  .servicios-grid {
-    flex-direction: column; /* Apila los servicios verticalmente */
-    gap: 15px;
-    margin-top: 20px;
-  }
-
-  .servicio-item {
-    width: 90%; /* Ocupa casi todo el ancho disponible */
-    max-width: 250px; /* Limita el tamaño en pantallas más grandes de este rango */
-    height: 180px;
-    margin: 0 auto; /* Centra los ítems */
-  }
-
-  .servicio-texto {
-    font-size: 1.2em;
-    margin-top: 0; /* Reinicia el margen */
-  }
-
-  .quienes-somos {
-    margin-top: 0;
-    padding: 30px 15px;
-  }
-
-  .quienes-somos h2 {
-    font-size: 3em;
-    text-align: center;
-    transform: translateY(0);
-  }
-
-  .quienes-somos p {
-    font-size: 1.1em;
-    margin: 0 10px;
-    text-align: justify; /* Justifica el texto para mejor lectura */
-  }
-
-  .contenido-gratuito {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .contenido-gratuito img {
-    width: 80%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .contenido-texto {
-    font-size: 1.8em;
-    margin: 0 15px;
-    text-align: center;
-  }
-
-  .contenido-gratuito .boton-descargar {
-    transform: translateX(0);
-    margin-top: 20px;
-    width: 80%;
-    max-width: 250px;
-    font-size: 1em;
-  }
-
-  .certificados h2 {
-    font-size: 1.8em;
-    text-align: center;
-    margin-left: 0;
-  }
-
-   .certificados-container {
-    /* flex-direction: column; <--- ¡ELIMINA O COMENTA ESTA LÍNEA! */
-    flex-wrap: nowrap; /* Asegura que no se envuelvan */
-    justify-content: flex-start; /* Alinea los elementos al inicio */
-    gap: 20px; /* Mantén tu espacio entre certificados */
-    /* Asegúrate de que el ancho sea suficiente o que el overflow: hidden funcione en el viewport */
-    /* width: auto; O asegúrate de que no tenga un width fijo aquí que los apriete */
-  }
-
-  .certificado-circulo {
-    width: 250px; /* Ajusta este ancho para que un solo certificado sea visible a la vez */
-    height: 250px; /* Mantén la proporción */
-    font-size: 1.5em;
-    /* margin: 0 auto 20px auto; <--- CAMBIA ESTO PARA EL CARRUSEL */
-    margin: 0 15px; /* Pequeño margen horizontal para que no se peguen a los bordes */
-    flex-shrink: 0; /* ¡MUY IMPORTANTE! Evita que los círculos se encojan */
-  }
-
-  /* **Añade o modifica esto si no lo tienes:** */
-  .carousel-viewport {
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-    overflow: hidden; /* ¡CLAVE para ocultar los certificados fuera de vista! */
-    margin: 20px auto; /* Centra el carrusel y añade margen vertical */
-    padding: 0 10px; /* Un poco de padding a los lados para que el primer/último no se pegue */
-  }
-
-  /* Asegúrate de que las flechas y puntos se vean y funcionen */
-  .carousel-prev-btn,
-  .carousel-next-btn,
-  .carousel-dots {
-     /* Asegura que sean visibles si los ocultaste antes */
-    /* Asegúrate de que estén posicionados fuera del flujo de los certificados */
-    position: absolute; /* O absolute si quieres controlarlos con top/left/right/bottom */
-    z-index: 10; /* Para que estén por encima de todo */
-  }
-  
-  .carousel-dots {
-    text-align: center;
-    margin-top: 15px;
-  }
-  .dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    cursor: pointer;
-    transform: translateX(30px);
-  }
-  .dot.active {
-    background-color: #717171;
-  }
-
-
-  /* Ajusta las imágenes de fondo de certificados para que no molesten */
-  .certificados::before,
-  .certificados::after,
-  .certificados-container::before,
-  .certificados-container::after {
-    display: none; /* Oculta las imágenes de fondo decorativas en móviles */
-  }
-
-  .ubicacion-formulario {
-    padding: 30px 15px;
-  }
-
-  .ubicacion h2 {
-    font-size: 2em;
-  }
-
-  .ubicacion iframe {
-    height: 300px; /* Reduce la altura del mapa */
-  }
-
-  .form-redes-wrapper {
-    flex-direction: column; /* Apila el formulario y las redes */
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-  }
-
-  .formulario-consulta {
-    width: 90%; /* Ocupa casi todo el ancho */
-    margin-left: 0; /* Elimina margen negativo */
-  }
-
-  .redes-sociales {
-    margin-top: 0; /* Ajusta el margen si es necesario */
-    margin-left: 0;
-    align-items: left; /* Centra los iconos de redes sociales */
-  }
-
-  .social-button {
-    width: 60px;
-    height: 60px;
-    font-size: 2em;
-  }
-  .social-name{
-    margin-left: 0;
-    text-align: center;
-    font-size: 1.5em;
-    transform: translateY(-40px);
-    margin-left: 100px;
-  }
-}
-
-/* Teléfonos en formato horizontal (landscape) y algunas tabletas pequeñas */
-@media (min-width: 577px) and (max-width: 768px) {
-  /* Estilos para teléfonos grandes en horizontal o tabletas pequeñas */
-  /* Aquí puedes empezar a reintroducir algunos diseños de dos columnas si el espacio lo permite */
-  .header-text {
-    margin-left: 100px; /* Ajusta un poco el margen */
-  }
-
-  .hero img {
-    height: 600px;
-    width: 600px;
-    right: -50px;
-  }
-
-  .hero p {
-    font-size: 4em;
-    transform: translateY(-250px);
-  }
-
-  .servicios-grid {
-    justify-content: center; /* Centra los ítems */
-    gap: 15px;
-  }
-
-  .servicio-item {
-    width: 150px;
-    height: 200px;
-  }
-
-  .form-redes-wrapper {
-    flex-direction: row; /* Vuelve a ponerlos uno al lado del otro si hay espacio */
-    justify-content: center;
-  }
-
-  .formulario-consulta {
-    width: 350px; /* Permite un ancho fijo */
-    margin-left: 0;
-  }
-
-  .redes-sociales {
-    margin-top: 0;
-    margin-left: 20px;
-  }
-}
-
-/* Tabletas en formato vertical */
-@media (min-width: 769px) and (max-width: 992px) {
-  /* Estilos para tabletas en vertical */
-  /* Aquí los diseños pueden ser más cercanos a la versión de escritorio, pero aún simplificados */
-  .header-text {
-    margin-left: 250px;
-  }
-
-  .hero img {
-    height: 700px;
-    width: 700px;
-    right: 0;
-  }
-
-  .hero p {
-    font-size: 5em;
-    transform: translateY(-300px);
-  }
-
-  .servicios-grid {
-    gap: 20px;
-  }
-
-  .servicio-item {
-    width: 170px;
-    height: 210px;
-  }
-
-  .formulario-consulta {
-    width: 400px; /* Ancho original o cercano */
-    margin-left: 0;
-  }
-
-  .redes-sociales {
-    margin-top: 40px;
-    margin-left: 30px;
-  }
-}
-
-/* Teléfonos grandes o tablets pequeñas en horizontal */
-@media (min-width: 481px) and (max-width: 767px) {
-  /* Otra forma de abordar el rango de teléfonos grandes y tablets pequeñas */
-}
-
-
-/* --- Estilos para el Modal de Certificados --- */
 
 .certificado-modal {
     display: none; /* Oculto por defecto. JavaScript lo cambiará a 'flex' para mostrarlo. */
@@ -2035,22 +1330,920 @@ footer a:hover {
     background-color: #0056b3; /* Color de fondo del botón al pasar el ratón. */
 }
 
-/* Media Queries para pantallas más pequeñas (hace que el modal sea más responsivo) */
-@media (max-width: 768px) {
-    .modal-gratuito-contenido {
-        width: 95%; /* En pantallas pequeñas, ocupa casi todo el ancho. */
-        padding: 15px; /* Reduce el padding interno. */
+/* ================================================= */
+/* --- MEDIA QUERY: ESCRITORIO ESTÁNDAR --- */
+/* (Para pantallas de 1024px de ancho o más grandes) */
+/* Aquí se aplicarán los estilos de escritorio, pero con medidas responsivas. */
+/* ================================================= */
+
+@media (min-width: 1024px) {
+    /* --- Body (ajustes para desktop) --- */
+    body {
+        /* No se necesitan grandes cambios aquí si ya usas flex-direction: column y min-height en mobile */
     }
-    .checkbox-list {
-        max-height: 200px; /* Reduce la altura máxima de la lista de checkboxes para móviles. */
+
+.header {
+        height: clamp(10rem, 20vh, 25rem); /* Límites en rem, preferido en vh */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: clamp(2rem, 5vw, 4rem); /* Límites en rem, preferido en vw */
+        padding-right: clamp(2rem, 5vw, 4rem); /* Límites en rem, preferido en vw */
     }
-    .cerrar-modal-gratuito {
-        font-size: 24px; /* Ajusta el tamaño de la 'x'. */
-        top: 8px;
-        right: 15px;
+
+    /* --- Logo (A la izquierda, misma altura que el texto) --- */
+    .logo {
+        flex-shrink: 0;
+        margin-right: auto;
     }
-    #user-email-gratuito, .btn-enviar-solicitud {
-        font-size: 14px; /* Ajusta el tamaño de la fuente para campos y botones. */
-        padding: 10px 20px; /* Ajusta el padding para campos y botones. */
+
+    .logo img {
+        height: clamp(13rem, 28vh, 18rem); /* Límites en rem, preferido en vh */
+        width: clamp(13rem, 28vh, 18rem); /* Límites en rem, preferido en vh */
+        margin-top: 0;
+        margin-left: 0;
+        object-fit: contain;
     }
+
+    /* --- Contenedor de Texto y Subtítulo (A la derecha, uno debajo del otro) --- */
+    .header-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: right;
+        margin-left: auto;
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+
+    /* --- Título Principal --- */
+    .header-principal {
+        font-size: clamp(3em, 6vw, 4em); /* Límites en em, preferido en vw (ya estaba así) */
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    /* --- Subtítulo --- */
+    .header-subtitulo {
+        font-size: clamp(1.2em, 2.5vw, 1.8em); /* Límites en em, preferido en vw (ya estaba así) */
+        margin-top: clamp(0.5rem, 1vw, 1.5rem); /* Límites en rem, preferido en vw */
+        margin-bottom: 0;
+    }
+    /*menu*/
+     .menu {
+        /* Sobrescribimos el flex-direction para que sea horizontal */
+        flex-direction: row; /* ¡Ahora los ítems irán horizontalmente! */
+        /* Eliminamos el 'gap' vertical de los estilos generales, ya que ahora es horizontal */
+        gap: 0; /* No queremos espacio vertical entre ítems en horizontal */
+        
+        /* Ajustes para centrar horizontalmente */
+        justify-content: center;
+        align-items: center;
+        padding: clamp(0.5rem, 1.5vw, 1rem) 0; /* Padding responsivo */
+        height: auto;
+        width: 100%;
+        max-width: 100%; /* Aseguramos que ocupe el ancho sin desbordar */
+        overflow: visible; /* Aseguramos que no se recorte nada */
+        box-shadow: none; /* Si no quieres sombra en desktop */
+         /* Si no quieres el fondo amarillo en desktop */
+    }
+
+    /* --- Cada Ítem del Menú (LI) --- */
+    .menu-item {
+        /* Ajustamos el padding horizontal para que estén más juntos */
+        padding: 0 clamp(0.6rem, 1.5vw, 1rem); /* Valores más pequeños para acercarlos */
+        font-size: clamp(0.5rem, 5vw, 1.1rem);
+        
+        /* Aseguramos que no haya subrayado ni líneas inesperadas */
+        text-decoration: none; 
+        border-bottom: none;
+        box-shadow: none; /* Anulamos cualquier sombra que pudiera parecer una línea */
+        
+        /* Sobrescribimos la anchura y alineación para que sean adecuados en fila */
+        width: auto; /* Dejan de ocupar el 90% y solo lo que necesitan */
+        text-align: center; /* Mantenemos centrado por si acaso */
+        
+        /* Resto de estilos que quieres mantener o que no causan problemas */
+        color: black; /* O el color que desees para desktop */
+        position: relative;
+        text-shadow: none; /* Si no quieres sombra de texto en desktop */
+        background-color: transparent; /* Asegura que el fondo sea transparente */
+        border-radius: 0; /* Si no quieres bordes redondeados en desktop */
+        transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Efecto hover/focus para cada ítem (mantenemos esto) */
+    .menu-item:hover,
+    .menu-item:focus {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: #333;
+        transform: translateY(1%);
+        outline: none;
+    }
+
+    /* --- Eliminar la Línea Inferior de los Estilos Generales --- */
+    /* ¡ANULAMOS COMPLETAMENTE el pseudo-elemento ::after que crea la línea inferior! */
+    .menu-item::after {
+        content: none; /* <-- ¡Esto hace que el pseudo-elemento NO se genere! */
+        display: none; /* <-- Otra capa de seguridad para que no se muestre */
+    }
+
+    /* --- Línea Vertical Separadora (SOLO entre ítems en desktop) --- */
+    .menu-item:not(:first-child)::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0; /* Coloca la línea al borde izquierdo del ítem */
+        transform: translateY(-50%);
+        height: clamp(1em, 1.5vw, 1.5em); /* Altura responsiva del separador */
+        width: 1px; /* El ancho de la línea vertical */
+        background-color: #333; /* Color de la línea */
+    }
+    /* --- Sección de fondo con imagen (Hero) --- */
+.hero {
+   
+    display: flex; /* Mantener flex para la estructura general si es necesario */
+    flex-direction: row; /* Para alinear el texto y la imagen si fueran hermanos flexibles */
+    justify-content: flex-start; /* Alinea los elementos al inicio (izquierda) por defecto */
+    align-items: flex-start; /* Alinea los elementos al inicio (arriba) por defecto */
+    
+    position: relative; /* CRUCIAL: El contenedor principal para los elementos absolutos */
+    overflow: hidden; /* Oculta cualquier desborde fuera del hero */
+    padding: 0;
+}
+
+.hero img {
+    position: absolute; /* ¡Ahora la imagen está posicionada absolutamente! */
+    top: 0; /* Pegada al borde superior */
+    right: 0; /* ¡Pegada al borde derecho! */
+ /* Altura responsiva de la imagen */
+    left: auto; /* Anulamos cualquier 'left: 0;' de estilos generales */
+    z-index: 1; /* Fondo, debajo del overlay y el texto */
+    object-fit: contain; /* Para que la imagen no se distorsione y se ajuste */
+    object-position: right top; /* La imagen se posiciona en la esquina superior derecha de su espacio */
+}
+
+.hero-overlay {
+    background-color: rgba(230, 233, 240, 0.7);
+    width: 100%;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2; /* Encima de la imagen, debajo del texto */
+}
+
+.hero p {
+    position: absolute; /* El texto también está posicionado absolutamente */
+    z-index: 7; /* ¡Asegura que el texto esté por encima de la imagen y el overlay! */
+   
+    text-align: left;
+    color: #0E0D09;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-family: Arial, Helvetica, sans-serif;
+    
+ /* Posiciona el texto desde la izquierda */
+    
+    /* ¡AUMENTADO EL ANCHO! Para que el texto quepa en una sola línea */
+    
+    white-space: nowrap; /* ¡Fuerza el texto a permanecer en una sola línea! */
+    overflow: visible;   /* Permite que el texto se desborde y se vea */
+    text-overflow: clip; /* Asegura que no haya puntos suspensivos */
+
+    margin: 0; /* Quitar márgenes automáticos que puedan interferir */
+    line-height: 1.2;
+    margin-left: clamp(0.5rem, 3vw, 1rem);
+}
+/*servivios*/
+
+   .servicios {
+        position: absolute; 
+        top: clamp(0rem, 36rem - 8vw, 36rem); /* Mantienes tu top negativo para posicionarlo */
+        left: 0; 
+        width: 100%; 
+        max-width: 100vw; 
+        
+        
+        z-index: 1000; /* Aseguramos que el z-index sea lo suficientemente alto */
+        
+        overflow: hidden; 
+        margin-top: 0; 
+    }
+
+    /* Título de la sección de servicios */
+    .servicios h2 {
+        font-size: clamp(1.8em, 3vw, 2.5em);
+        transform: translateY(clamp(-0.625rem, -3vw, -3.125rem));
+        text-align: left; /* Alinea el texto a la izquierda del contenedor */
+        margin-left: clamp(0.5rem, 3vw, 1rem); /* Añade un margen para separarlo del borde */
+    }
+
+    /* Contenedor de la cuadrícula de servicios */
+    .servicios-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        /* --- CAMBIO CLAVE: Reducir el gap para que los items tengan más espacio --- */
+        gap: clamp(0.5rem, 1vw, 0.8rem); /* Reducido de 1rem a 0.5rem como mínimo */
+        
+    }
+
+    /* --- Estilos base para cada rectángulo de servicio (.servicio-item) --- */
+    .servicio-item {
+        /* Mantenemos tus valores de width y height tal cual */
+        width: clamp(8rem, 15vw, 20rem); 
+        height: clamp(13rem, 15vw, 26rem); 
+        padding: clamp(1.9rem, 3vw, 2rem); 
+        border-radius: clamp(1rem, 3vw, 3.125rem);
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* --- ESTILO CLAVE: Para el texto dentro de cada servicio-item (.servicio-texto) --- */
+    .servicio-texto {
+        font-size: clamp(1.2em, 1.4vw, 1.3em); 
+        width: 90%;
+        margin: 0;
+    }
+
+    /* Ajustes específicos para los textos de servicio si aún los necesitas con clamp() */
+    .servicio-1 .servicio-texto {
+        font-size: clamp(1em, 1.2vw, 1.2em);
+    }
+
+     .quienes-somos {
+    /* Padding responsivo: 40px -> 2.5rem, 20px -> 1.25rem */
+    padding: clamp(5rem, 4vw, 6rem) clamp(4rem, 2vw, 5rem); 
+    margin-top: 0; /* Margen superior responsivo */
+    }
+
+.quienes-somos h2 {
+    font-size: clamp(4em, 6vw, 8em); /* Tamaño de fuente responsivo del título */
+    /* Transformación responsiva: -50px -> -3.125rem */
+    transform: translateY(clamp(-1rem, -3vw, -3.125rem)); 
+}
+
+.quienes-somos p {
+    font-size: clamp(1em, 2vw, 3em); /* Tamaño de fuente responsivo del párrafo */
+    /* Margen izquierdo responsivo: 50px -> 3.125rem */
+    margin-left: clamp(1rem, 5vw, 7rem); 
+    /* Margen derecho para que no se estire demasiado: 50px -> 3.125rem */
+    margin-right: clamp(1rem, 5vw, 3rem); 
+}
+/* --- Sección Contenido Gratuito --- */
+.contenido-gratuito {
+    /* ¡CLAVE! Cambiamos a flex-direction: row para que los hijos se coloquen en fila */
+    display: flex;
+    flex-direction: row; 
+    
+    /* Alineamos al inicio para que la imagen se pegue arriba */
+    align-items: flex-start; /* Asegura que los elementos se peguen al top si hay varios hijos */
+    justify-content: flex-start; /* Alinea los elementos al inicio (izquierda) */
+    
+    text-align: center; 
+    background-color: #FAE78B;
+    position: relative; /* CRUCIAL: Necesario para posicionar el wrapper de texto/botón absolutamente dentro */
+    overflow: hidden;
+    
+    /* ¡CLAVE! Quitamos min-height y height fijo. Usamos 'height: auto' para que se ajuste al contenido (la imagen) */
+    min-height: auto; /* Puedes quitar esta línea si no la necesitas */
+    height: auto; 
+    
+    /* Aseguramos que ocupe todo el ancho del viewport */
+    width: 100vw; 
+    max-width: 100vw; 
+    margin: 0; 
+    left: 0; 
+    padding: 0; /* Aseguramos que no haya padding que genere espacio */
+    
+    /* El gap ya no aplicará directamente entre la imagen y el wrapper si el wrapper es absoluto,
+       pero puede quedar si tienes más elementos flex en el futuro */
+    gap: 0; /* Lo ponemos en 0 si no queremos espacio entre la imagen y el wrapper */
+}
+
+.contenido-gratuito img {
+    position: relative; /* O `static` si quieres que no tenga contexto de apilamiento propio */
+    /* La imagen ocupará el 100% del ancho del viewport */
+    width: 100vw; 
+    height: auto; /* Mantenemos height: auto para que la altura se ajuste a su proporción */
+    display: block;
+    object-fit: cover; 
+    transform: none; /* Eliminamos cualquier transformación */
+    object-position: left top; /* Ajustamos para que la imagen inicie en la esquina superior izquierda */
+    z-index: 1; /* La imagen queda en una capa inferior */
+    margin: 0; /* Aseguramos que la imagen no tenga márgenes */
+}
+
+.contenido-texto-y-boton-wrapper {
+    /* ¡CLAVE! Posicionamiento absoluto para superponerlo a la imagen */
+    position: absolute; 
+    z-index: 10; /* Asegura que esté por encima de la imagen */
+    
+    /* ¡CLAVE! Posicionamiento a la misma altura que la imagen y cerca del margen derecho */
+    top: clamp(12rem, 16vh, 20rem); /* Se alinea con la parte superior de la imagen */
+    right: clamp(1rem, 3vw, 3rem); /* Ajusta este valor para acercarlo/alejarlo del margen derecho */
+
+    /* Puedes usar transform: translateY para un ajuste vertical fino si top: 0 no es perfecto */
+    /* transform: translateY(5%); */ 
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido (texto y botón) dentro de este wrapper */
+    justify-content: center;
+
+    /* Max-width para el wrapper de texto/botón para que no sea demasiado ancho */
+     /* Ajustado para ser más compacto y dejar más espacio a la imagen */
+    width: auto;
+    max-width: fit-content; /* Ocupará el 100% de su max-width */
+    
+    padding: 1.5rem;
+    box-sizing: border-box;
+    background-color: transparent;
+    border-radius: 0.8rem;
+    box-shadow: none;
+    
+    /* Margin auto para centrar horizontalmente si el right no es suficiente o si quieres que flote */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+.contenido-texto {
+    font-family: Merriweather;
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
+    text-align: center;
+    line-height: 1.2;
+    color: #757575;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.contenido-texto h3 {
+    font-size: inherit;
+    color: inherit;
+    text-shadow: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.contenido-gratuito .boton-descargar {
+    background-color: #757575;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 6vw, 2rem);
+    text-decoration: none;
+    border-radius: 2rem;
+    font-size: clamp(1em, 4vw, 1.5em);
+    width: clamp(10rem, 65vw, 20rem);
+    height: auto;
+    max-width: 100%;
+    white-space: normal;
+    display: block;
+}
+  /*reseñas*/
+     .reseñas-section {
+        min-height: unset;
+        
+        overflow: hidden;
+    }
+
+    .reseñas-container {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: auto;
+        scroll-snap-type: none;
+        scroll-padding: 0;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: clamp(0.5rem, 1vw, 1rem);
+    }
+
+    .reseñas-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .reseñas-card {
+        flex: 1 1 0%;
+        min-width: clamp(10rem, 18vw, 15rem);
+        max-width: clamp(18rem, 22vw, 14.6875rem);
+        height: clamp(20rem, 35vh, 28.125rem); 
+        /* Margen superior responsivo */
+        border-radius: clamp(0.5rem, 1vw, 1rem); 
+        border: clamp(0.0625rem, 0.2vw, 0.1875rem) solid #FAE78B; 
+        cursor: auto;
+        scroll-snap-align: none;
+    }
+
+    .reseñas-card:active {
+        cursor: auto;
+    }
+
+    .reseña-title {
+        font-size: clamp(2.5rem, 3.5vw, 4.5rem); 
+        margin-top: clamp(0.5rem, 1vw, 0.625rem);
+        margin-bottom: clamp(0.5rem, 1vw, 0.8rem)
+    }
+
+    .reseñas-card p {
+        font-size: clamp(1.5em, 2.3vw, 2.5em); 
+        padding: clamp(0.5rem, 1vw, 0.625rem);
+        margin-top: clamp(5rem, 10vw, 7.5rem); 
+    }
+    .i3 img {
+            width: clamp(5.8rem, 18.8vw, 8.8rem);   /* Aumentado de 4rem a 5rem y de 6rem a 8rem */
+            height: clamp(3.5rem, 14vw, 6rem);
+}
+    .i2{
+        right: -2.5%;
+    }
+    /* --- Sección Certificados --- */
+    
+    .certificados {
+        padding-left: clamp(2rem, 5vw, 1rem); /* Aumentamos el padding lateral para desktop */
+        padding-right: clamp(2rem, 5vw, 10rem);
+        min-height: clamp(25rem, 50vh, 35rem); /* Ajustamos la altura mínima para desktop */
+        height: auto; /* Permite que la altura se ajuste al contenido si es más grande */
+        padding-top: clamp(3rem, 6vh, 4rem); /* Aumentamos padding top para desktop */
+        padding-bottom: clamp(3rem, 6vh, 4rem); /* Aumentamos padding bottom para desktop */
+    }
+
+    .certificados h2 {
+        font-size: clamp(2.5rem, 4vw, 3.5rem); /* Ajustamos el tamaño del título para desktop */
+        margin-bottom: clamp(2rem, 3vw, 2.5rem); /* Espacio debajo del título para desktop */
+    }
+
+    /* --- Elementos de fondo (Ajustes para desktop) --- */
+    .certificados::before,
+    .certificados::after {
+        width: clamp(10rem, 15vw, 15rem); /* Tamaño más grande para desktop */
+        height: clamp(8rem, 12vh, 12rem);
+    }
+
+    .certificados::before {
+        top: clamp(1rem, 3vh, 1.5rem);
+        left: clamp(2rem, 8vw, 6rem); /* Ajuste de posición para desktop */
+        transform: rotate(50deg);
+    }
+
+    .certificados::after {
+        bottom: clamp(1rem, 3vh, 1.5rem);
+        right: clamp(2rem, 8vw, 6rem); /* Ajuste de posición para desktop */
+        transform: rotate(5deg);
+    }
+
+    .certificado-bg-extra-1,
+    .certificado-bg-extra-2 {
+        width: clamp(10rem, 15vw, 15rem);
+        height: clamp(8rem, 12vh, 12rem);
+    }
+
+    .certificado-bg-extra-1 {
+        top: clamp(1rem, 3vh, 1.5rem);
+        right: clamp(2rem, 5vw, 4rem); /* Ajuste de posición para desktop */
+    }
+
+    .certificado-bg-extra-2 {
+        bottom: clamp(1rem, 3vh, 1.5rem);
+        left: clamp(2rem, 5vw, 4rem); /* Ajuste de posición para desktop */
+    }
+
+    /* --- Carousel Viewport (Desktop): Ajustes CLAVE para el layout */
+    .carousel-viewport {
+        max-width: clamp(60rem, 80vw, 80rem); /* Más ancho para desktop */
+        margin-left: auto;
+        padding-right: clamp(2rem, 5vw, 4rem);
+        position: relative; /* Aseguramos que sea relative para posicionar las flechas */
+        overflow: visible; /* ¡CLAVE! Permitimos que las flechas salgan del viewport */
+    }
+
+    /* --- El Track del Carrusel (dentro del Viewport) --- */
+    .certificados-container {
+        display: flex;
+        flex-wrap: nowrap; /* Mantiene los slides en una sola línea */
+         /* Centra los certificados horizontalmente */
+        align-items: center; /* Centra los certificados verticalmente si hay diferencia de altura */
+        padding-left: 0; /* No necesitamos padding-left para el scroll */
+        margin-top: clamp(1rem, 2vw, 1.5rem); /* Ajustamos margen superior si es necesario */
+    }
+
+    /* --- Cada Certificado (Slide) --- */
+    .certificado-circulo {
+        width: clamp(13rem, 18vw, 18rem); /* Ajuste de tamaño para desktop, más pequeños pero más caben */
+        height: clamp(13rem, 18vw, 18rem);
+        font-size: clamp(1.8rem, 2vw, 2.5rem); /* Ajustamos el tamaño de la fuente para desktop */
+        margin-bottom: clamp(1rem, 2vw, 1.5rem); /* Margen inferior para desktop */
+        margin-right: clamp(1.5rem, 2vw, 2rem); /* Margen entre certificados */
+        margin-top: 0; /* Aseguramos que no haya margen negativo o excesivo */
+        flex-shrink: 0; /* Sigue siendo importante para el diseño */
+    }
+
+    .certificado-circulo:last-child {
+        margin-right: 0;
+    }
+
+    /* --- Flechas de navegación (Ajustes para desktop) --- */
+    .carousel-prev-btn,
+    .carousel-next-btn {
+        width: clamp(3rem, 4vw, 4rem); /* Flechas un poco más grandes para desktop */
+        height: clamp(3rem, 4vw, 4rem);
+        font-size: clamp(1.8rem, 2.5vw, 2.2rem); /* Icono de flecha más grande */
+        top: 50%; /* Centrado verticalmente */
+        transform: translateY(-50%);
+        /* Posicionamos las flechas fuera del .carousel-viewport si es necesario */
+        position: absolute; /* Aseguramos posición absoluta */
+    }
+
+    .carousel-prev-btn {
+        left: -webkit-calc(clamp(0.5rem, 2vw, 0.625rem) + clamp(1rem, 2vw, 2rem)); /* Desplazar a la izquierda del viewport */
+        left: calc(clamp(0.5rem, 2vw, 0.625rem) + clamp(1rem, 2vw, 2rem));
+    }
+
+    .carousel-next-btn {
+        right: -webkit-calc(clamp(0.5rem, 2vw, 0.625rem) + clamp(1rem, 2vw, 2rem)); /* Desplazar a la derecha del viewport */
+        right: calc(clamp(0.5rem, 2vw, 0.625rem) + clamp(1rem, 2vw, 2rem));
+    }
+
+    .carousel-dots {
+        margin-top: clamp(1.5rem, 2.5vw, 2rem); /* Más espacio entre certificados y dots */
+    }
+
+    .dot {
+        width: clamp(0.6rem, 0.8vw, 0.75rem); /* Dots un poco más grandes */
+        height: clamp(0.6rem, 0.8vw, 0.75rem);
+        margin: 0 clamp(0.4rem, 0.6vw, 0.5rem); /* Espacio entre dots */
+    }
+
+    /* --- Sección Ubicación y Formulario --- */
+    .ubicacion-formulario {
+        padding: clamp(2rem, 5vw, 60px) clamp(1rem, 3vw, 20px);
+        flex-direction: column; /* Mantenemos columna si queremos que el mapa esté arriba */
+        align-items: center; /* Centramos el contenido de la sección */
+        gap: clamp(2rem, 5vw, 40px);
+    }
+
+    .ubicacion {
+        width: clamp(80%, 70vw, 1000px); /* Ancho responsivo del mapa */
+        margin-top: clamp(1rem, 2vw, 20px);
+    }
+    .ubicacion h2 {
+        font-size: clamp(2em, 4vw, 3em);
+    }
+    .ubicacion iframe {
+        height: clamp(24rem, 46vh, 35rem); /* Altura responsiva del mapa */
+    }
+
+/* Contenedor principal del formulario y redes: Centrado y con mayor espacio */
+.form-redes-wrapper {
+    display: flex;
+    flex-direction: row; /* El formulario y las redes están en fila */
+    justify-content: center; /* Centra el bloque horizontalmente */
+    align-items: center; /* Centra el formulario y las redes verticalmente entre sí */
+    gap: clamp(3rem, 8vw, 6rem); /* Mayor espacio entre formulario y redes */
+    width: 100%;
+    max-width: clamp(75rem, 95vw, 95rem); /* Ancho máximo para el bloque completo */
+    margin: clamp(4rem, 6vw, 6rem) auto; /* Margen superior/inferior para espaciar la sección y centrado horizontal */
+    /* Las propiedades de padding-top, padding-bottom, margin-left se consolidaron en el 'margin' o se eliminaron si eran redundantes */
+}
+
+/* Formulario de Consulta: Más grande en desktop */
+.formulario-consulta {
+    flex-shrink: 0; /* Evita que el formulario se achique */
+    width: clamp(25rem, 41vw, 37rem);
+    font-size: clamp(0.9rem, 1.1vw, 1.2rem); /* Ancho responsivo del formulario */
+    margin-left: clamp(6rem, 9vw, 8rem);
+    padding: clamp(0.5rem, 3.5vw, 2.5rem);
+     /* Padding interno del formulario */
+    /* margin-left: 0; y margin-right: 0; se asumen si no hay otros conflictos o se pueden agregar si es necesario asegurar */
+}
+
+/* Contenedor general de Redes Sociales: Ajustes de alineación y ancho para desktop */
+.redes-sociales {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; /* Centra la columna de redes verticalmente */
+    min-width: clamp(18rem, 25vw, 30rem); /* Ancho de columna de redes más grande */
+    margin-top: 0; /* Elimina margen superior si fue definido para móviles */
+}
+
+/* Contenedor individual para cada botón + nombre (social-item): Ícono al lado del nombre */
+.social-item {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: clamp(1.2rem, 2.5vw, 2rem); /* Mayor espacio entre cada línea de red social */
+    gap: clamp(1.2rem, 2.5vw, 2rem); /* Mayor espacio entre el botón y el nombre */
+}
+
+/* Botón social: Íconos más grandes en desktop */
+.social-button {
+    width: clamp(3rem, 5.5vw, 4.5rem);
+    height: clamp(3rem, 5.5vw, 4.5rem);
+    font-size: clamp(1em, 3vw, 2.5em);
+}
+
+/* Nombre de la red social: Nombres más grandes y sin sombra en desktop */
+.social-name {
+    font-size: clamp(1.3rem, 2.7vw, 2.5em);
+    text-shadow: none; /* Quitamos la sombra para un look más limpio */
+}
+
+/* --- Elementos que no cambian de tamaño/estilo entre resoluciones dentro del formulario --- */
+/* (Estos irían fuera del media query, en los estilos base de tu CSS, si aplican a todas las resoluciones) */
+
+/* Si estos estilos son SOLO para 1024px y no tienen una versión "base", entonces irían aquí */
+.formulario-consulta label {
+    margin-bottom: clamp(0.5rem, 1vw, 8px);
+}
+.formulario-consulta input[type="text"],
+.formulario-consulta input[type="email"],
+.formulario-consulta textarea {
+    padding: clamp(0.6rem, 1.2vw, 12px);
+    margin-bottom: clamp(1rem, 2vw, 20px);
+    font-size: clamp(0.9em, 1.1vw, 1.05em);
+}
+.formulario-consulta button[type="submit"],
+.whatsapp-button {
+    padding: clamp(0.6rem, 1.2vw, 12px) clamp(1rem, 2vw, 25px);
+    font-size: clamp(1em, 1.1vw, 1.1em);
+    width: 100%;
+}
+.whatsapp-button {
+    margin-top: clamp(0.3rem, 0.5vw, 5px);
+}
+.whatsapp-button i {
+    margin-right: clamp(0.3rem, 0.5vw, 8px);
+    font-size: clamp(1.1em, 1.3vw, 1.2em);
+}
+
+footer {
+        /*
+           IMPORTANTE: Si en tus estilos generales el 'padding' del footer ya es muy alto,
+           y quieres reducirlo en desktop, DEBES SOBRESCRIBIRLO aquí.
+           De lo contrario, el padding de tus estilos generales seguirá aplicando.
+           Este 'padding' es la clave para la altura en desktop.
+        */
+        padding: clamp(0.5rem, 2vw, 1rem) 0; /* Min 2rem, Max 3rem de padding vertical en desktop */
+        
+        /* Opcional: Sombra superior para "elevarlo" sutilmente en desktop (Si la quieres) */
+        box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1); 
+        
+        /* Si tu 'position: relative' u 'overflow: hidden' no está en generales, ponlo aquí */
+        position: relative; 
+        overflow: hidden; 
+    }
+
+    /* --- Pseudoelemento footer::before (Para el toque creativo SOLO en desktop) --- */
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* --- Estilos para '.footer-content' en Escritorio --- */
+    .footer-content {
+        margin: 0 auto; /* Asegura el centrado horizontal en desktop */
+        padding: 0 clamp(7rem, 9vw, 8rem); /* Más padding horizontal en desktop */
+
+        /* --- CLAVE: Disposición Horizontal --- */
+        display: flex; /* Asegura display flex (si no lo hereda de generales) */
+        flex-direction: row; /* Coloca los elementos hijos (p, div de enlaces) en fila */
+        justify-content: space-between; /* Empuja el copyright a un extremo y los enlaces al otro */
+        align-items: center; /* Alinea los elementos verticalmente en el centro */
+        gap: 1.5rem; /* Espacio entre los elementos cuando están en fila */
+        
+        /* Asegura que el contenido esté sobre el pseudoelemento */
+        position: relative; 
+        z-index: 1; 
+    }
+
+    /* --- Estilos para '.footer-bottom-links' (si existe, para enlaces internos) --- */
+    /* Asumiendo que tienes un contenedor como <div class="footer-bottom-links"> para tus <a> */
+    .footer-bottom-links {
+        display: flex; /* Haz que los enlaces individuales también usen flex */
+        flex-wrap: wrap; /* Para que los enlaces puedan envolverse si hay muchos */
+        justify-content: flex-end; /* Alinea los enlaces a la derecha si hay muchos */
+        gap: 1rem; /* Espacio entre los enlaces individuales */
+    }
+
+    /* --- Ajuste de tamaño de fuente para desktop (si quieres que sea diferente a los generales) --- */
+    /* Esto afectará a cualquier <p> o <a> directamente dentro de .footer-content */
+    footer .footer-content p, 
+    footer .footer-content a {
+        font-size: clamp(0.9em, 1.2vw, 1.1em); 
+    }
+}
+
+@media(min-width:1300px){
+        .logo img {
+        height: clamp(14rem, 29vh, 30rem); /* Límites en rem, preferido en vh */
+        width: clamp(14rem, 29vh, 30rem); /* Límites en rem, preferido en vh */
+    }
+    .menu-item{
+        font-size: clamp(0.7rem, 5vw, 1.3rem);
+    }
+        .hero p{
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+    }
+    .servicios{
+        top: clamp(29rem, 37vh, 47rem);
+    }
+
+    .servicio-item{
+        width: clamp(12rem, 14vw, 18rem);
+        height: clamp(11rem, 20vw, 22rem);
+    }
+    .servicio-texto{
+        font-size: clamp(1.5em, 1.9vw, 1.6em);
+    }
+    .servicio-1 .servicio-texto{
+        font-size: clamp(1.5em, 1.7vw, 1.7em);
+    }
+    .contenido-texto-y-boton-wrapper{
+            top: clamp(16rem, 20vh, 24rem); 
+            right: clamp(4rem, 6vw, 6rem);
+    }
+
+    .reseñas-card{
+        height: clamp(23rem, 38vh, 31.125rem);
+    }
+
+    .certificados{
+    min-height: clamp(10rem, 30vh, 20rem); /* VALORES REDUCIDOS para menos altura */
+    height: auto; 
+    padding-top: clamp(1rem, 4vh, 2rem); 
+    padding-bottom: clamp(1rem, 4vh, 2rem);
+    }
+    .carousel-viewport{
+        margin-left:0 ;
+    }
+
+    .social-button {
+    width: clamp(1.6rem, 4.1vw, 3.1rem);
+    height: clamp(1.6rem, 4.1vw, 3.1rem);
+    font-size: clamp(0.6em, 2.6vw, 2.1em);
+    }
+    .social-name{
+        font-size: clamp(1rem, 2.4vw, 2.2em);
+    }
+
+    .footer-content{
+        padding: 0 clamp(10rem, 12vw, 11rem);
+    }
+}
+
+@media(min-width: 1440px){
+    .header{
+        height: clamp(12rem, 22vh, 18rem);
+    }
+    .logo img {
+        height: clamp(16rem, 29vh, 32rem); /* Límites en rem, preferido en vh */
+        width: clamp(16rem, 29vh, 32rem); /* Límites en rem, preferido en vh */
+    }
+    .menu-item{
+        
+    }
+        .hero p{
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    }
+    .servicios{
+        top: clamp(29rem, 37vh, 49rem);
+    }
+    .contenido-texto-y-boton-wrapper{
+            top: clamp(19rem, 20vh, 27rem); 
+            right: clamp(8rem, 6vw, 10rem);
+    }
+
+    .contenido-texto{
+        font-size: clamp(1.7rem, 7vw, 2.7rem);
+        
+    }
+    .reseñas-card{
+        height: clamp(28rem, 38vh, 36rem);
+    }
+        .certificados{
+        padding-left: 2vw;
+    }
+    .carousel-viewport{
+        margin-left: 0;
+
+    }
+}
+@media(min-width:1920px){
+    .header{
+        height: clamp(16rem, 22vh, 22rem);
+    }
+    .logo img{
+        height: clamp(22rem, 29vh, 38rem); /* Límites en rem, preferido en vh */
+        width: clamp(22rem, 29vh, 38rem);
+    }
+    .header-principal{
+        font-size: clamp(5em, 6vw, 6em);
+    }
+    .header-subtitulo{
+        font-size: clamp(3em, 2.5vw, 4em);
+    }
+        .menu-item{
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+    .hero{
+        height: clamp(50rem, 37vh, 60rem);
+    }
+    .hero p{
+    font-size: clamp(2.5rem, 10vw, 7rem);
+    }
+    .servicios{
+        top: clamp(40rem, 37vh, 52rem);
+    }
+    .servicios-grid{
+        gap: clamp(2rem, 1vw, 3rem);
+    }
+    .servicio-texto{
+        font-size: clamp(1em, 5vw, 2.6em);
+    }
+    .servicio-1 .servicio-texto{
+        font-size: clamp(1em, 5vw, 2.6em);
+    }
+        .contenido-texto{
+        font-size: clamp(1.7rem, 7vw, 4.2rem);
+        
+    }
+    .contenido-gratuito .boton-descargar {
+        border-radius: 2rem;
+        font-size: clamp(1em, 4vw, 2em);
+        width: clamp(10rem, 65vw, 30rem);
+    }
+    .contenido-texto-y-boton-wrapper{
+            top: clamp(24rem, 20vh, 30rem); 
+            right: clamp(8rem, 6vw, 10rem);
+    }
+    .reseñas-card{
+        height: clamp(38rem, 38vh, 36rem);
+        min-width: clamp(12rem, 10vw, 24rem);
+        max-width: clamp(22rem, 12vw, 33rem);
+    }
+       .reseñas-card p {
+        font-size: clamp(1.5em, 5vw, 3.5em); 
+        margin-top: clamp(5rem, 20vw, 7.5rem); 
+    }
+    .i3 img {
+            width: clamp(5.8rem, 18.8vw, 8.8rem);   /* Aumentado de 4rem a 5rem y de 6rem a 8rem */
+            height: clamp(3.5rem, 14vw, 6rem);
+        }
+    .i2 img{
+            width: clamp(5.8rem, 18.8vw, 14rem);   /* Aumentado de 4rem a 5rem y de 6rem a 8rem */
+            height: clamp(3.5rem, 14vw, 10rem);
+    }
+    .i1 img{
+            width: clamp(5.8rem, 18.8vw, 14rem);   /* Aumentado de 4rem a 5rem y de 6rem a 8rem */
+            height: clamp(3.5rem, 14vw, 10rem);
+    }
+    .i1{
+       top: 2rem; 
+       left: 2rem;
+    }
+    .i2{
+        top: clamp(1.5rem, 5vw, 7.3%);
+        right: 0;
+    }
+    .certificado-circulo{
+        width: clamp(10rem, 18vw, 25rem); /* Ajuste de tamaño para desktop, más pequeños pero más caben */
+        height: clamp(10rem, 18vw, 25rem);
+        font-size: clamp(3rem, 4vw, 2rem);       
+    }
+    .certificados{
+        padding-left: 2vw;
+    }
+    .carousel-viewport{
+        margin-left: 0;
+
+    }
+    .ubicacion iframe{
+        height: clamp(34rem, 46vh, 40rem);
+    }
+    .formulario-consulta{
+        width: clamp(30rem, 41vw, 50rem);
+        margin-left: clamp(0rem, 9vw, 0.5rem);
+        font-size: clamp(2rem, 1.1vw, 4rem);
+    }
+
+    .social-button {
+        width: clamp(1.6rem, 4.1vw, 6rem);
+        height: clamp(1.6rem, 4.1vw, 6rem);
+        font-size: clamp(0.6em, 2.6vw, 4em);
+    }
+    .social-name{
+        font-size: clamp(1rem, 2.4vw, 4em);
+    }
+
+
 }
