@@ -307,7 +307,7 @@ body {
     background-image: url('../images/fon1.png');
     /* Original: background-position: top 100px left 30px; */
     /* top 100px: Ahora 10vw desde arriba. left 30px: Ahora 3vw desde la izquierda. */
-    background-position:  top 60px left 20px;
+    background-position:  top 80px left 20px;
     background-size: 160% 120%;
     opacity: 0.5;
 }
@@ -322,8 +322,8 @@ body {
     background-image: url('../images/fon5.png');
     /* Original: background-position: left 20px top 100px; */
     /* top 100px: 10vw desde arriba. left 20px: 2vw desde la izquierda. */
-    background-position: 2vw 7vw; /* Vertical (offset desde top), Horizontal (offset desde left) */
-    background-size: 20vw 13vw; /* Tamaño responsivo */
+    background-position: 0vw -2vw; /* Vertical (offset desde top), Horizontal (offset desde left) */
+    background-size: 70vw 63vw; /* Tamaño responsivo */
     opacity: 0.4;
 }
 
@@ -342,7 +342,7 @@ body {
     background-image: url('../images/fon6.png');
     /* Original: background-position: bottom -10px left -10px; */
     background-position: bottom -1vw left -1vw; /* 1vw desde bottom, 1vw fuera de left */
-    background-size: 10vw 10vw; /* Tamaño responsivo */
+    background-size: 40vw 40vw; /* Tamaño responsivo */
     opacity: 0.4;
 }
 
@@ -351,8 +351,8 @@ body {
     background-image: url('../images/fon5.png');
     /* Original: background-position: left top -120px; */
     /* top -120px: -12vw fuera de top. left: 0% horizontal */
-    background-position: top 0vw left 0%; /* Posición vertical (desde top), Posición horizontal (desde left) */
-    background-size: 15vw 15vw; /* 'cover' ya es responsivo */
+    background-position: top 40vw left 20vw; /* Posición vertical (desde top), Posición horizontal (desde left) */
+    background-size: 55vw 55vw; /* 'cover' ya es responsivo */
     opacity: 0.4;
 }
 
@@ -368,10 +368,10 @@ body {
     background-image: url('../images/fon1.png');
     /* Original: background-position: center left 30px; */
     /* center: 50% vertical. left 30px: 3vw desde la izquierda. */
-    background-position: center left 7vw; /* Posición vertical (center), Posición horizontal (desde left) */
+    background-position: top 20vw left 30vw; /* Posición vertical (center), Posición horizontal (desde left) */
      /* Tamaño responsivo */
     opacity: 0.4;
-    background-size: 20vw 20vw;
+    background-size: 80vw 80vw;
     
 }
 
@@ -1573,6 +1573,84 @@ footer a:hover {
     .servicio-1 .servicio-texto {
         font-size: clamp(1em, 1.2vw, 1.2em);
     }
+    /* --- SERVICIO 1: Gestión en Redes Sociales (DOS IMÁGENES) --- */
+.servicio-1::before {
+    background-image: url('../images/fon3.jpg');
+    background-position: center top; /* 'center top' ya es responsivo */
+    background-size: 150% 100%; /* Puedes considerar 'cover' si quieres que siempre cubra el área */
+    opacity: 0.4;
+}
+.servicio-1::after {
+    background-image: url('../images/fon1.png');
+    /* Original: background-position: top 100px left 30px; */
+    /* top 100px: Ahora 10vw desde arriba. left 30px: Ahora 3vw desde la izquierda. */
+    background-position:  top 60px left 20px;
+    background-size: 160% 120%;
+    opacity: 0.5;
+}
+.servicio-1 .servicio-texto {
+    /* Original: margin-top: 90px; */
+    margin-top: clamp(40px, 50vw, 90px); /* Aquí sí usamos clamp para el margen del texto */
+    font-size: 2em;
+}
+
+/* --- SERVICIO 2: Pauta Publicitaria en Meta Ads y Google Ads (UNA IMAGEN) --- */
+.servicio-2::before {
+    background-image: url('../images/fon5.png');
+    /* Original: background-position: left 20px top 100px; */
+    /* top 100px: 10vw desde arriba. left 20px: 2vw desde la izquierda. */
+    background-position: 2vw 7vw; /* Vertical (offset desde top), Horizontal (offset desde left) */
+    background-size: 20vw 13vw; /* Tamaño responsivo */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 3: Creación de Estrategia (UNA IMAGEN) --- */
+.servicio-3::before {
+    background-image: url('../images/fon1.png');
+    /* Original: background-position: left -40px bottom 15px; */
+    /* bottom 15px: 1.5vw desde abajo. left -40px: -4vw fuera de la izquierda. */
+    background-position: bottom 1.5vw left -4vw; /* Posición vertical (desde bottom), Posición horizontal (desde left) */
+    background-size: 160% auto; /* 150% ya es responsivo */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 4: Diseño en Canva (UNA IMAGEN) --- */
+.servicio-4::before {
+    background-image: url('../images/fon6.png');
+    /* Original: background-position: bottom -10px left -10px; */
+    background-position: bottom -1vw left -1vw; /* 1vw desde bottom, 1vw fuera de left */
+    background-size: 10vw 10vw; /* Tamaño responsivo */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 5: Desarrollo Web (UNA IMAGEN) --- */
+.servicio-5::before {
+    background-image: url('../images/fon5.png');
+    /* Original: background-position: left top -120px; */
+    /* top -120px: -12vw fuera de top. left: 0% horizontal */
+    background-position: top 0vw left 0%; /* Posición vertical (desde top), Posición horizontal (desde left) */
+    background-size: 15vw 15vw; /* 'cover' ya es responsivo */
+    opacity: 0.4;
+}
+
+/* --- SERVICIO 6: Identidad de Marca (DOS IMÁGENES) --- */
+.servicio-6::before {
+    background-image: url('../images/fon7.png');
+    /* Original: background-position: left -10px top -10px; */
+    background-position: top -1vw left -1vw; /* 1vw fuera de top, 1vw fuera de left */
+    background-size: 50% 50%; /* 50% ya es responsivo */
+    opacity: 0.4;
+}
+.servicio-6::after {
+    background-image: url('../images/fon1.png');
+    /* Original: background-position: center left 30px; */
+    /* center: 50% vertical. left 30px: 3vw desde la izquierda. */
+    background-position: center left 7vw; /* Posición vertical (center), Posición horizontal (desde left) */
+     /* Tamaño responsivo */
+    opacity: 0.4;
+    background-size: 20vw 20vw;
+    
+}
 
      .quienes-somos {
     /* Padding responsivo: 40px -> 2.5rem, 20px -> 1.25rem */
