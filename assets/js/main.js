@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+
     // --- 1. Selecciona los elementos clave del carrusel ---
-    // Aseguramos que 'track' apunte al contenedor flex que tiene los slides
-    const track = document.querySelector('.certificados-container'); 
+    const track = document.querySelector('.certificados-container');
     const nextButton = document.querySelector('.carousel-next-btn');
     const prevButton = document.querySelector('.carousel-prev-btn');
     const dotsContainer = document.querySelector('.carousel-dots');
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- VERIFICACIÓN CRÍTICA DE LOS ELEMENTOS DEL CARRUSEL ---
     if (!track || !nextButton || !prevButton || !dotsContainer || !carouselViewport) {
         console.error("ERROR: No se pudieron encontrar todos los elementos del carrusel. Verifica tus clases HTML. Asegúrate de tener: .certificados-container (como track), .carousel-next-btn, .carousel-prev-btn, .carousel-dots, .carousel-viewport.");
-        // Ocultar controles si no se encuentran los elementos principales del carrusel
         if (nextButton) nextButton.style.display = 'none';
         if (prevButton) prevButton.style.display = 'none';
         if (dotsContainer) dotsContainer.style.display = 'none';
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let startX = 0;
     let endX = 0;
     let isDragging = false;
-
 
     // --- 2. Funciones del Carrusel ---
 
@@ -47,40 +45,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const firstSlide = slides[0];
         const slideComputedStyle = getComputedStyle(firstSlide);
 
-        // offsetWidth incluye padding y borde, pero no margin. Por eso sumamos el margen derecho.
         const slideElementWidth = firstSlide.offsetWidth;
         const marginRight = parseFloat(slideComputedStyle.marginRight);
 
-        // slideWidth ahora es el ancho de un solo slide + su margen derecho
         slideWidth = slideElementWidth + marginRight;
 
         const visibleViewportWidth = carouselViewport.offsetWidth;
-        const desktopBreakpoint = 1200; // Define tu punto de quiebre para desktop
+        const desktopBreakpoint = 1200;
 
         if (window.innerWidth >= desktopBreakpoint) {
-            // En desktop, si quieres mostrar 5, asegúrate de que el carousel-viewport sea lo suficientemente ancho.
-            // slidesPerPage = 5; // Tu configuración anterior
-            // ALTERNATIVA: Calcula cuántos caben realmente en el viewport grande para ser más adaptable
             slidesPerPage = Math.floor(visibleViewportWidth / slideWidth);
-            if (slidesPerPage === 0) slidesPerPage = 1; // Mínimo 1
-            // Si 5 es un valor fijo deseado, descomenta la línea anterior y comenta esta sección
+            if (slidesPerPage === 0) slidesPerPage = 1;
             if (slidesPerPage > 5) slidesPerPage = 5; // No mostrar más de 5 si es tu límite deseado
-
         } else {
-            // En mobile y tablet, calculamos cuántos caben
             slidesPerPage = Math.floor(visibleViewportWidth / slideWidth);
-            if (slidesPerPage <= 0) { // Asegura que siempre se muestre al menos 1 slide
+            if (slidesPerPage <= 0) {
                 slidesPerPage = 1;
             }
         }
 
-        // Asegura que slidesPerPage no sea mayor que el número total de slides
         if (slidesPerPage > slides.length) {
             slidesPerPage = slides.length;
         }
 
-        // Ocultar o mostrar controles (flechas y dots)
-        // Solo mostramos controles si hay más slides de los que caben en una página
         if (slides.length <= slidesPerPage) {
             nextButton.style.display = 'none';
             prevButton.style.display = 'none';
@@ -91,8 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dotsContainer.style.display = 'block';
         }
 
-        // Mueve el carrusel a la posición actual después de recalcular dimensiones
-        // Esto es importante para que el carrusel se ajuste si la ventana se redimensiona
         moveToSlide(currentSlideIndex);
     }
 
@@ -101,12 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {number} index El índice del primer slide de la página a la que mover.
      */
     function moveToSlide(index) {
-        // Calcula el índice máximo al que podemos ir sin mostrar blanco al final
-        // El último índice válido es (total de slides - cantidad de slides visibles en una página)
         let maxIndex = slides.length - slidesPerPage;
-        if (maxIndex < 0) maxIndex = 0; // Evita índices negativos si hay pocos slides
+        if (maxIndex < 0) maxIndex = 0;
 
-        // Limita el índice para que no se salga de los límites
         if (index < 0) {
             currentSlideIndex = 0;
         } else if (index > maxIndex) {
@@ -115,10 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
             currentSlideIndex = index;
         }
 
-        // Calcula el offset (desplazamiento en píxeles) para el transform
-        // Este es el cálculo CRÍTICO: Mueve el track por el índice de la página actual
-        // multiplicado por el ancho de UN solo slide. El `currentSlideIndex`
-        // ya representa el inicio de la "página" que debe mostrarse.
         const offset = -currentSlideIndex * slideWidth;
         track.style.transform = `translateX(${offset}px)`;
 
@@ -130,18 +108,16 @@ document.addEventListener('DOMContentLoaded', function() {
      * Genera los puntos de navegación (dots) dinámicamente.
      */
     function setupDots() {
-        dotsContainer.innerHTML = ''; // Limpia los dots existentes
-        // El número total de páginas es el total de slides dividido por slidesPerPage
+        dotsContainer.innerHTML = '';
         const totalPages = Math.ceil(slides.length / slidesPerPage);
 
         for (let i = 0; i < totalPages; i++) {
             const dot = document.createElement('span');
             dot.classList.add('dot');
-            // Cada dot navega a la primera slide de su "página"
             dot.addEventListener('click', () => moveToSlide(i * slidesPerPage));
             dotsContainer.appendChild(dot);
         }
-        updateDots(); // Actualiza el estado activo de los dots
+        updateDots();
     }
 
     /**
@@ -153,17 +129,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         dots.forEach((dot, i) => {
             dot.classList.remove('active');
-            // Un dot está activo si el currentSlideIndex cae dentro de su rango de página
             if (currentSlideIndex >= (i * slidesPerPage) && currentSlideIndex < ((i + 1) * slidesPerPage)) {
                 dot.classList.add('active');
             }
-            // Manejo especial para el último dot si el currentSlideIndex está en el final
-            // y hay más de una página.
             if (currentSlideIndex === (slides.length - slidesPerPage) && i === dots.length - 1 && slides.length > slidesPerPage) {
                 dot.classList.add('active');
             }
         });
-        // Asegurarse de que el primer dot esté activo si estamos en el inicio
         if (currentSlideIndex === 0 && dots.length > 0) {
             dots[0].classList.add('active');
         }
@@ -173,11 +145,9 @@ document.addEventListener('DOMContentLoaded', function() {
      * Actualiza el estado habilitado/deshabilitado de las flechas de navegación.
      */
     function updateArrowVisibility() {
-        prevButton.disabled = currentSlideIndex === 0; // Deshabilita "Anterior" en el primer slide
-        // Deshabilita "Siguiente" si estamos en la última "página" visible
+        prevButton.disabled = currentSlideIndex === 0;
         nextButton.disabled = currentSlideIndex >= (slides.length - slidesPerPage);
 
-        // También controla la visibilidad total de las flechas si no hay suficientes slides para deslizar
         if (slides.length <= slidesPerPage) {
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
@@ -189,12 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 3. Configuración de Event Listeners del Carrusel ---
     nextButton.addEventListener('click', () => {
-        // Avanza el índice por la cantidad de slides por página
         moveToSlide(currentSlideIndex + slidesPerPage);
     });
 
     prevButton.addEventListener('click', () => {
-        // Retrocede el índice por la cantidad de slides por página
         moveToSlide(currentSlideIndex - slidesPerPage);
     });
 
@@ -203,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function() {
     track.addEventListener('mousedown', handleStart);
 
     function handleStart(e) {
-        // Evita iniciar el arrastre si el click es para el modal del certificado
         if (e.target.closest('.certificado-circulo')) {
             isDragging = false;
             return;
@@ -211,9 +178,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         isDragging = true;
         startX = (e.touches ? e.touches[0].clientX : e.clientX);
-        track.style.transition = 'none'; // Desactiva la transición CSS durante el arrastre
+        track.style.transition = 'none';
         if (e.type === 'mousedown') {
-            e.preventDefault(); // Evita el comportamiento de arrastre por defecto del navegador
+            e.preventDefault();
         }
     }
 
@@ -223,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleMove(e) {
         if (!isDragging) return;
         endX = (e.touches ? e.touches[0].clientX : e.clientX);
-        // Calcula el offset temporal para el arrastre visual
         const currentTranslateX = -currentSlideIndex * slideWidth;
         const dragDistance = endX - startX;
         track.style.transform = `translateX(${currentTranslateX + dragDistance}px)`;
@@ -231,40 +197,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     track.addEventListener('touchend', handleEnd);
     track.addEventListener('mouseup', handleEnd);
-    track.addEventListener('mouseleave', handleEnd); // Para cuando el mouse se va del área de arrastre
+    track.addEventListener('mouseleave', handleEnd);
 
     function handleEnd() {
         if (!isDragging) return;
         isDragging = false;
 
-        track.style.transition = 'transform 0.3s ease-in-out'; // Reactiva la transición CSS
+        track.style.transition = 'transform 0.3s ease-in-out';
 
         const swipeDistance = endX - startX;
-        const swipeThreshold = 50; // Distancia mínima en píxeles para considerar un swipe
+        const swipeThreshold = 50;
 
-        // Decide a qué "página" de slides moverte
-        if (swipeDistance < -swipeThreshold) { // Swipe a la izquierda (avanza a la siguiente "página")
+        if (swipeDistance < -swipeThreshold) {
             moveToSlide(currentSlideIndex + slidesPerPage);
-        } else if (swipeDistance > swipeThreshold) { // Swipe a la derecha (retrocede a la "página" anterior)
+        } else if (swipeDistance > swipeThreshold) {
             moveToSlide(currentSlideIndex - slidesPerPage);
         } else {
-            // Si el swipe no fue suficiente para cambiar de página, vuelve a la posición de la página actual
             moveToSlide(currentSlideIndex);
         }
 
-        // Resetea las coordenadas de arrastre
         startX = 0;
         endX = 0;
     }
 
     // --- 4. Inicialización del Carrusel ---
-    calculateSlideDimensions(); // Calcula las dimensiones al cargar la página
-    setupDots(); // Configura los puntos de paginación
-    moveToSlide(0); // Muestra el primer slide al inicio
+    calculateSlideDimensions();
+    setupDots();
+    moveToSlide(0);
 
     // --- 5. Manejo de la Responsividad ---
     window.addEventListener('resize', () => {
-        // Recalcula todo y vuelve al slide actual (o al inicio si prefieres) al redimensionar
         calculateSlideDimensions();
         setupDots();
         moveToSlide(currentSlideIndex);
@@ -277,30 +239,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const captionText = document.getElementById('modal-caption');
     const closeModal = document.querySelector('.cerrar-modal');
 
-    // Usamos los mismos 'slides' del carrusel para el modal. Si el carrusel no se inicializó,
-    // seleccionamos los certificados directamente.
     const certificadosParaModal = slides.length > 0 ? slides : Array.from(document.querySelectorAll('.certificado-circulo'));
 
     if (certificadoModal && modalImg && closeModal && certificadosParaModal.length > 0) {
         certificadosParaModal.forEach(certificado => {
             certificado.addEventListener('click', function(e) {
-                e.stopPropagation(); // Evita que el evento se propague al documento o al carrusel
+                e.stopPropagation();
 
-                // Asegúrate de que tus elementos .certificado-circulo tengan atributos data-large-image y data-caption
                 const imageUrlToDisplay = this.dataset.largeImage;
                 const caption = this.dataset.caption;
 
                 if (imageUrlToDisplay) {
                     modalImg.src = imageUrlToDisplay;
                     modalImg.alt = caption || "Certificado Ampliado";
-                    certificadoModal.style.display = 'flex'; // Muestra el modal
+                    certificadoModal.style.display = 'flex';
                 } else {
                     console.warn("No se encontró el atributo data-large-image en el certificado:", this);
-                    return; // Sale si no hay imagen para mostrar
+                    return;
                 }
 
                 if (captionText) {
-                    captionText.textContent = caption || ''; // Muestra la descripción
+                    captionText.textContent = caption || '';
                 }
             });
         });
@@ -308,8 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Cierra el modal al hacer clic en el botón de cerrar
         closeModal.addEventListener('click', function() {
             certificadoModal.style.display = 'none';
-            modalImg.src = ''; // Limpia la imagen
-            if (captionText) captionText.textContent = ''; // Limpia la descripción
+            modalImg.src = '';
+            if (captionText) captionText.textContent = '';
         });
 
         // Cierra el modal al hacer clic fuera de la imagen (en el overlay)
@@ -321,7 +280,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Cierra el modal al presionar la tecla 'Escape'
+        // Cierra el modal al presionar la tecla 'Escape' (Solo uno por documento es suficiente)
+        // Este ya lo maneja el 'document.addEventListener' general al final, por lo que lo removemos de aquí.
+        /*
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' || event.key === 'Esc') {
                 if (certificadoModal.style.display === 'flex') {
@@ -331,6 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+        */
 
     } else {
         console.warn("Elementos HTML para el modal de certificados no encontrados o no hay certificados con clase '.certificado-circulo' para clickear. La funcionalidad del modal de certificados no se activará.");
@@ -339,22 +301,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- FUNCIONALIDAD PARA EL MODAL DE CONTENIDO GRATUITO ---
 
-    // Elementos del modal de contenido gratuito
-    const btnAbrirContenidoModal = document.getElementById('descarga-aqui-btn');
+    // AHORA LAS DECLARACIONES DE CONSTANTES SON ÚNICAS EN TODO EL ARCHIVO.
+    // SEGUNDA OCURRENCIA DE ESTAS LÍNEAS ELIMINADA.
+    const btnAbrirContenidoModalGratuito = document.getElementById('descarga-aqui-btn'); // Renombrado para evitar conflicto
     const contenidoGratuitoModal = document.getElementById('contenido-gratuito-modal');
-    const cerrarContenidoModal = document.querySelector('.cerrar-modal-gratuito');
+    const cerrarContenidoModalGratuito = document.querySelector('.cerrar-modal-gratuito'); // Renombrado
     const formContenidoGratuito = document.getElementById('form-contenido-gratuito');
 
-    if (btnAbrirContenidoModal && contenidoGratuitoModal && cerrarContenidoModal && formContenidoGratuito) {
 
-        btnAbrirContenidoModal.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita el comportamiento por defecto del enlace
-            contenidoGratuitoModal.style.display = 'flex'; // Muestra el modal
+    if (btnAbrirContenidoModalGratuito && contenidoGratuitoModal && cerrarContenidoModalGratuito && formContenidoGratuito) {
+
+        btnAbrirContenidoModalGratuito.addEventListener('click', function(e) {
+            e.preventDefault();
+            contenidoGratuitoModal.style.display = 'flex';
         });
 
-        cerrarContenidoModal.addEventListener('click', function() {
-            contenidoGratuitoModal.style.display = 'none'; // Oculta el modal
-            formContenidoGratuito.reset(); // Reinicia el formulario
+        cerrarContenidoModalGratuito.addEventListener('click', function() {
+            contenidoGratuitoModal.style.display = 'none';
+            formContenidoGratuito.reset();
         });
 
         contenidoGratuitoModal.addEventListener('click', function(event) {
@@ -364,6 +328,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Eliminamos el keydown aquí, será manejado por un único event listener global al final.
+        /*
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' || event.key === 'Esc') {
                 if (contenidoGratuitoModal.style.display === 'flex') {
@@ -372,9 +338,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+        */
 
         formContenidoGratuito.addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita el envío por defecto del formulario
+            e.preventDefault();
 
             const userEmail = document.getElementById('user-email-gratuito').value;
             const selectedContents = [];
@@ -390,36 +357,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            const formData = new FormData();
-            formData.append('email', userEmail);
-            formData.append('contenidos_solicitados', selectedContents.join(', '));
+            // --- LÍNEAS ELIMINADAS: const formData = new FormData(); formData.append(...); ---
+            // Ya no son necesarias con el método mailto:
 
-            // --- ¡IMPORTANTE! Reemplaza 'https://formspree.io/f/TU_ENDPOINT_FORMSPREE' con tu URL real de Formspree ---
-            // Este es un placeholder. Necesitas tu propia URL de Formspree aquí.
-            fetch('https://formspree.io/f/TU_ENDPOINT_FORMSPREE', { // ¡CAMBIA ESTO POR TU ENDPOINT REAL DE FORMSPREE!
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('¡Solicitud enviada! En breve un administrador se pondrá en contacto para enviarte el contenido.');
-                    contenidoGratuitoModal.style.display = 'none';
-                    formContenidoGratuito.reset();
-                } else {
-                    alert('Hubo un error al enviar tu solicitud. Por favor, inténtalo de nuevo más tarde.');
-                }
-            })
-            .catch(error => {
-                console.error('Error de red:', error);
-                alert('Hubo un error de conexión. Por favor, inténtalo de nuevo más tarde.');
-            });
-        });
+            // --- INICIO DEL CÓDIGO para el envío con mailto en nueva pestaña ---
+            let emailBody = `Hola DIGITALBLOOMKT,\n\n`;
+            emailBody += `El usuario ${userEmail} ha solicitado el siguiente contenido gratuito:\n\n`;
+
+            emailBody += selectedContents.map(content => `- ${content}`).join('\n');
+
+            emailBody += `\n\nPor favor, contacta a ${userEmail} para enviarle el contenido solicitado.`;
+            emailBody += `\n\nSaludos,`;
+            emailBody += `\nTu Sitio Web`;
+
+            const recipientEmail = 'brendadujovich@gmail.com';
+            const subject = encodeURIComponent('Solicitud de Contenido Gratuito desde el Sitio Web');
+            const body = encodeURIComponent(emailBody);
+
+            const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+
+            window.open(mailtoUrl, '_blank');
+
+            contenidoGratuitoModal.style.display = 'none';
+            formContenidoGratuito.reset();
+            // --- FIN DEL CÓDIGO ---
+
+        }); // Cierre del addEventListener('submit')
 
     } else {
         console.warn("Algunos elementos del modal de contenido gratuito no fueron encontrados. Asegúrate de tener un botón con ID 'descarga-aqui-btn', un modal con ID 'contenido-gratuito-modal', y un formulario con ID 'form-contenido-gratuito'.");
     }
+
+    // --- MANEJO CENTRALIZADO DE LA TECLA ESCAPE PARA CERRAR MODALES ---
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' || event.key === 'Esc') {
+            // Cierra el modal de certificados si está abierto
+            if (certificadoModal && certificadoModal.style.display === 'flex') {
+                certificadoModal.style.display = 'none';
+                modalImg.src = '';
+                if (captionText) captionText.textContent = '';
+            }
+            // Cierra el modal de contenido gratuito si está abierto
+            if (contenidoGratuitoModal && contenidoGratuitoModal.style.display === 'flex') {
+                contenidoGratuitoModal.style.display = 'none';
+                formContenidoGratuito.reset();
+            }
+        }
+    });
 
 }); // <-- CIERRE FINAL DEL document.addEventListener('DOMContentLoaded')
