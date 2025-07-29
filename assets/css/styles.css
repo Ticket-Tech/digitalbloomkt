@@ -975,7 +975,7 @@ body {
     resize: vertical;
 }
 
-.formulario-consulta button[type="submit"] {
+.formulario-consulta button[type="button"] {
     background-color: #a1a1a1;
     color: #faf9f9;
     padding: clamp(0.75rem, 2vw, 0.75rem) clamp(1rem, 4vw, 1.5625rem); /* Padding responsivo */
