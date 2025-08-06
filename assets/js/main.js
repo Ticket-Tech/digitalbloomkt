@@ -375,4 +375,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // --- 6. FUNCIONALIDAD PARA EL MENÚ FIJO EN ESCRITORIO (Versión corregida) ---
+    const navMenuSection = document.querySelector('.nav-menu-section');
+    const menu = document.querySelector('.menu');
+
+    if (navMenuSection && menu) {
+        const menuOffsetTop = navMenuSection.offsetTop;
+        let menuPlaceholder = null;
+
+        function handleScrollAndResize() {
+            if (window.innerWidth >= 1024) {
+                if (window.scrollY >= menuOffsetTop) {
+                    if (!menuPlaceholder) {
+                        menuPlaceholder = document.createElement('div');
+                        menuPlaceholder.style.height = navMenuSection.offsetHeight + 'px';
+                        navMenuSection.parentNode.insertBefore(menuPlaceholder, navMenuSection);
+                    }
+
+                    // AUMENTAMOS EL Z-INDEX PARA QUE EL MENÚ APAREZCA ENCIMA
+                    navMenuSection.style.position = 'fixed';
+                    navMenuSection.style.top = '0';
+                    navMenuSection.style.width = '100%';
+                    navMenuSection.style.zIndex = '9999'; // <-- CAMBIO AQUÍ
+                } else {
+                    navMenuSection.style.position = 'static';
+                    navMenuSection.style.top = '';
+                    navMenuSection.style.width = '';
+                    navMenuSection.style.zIndex = '';
+                    
+                    if (menuPlaceholder) {
+                        navMenuSection.parentNode.removeChild(menuPlaceholder);
+                        menuPlaceholder = null;
+                    }
+                }
+            } else {
+                navMenuSection.style.position = 'static';
+                navMenuSection.style.top = '';
+                navMenuSection.style.width = '';
+                navMenuSection.style.zIndex = '';
+                
+                if (menuPlaceholder) {
+                    navMenuSection.parentNode.removeChild(menuPlaceholder);
+                    menuPlaceholder = null;
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScrollAndResize);
+        window.addEventListener('resize', handleScrollAndResize);
+    }
 }); // CIERRE FINAL DEL document.addEventListener('DOMContentLoaded')
